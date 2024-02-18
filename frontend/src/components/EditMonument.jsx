@@ -44,7 +44,12 @@ const EditMonument = () => {
     <form onSubmit={submit}>
       <div className="inp">
         <label htmlFor="title">Title</label>
-        <input name="title" type="text" id="title" value={monument.title} />
+        <input
+          name="title"
+          type="text"
+          id="title"
+          defaultValue={monument.title}
+        />
       </div>
       <div className="inp">
         <label htmlFor="shdes">Short Description</label>
@@ -56,20 +61,39 @@ const EditMonument = () => {
       </div>
       <div className="inp">
         <label htmlFor="des">Description</label>
-        <textarea name="description" id="des" value={monument.description} />
+        <textarea
+          name="description"
+          id="des"
+          defaultValue={monument.description}
+        />
       </div>
 
       <div className="inp">
         <label htmlFor="nat">Nation</label>
-        <input name="nation" type="text" id="nat" value={monument.nation} />
+        <input
+          name="nation"
+          type="text"
+          id="nat"
+          defaultValue={monument.nation}
+        />
       </div>
       <div className="inp">
         <label htmlFor="state">State</label>
-        <input name="state" type="text" id="state" value={monument.state} />
+        <input
+          name="state"
+          type="text"
+          id="state"
+          defaultValue={monument.state}
+        />
       </div>
       <div className="inp">
         <label htmlFor="place">Place</label>
-        <input name="place" type="text" id="place" value={monument.place} />
+        <input
+          name="place"
+          type="text"
+          id="place"
+          defaultValue={monument.place}
+        />
       </div>
       <div className="sub">
         <input type="submit" />
