@@ -24,7 +24,7 @@ router.post("/", async (request, response) => {
       description: request.body.description,
       hst_chronology: request.body.hst_chronology,
       ipms_place: request.body.ipms_place,
-      archi_ipms: request.body.archi_ipms,
+      archi_imps: request.body.archi_imps,
       past_condition: request.body.past_condition,
       present_condition: request.body.present_condition,
       location: request.body.location,

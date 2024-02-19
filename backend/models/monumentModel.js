@@ -22,7 +22,7 @@ const monumentSchema = mongoose.Schema(
             type:String,
             required:false,
         },
-        archi_ipms:{
+        archi_imps:{
             type:String,
             required:false,
         },

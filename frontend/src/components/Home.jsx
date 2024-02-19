@@ -37,6 +37,11 @@ const Home = () => {
             <th>Title</th>
             <th>short Description</th>
             <th>Description</th>
+            <th>Place</th>
+            <th>State</th>
+            <th>Location</th>
+            <th>Importance of a Place</th>
+            <th>Gallery</th>
             <th>Options</th>
           </tr>
         </thead>
@@ -47,6 +52,14 @@ const Home = () => {
               <td>{monument.title}</td>
               <td>{monument.shortdescription}</td>
               <td>{monument.description}</td>
+              <td>{monument.place}</td>
+              <td>{monument.state}</td>
+              <td>{monument.location}</td>
+              <td>{monument.ipms_place}</td>
+              <td>
+              {/* <Link to={`/gallery/${monument._id}`}> */}
+                  <button>gallery</button>
+              </td>
               <td>
                 <Link to={`/monument/edit/${monument._id}`}>
                   <button>Edit</button>
