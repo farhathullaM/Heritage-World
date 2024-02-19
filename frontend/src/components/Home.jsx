@@ -57,8 +57,8 @@ const Home = () => {
               <td>{monument.location}</td>
               <td>{monument.ipms_place}</td>
               <td>
-              {/* <Link to={`/gallery/${monument._id}`}> */}
-                  <button>gallery</button>
+              <Link to={`/Gallery/${monument._id}`}>
+                  <button>gallery</button></Link>
               </td>
               <td>
                 <Link to={`/monument/edit/${monument._id}`}>
