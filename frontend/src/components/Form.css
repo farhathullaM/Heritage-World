@@ -3,47 +3,51 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+  background-color: rgb(235, 235, 235);
 }
 .formcard {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(233, 233, 233);
+  background-color: white;
   width: 900px;
   margin-block: 30px;
-  border-radius: 20px;
-  padding: 20px 30px 30px 30px;
+  border-radius: 5px;
+  padding: 30px;
   color: black;
 }
 
 .formcard form {
-  width: 80%;
-  display: grid;
+  width: 100%;
+  /* display: grid;
   grid-template-columns: repeat(2, 350px);
-  align-items: start;
+  align-items: start; */
 }
 
 .inp {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   margin-top: 20px;
 }
 .inp label {
-  padding-left: 7px;
+  padding: 7px;
   font-size: 14;
   color: rgb(117, 116, 116);
 }
 
 .inp input,
 .inp textarea {
-  max-width: 300px;
-  width: 300px;
-  border-radius: 10px;
-  border: none;
+  max-width: 500px;
+  width: 500px;
+  border-radius: 3px;
+  border: 1px solid rgb(163, 163, 163);
   padding: 10px;
   font-size: 15px;
+}
+.inp input:focus,
+.inp textarea:focus {
+  outline: none;
 }
 
 .inp input {
@@ -56,6 +60,8 @@
 
 .sub {
   padding-top: 20px;
+  display: flex;
+  justify-content: end;
 }
 .sub .btn {
   width: 150px;

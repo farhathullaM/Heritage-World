@@ -1,6 +1,7 @@
 import axios from "axios";
-import { React, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./Form.css";
 
 const AddMonument = () => {
   const navigate = useNavigate();
