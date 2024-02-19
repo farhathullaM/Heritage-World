@@ -13,7 +13,13 @@ const gallerySchema = mongoose.Schema(
             type:String,
             required:true,
         },
+          // Define foreign key reference to Monument model
+        monumentId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Monument' // Reference to the Monument model
+        }
     },
+    
     
     {
         timestamps:true,

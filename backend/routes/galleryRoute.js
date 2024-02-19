@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // POST route to add a new gallery item
-router.post('/', upload.single('image'), async (request, response) => {
+router.post('/:monumentId', upload.single('image'), async (request, response) => {
   try {
     if (!request.body.imgTitle || !request.file || !request.body.description) {
       return response.status(400).send({
@@ -32,6 +32,7 @@ router.post('/', upload.single('image'), async (request, response) => {
 
     // Construct the new gallery item object
     const newGalleryItem = {
+      monumentId:request.params.monumentId,
       imgTitle: request.body.imgTitle,
       image: request.file.path, // File path of the uploaded image
       description: request.body.description,
@@ -48,9 +49,9 @@ router.post('/', upload.single('image'), async (request, response) => {
 });
 
 // GET route to retrieve all gallery items
-router.get('/', async (request, response) => {
+router.get('/:monumentId', async (request, response) => {
   try {
-    const galleryItems = await Gallery.find();
+    const galleryItems = await Gallery.find({ monumentId: request.params.monumentId });
     return response.status(200).json(galleryItems);
   } catch (error) {
     console.error(error.message);
