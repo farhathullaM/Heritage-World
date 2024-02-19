@@ -4,16 +4,16 @@ import { Link, useParams } from "react-router-dom";
 
 const Gallery = () => {
   const [data, setData] = useState([]);
-  const { id } = useParams(); // Get the id parameter from the URL
+  const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/gallery/${id}`) // Use the id from the URL
+      .get(`http://localhost:3001/gallery/${id}`)
       .then((res) => {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, [id]); // Include id in the dependency array
+  }, [id]);
 
   function deleteGallery(id) {
     axios
@@ -52,7 +52,6 @@ const Gallery = () => {
               <td>{gallery.imgTitle}</td>
               <td>{gallery.description}</td>
               <td>
-                {/* Display image or video based on file type */}
                 {gallery.image && gallery.image.endsWith(".mp4") ? (
                   <video width="320" height="240" controls>
                     <source src={gallery.image} type="video/mp4" />
@@ -63,7 +62,6 @@ const Gallery = () => {
                 )}
               </td>
               <td>
-                
                 <Link to={`/monument/edit/${gallery._id}`}>
                   <button>Edit</button>
                 </Link>

@@ -1,0 +1,92 @@
+.container {
+  margin-inline: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100vh;
+}
+
+.btn {
+  background-color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  font-size: 1.01rem;
+  cursor: pointer;
+  transition: background-color 0.1s linear;
+}
+
+.btn:hover {
+  background-color: rgb(78, 78, 78);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-block: 20px;
+}
+
+.topbar .main-head {
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.table {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+}
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table table thead {
+  position: sticky;
+  top: 0;
+}
+
+.table table thead th {
+  background-color: rgb(246, 246, 246);
+  border: none;
+  color: rgb(91, 91, 91);
+  font-weight: 500;
+  text-align: start;
+}
+
+.table table thead .table table thead th:last-child {
+  text-align: center;
+}
+
+.table table td,
+.table table th {
+  padding: 10px 10px;
+}
+
+.table table tbody tr:nth-child(odd) {
+  border-block: 1px solid rgb(205, 205, 205);
+}
+
+.tool {
+  font-size: 25px;
+  cursor: pointer;
+  color: black;
+}
+.tool.del:hover {
+  color: rgb(210, 20, 20);
+}
+.tool.edit:hover,
+.tool.gal:hover {
+  color: rgb(16, 122, 222);
+}
+
+.icons .tool-con {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

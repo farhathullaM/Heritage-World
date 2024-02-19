@@ -1,8 +1,9 @@
 import Home from "./components/Home";
 import AddMonument from "./components/AddMonument";
 import EditMonument from "./components/EditMonument";
-import { Route, Routes } from "react-router-dom";
 import Gallery from "./components/gallery";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
