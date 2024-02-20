@@ -16,14 +16,17 @@ const Home = () => {
   }, []);
 
   function deleteMonument(id) {
-    axios
-      .delete(`http://localhost:3001/monuments/${id}`)
-      .then((res) => {
-        setData((currentData) => currentData.filter((m) => m._id != id));
-      })
-      .catch((err) => {
-        alert("Delete Error: Could not be deleted");
-      });
+    let isDel = confirm("Confirm Delete");
+    if (isDel) {
+      axios
+        .delete(`http://localhost:3001/monuments/${id}`)
+        .then((res) => {
+          setData((currentData) => currentData.filter((m) => m._id != id));
+        })
+        .catch((err) => {
+          alert("Delete Error: Could not be deleted");
+        });
+    }
   }
   return (
     <div className="container">
@@ -47,7 +50,9 @@ const Home = () => {
               <th>Importance</th>
               <th>Gallery</th>
               <th>
-                <span class="material-symbols-outlined tool">more_vert</span>
+                <span className="material-symbols-outlined tool">
+                  more_vert
+                </span>
               </th>
             </tr>
           </thead>
@@ -65,7 +70,7 @@ const Home = () => {
                 <td className="icons">
                   <div className="tool-con">
                     <Link to={`/Gallery/${monument._id}`}>
-                      <span class="material-symbols-outlined tool gal">
+                      <span className="material-symbols-outlined tool gal">
                         photo_library
                       </span>
                     </Link>
@@ -74,12 +79,12 @@ const Home = () => {
                 <td className="icons">
                   <div className="tool-con">
                     <Link to={`/monument/edit/${monument._id}`}>
-                      <span class="material-symbols-outlined tool edit">
+                      <span className="material-symbols-outlined tool edit">
                         edit_square
                       </span>
                     </Link>
                     <span
-                      class="material-symbols-outlined tool del"
+                      className="material-symbols-outlined tool del"
                       onClick={() => deleteMonument(monument._id)}
                     >
                       delete
