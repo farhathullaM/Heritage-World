@@ -3,7 +3,9 @@ import cors from "cors";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import monumentRoute from "./routes/monumentRoute.js";
-import galleryRoute from "./routes/galleryRoute.js"
+import galleryRoute from "./routes/galleryRoute.js";
+import bcrypt from 'bcrypt';
+import loginRoute from "./routes/loginRoute.js";
 
 const app = express();
 app.use(express.json());
@@ -16,6 +18,11 @@ app.get("/", (request, response) => {
 });
 app.use("/monuments", monumentRoute);
 app.use('/gallery',galleryRoute);
+app.use('/users',loginRoute);
+
+
+
+
 mongoose
   .connect(mongoDBURL)
   .then(() => {
