@@ -8,7 +8,7 @@ const Gallery = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/gallery/${id}`)
+      .get(`http://localhost:3001/gallery/monument/${id}`)
       .then((res) => {
         setData(res.data);
       })
@@ -17,7 +17,7 @@ const Gallery = () => {
 
   function deleteGallery(id) {
     axios
-      .delete(`http://localhost:3001/gallery/${id}`)
+      .delete(`http://localhost:3001/gallery/monument/${id}`)
       .then((res) => {
         setData((currentData) =>
           currentData.filter((gallery) => gallery._id !== id)
@@ -31,7 +31,7 @@ const Gallery = () => {
   return (
     <>
       <div className="topbar">
-        <Link to={"/monument/create"}>
+        <Link to={"/gallery/create"}>
           <button className="btn">Create</button>
         </Link>
       </div>
