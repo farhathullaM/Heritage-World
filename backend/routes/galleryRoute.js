@@ -48,8 +48,8 @@ router.post('/:monumentId', upload.single('image'), async (request, response) =>
   }
 });
 
-// GET route to retrieve all gallery items
-router.get('/:monumentId', async (request, response) => {
+// GET route to retrieve  gallery items for monument 
+router.get('/monument/:monumentId', async (request, response) => {
   try {
     const galleryItems = await Gallery.find({ monumentId: request.params.monumentId });
     return response.status(200).json(galleryItems);

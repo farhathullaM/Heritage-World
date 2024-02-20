@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import monumentRoute from "./routes/monumentRoute.js";
 import galleryRoute from "./routes/galleryRoute.js";
 import bcrypt from 'bcrypt';
-import loginRoute from "./routes/loginRoute.js";
+import loginRoute from "./routes/LoginRoute.js";
 
 const app = express();
 app.use(express.json());
