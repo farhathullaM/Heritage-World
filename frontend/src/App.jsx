@@ -13,7 +13,7 @@ function App() {
       <Route path="/monument/create" element={<AddMonument />} />
       <Route path="/monument/edit/:id" element={<EditMonument />} />
       <Route path="/gallery/:id" element={<Gallery />} />
-      <Route path="/gallery/create" element={<AddGallery />} />
+      <Route path="/gallery/create/:id" element={<AddGallery />} />
     </Routes>
   );
 }

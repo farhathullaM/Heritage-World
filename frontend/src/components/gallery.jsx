@@ -31,7 +31,7 @@ const Gallery = () => {
   return (
     <>
       <div className="topbar">
-        <Link to={"/gallery/create"}>
+        <Link to={`/gallery/create/${id}`}>
           <button className="btn">Create</button>
         </Link>
       </div>

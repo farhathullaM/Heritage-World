@@ -1,24 +1,30 @@
 import axios from "axios";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useRef } from "react";
+import { useNavigate , useParams} from "react-router-dom";
 import "./Form.css";
 
 const AddGallery = () => {
   const navigate = useNavigate();
-  const galleryEndpoint = "http://localhost:3001/gallery/";
+  const { id } = useParams();
+  const galleryEndpoint = `http://localhost:3001/gallery/${id}`;
+  const imageRef = useRef(null);
 
   function submit(e) {
     e.preventDefault();
-    const data = {
-        imgTitle: imgTitle.value,
-      description: des.value,
-      image: image.value,
-      
-    };
+
+    const formData = new FormData();
+    formData.append("imgTitle", e.target.imgTitle.value);
+    formData.append("description", e.target.description.value);
+    formData.append("image", imageRef.current.files[0]);
+
     axios
-      .post(galleryEndpoint, data)
+      .post(galleryEndpoint, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((res) => {
-        alert("Galley Created");
+        alert("Gallery Created");
         navigate("/");
       })
       .catch((err) => {
@@ -35,24 +41,20 @@ const AddGallery = () => {
             <input name="imgTitle" type="text" id="imgTitle" />
           </div>
 
-        
           <div className="inp">
             <label htmlFor="des">Description</label>
             <textarea name="description" id="des" />
           </div>
           
-          
           <div className="inp">
-            <label htmlFor="image">
-            Image
-            </label>
+            <label htmlFor="image">Image/Video</label>
             <input
               name="image"
               type="file"
               id="image"
+              ref={imageRef}
             />
           </div>
-   
 
           <div className="sub">
             <input type="submit" className="btn" />
