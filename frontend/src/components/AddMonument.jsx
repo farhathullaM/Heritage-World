@@ -5,7 +5,7 @@ import "./Form.css";
 
 const AddMonument = () => {
   const navigate = useNavigate();
-  const monumentEndpoint = "http://localhost:3001/monuments/";
+  const monumentEndpoint = "monuments/";
 
   function submit(e) {
     e.preventDefault();

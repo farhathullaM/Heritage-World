@@ -8,7 +8,7 @@ const Home = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3001/monuments/")
+      .get("monuments/")
       .then((res) => {
         setData(res.data);
       })
@@ -19,7 +19,7 @@ const Home = () => {
     let isDel = confirm("Confirm Delete");
     if (isDel) {
       axios
-        .delete(`http://localhost:3001/monuments/${id}`)
+        .delete(`monuments/${id}`)
         .then((res) => {
           setData((currentData) => currentData.filter((m) => m._id != id));
         })

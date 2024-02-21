@@ -7,10 +7,9 @@ const EditMonument = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [monument, setMonument] = useState({});
-  const monumentEndpoint = `http://localhost:3001/monuments/${id}`;
   useEffect(() => {
     axios
-      .get(monumentEndpoint)
+      .get(`monuments/${id}`)
       .then((res) => {
         setMonument(res.data);
       })
@@ -38,7 +37,7 @@ const EditMonument = () => {
     };
     console.log(data);
     axios
-      .put(monumentEndpoint, data)
+      .put(`monuments/${id}`, data)
       .then((res) => {
         alert("Monument updated");
         navigate("/");
