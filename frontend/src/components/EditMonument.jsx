@@ -1,12 +1,10 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Form.css";
+import imgIcon from "../static/img.svg";
 
 const EditMonument = () => {
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const monumentEndpoint = `monuments/${id}`;
   const [monument, setMonument] = useState({
     title: "",
     shortdescription: "",
@@ -22,7 +20,12 @@ const EditMonument = () => {
     present_condition: "",
     cover_image: null,
   });
-  const [oldCoverImage, setOldCoverImage] = useState(""); // State variable for old cover image URL
+  const [filename, setFilename] = useState("No file chosen");
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const c_img = useRef();
+  const monumentEndpoint = `monuments/${id}`;
+  const [coverImage, setCoverImage] = useState(imgIcon); // State variable for old cover image URL
 
   useEffect(() => {
     axios
@@ -30,15 +33,29 @@ const EditMonument = () => {
       .then((res) => {
         const { data } = res;
         setMonument(data);
-        setOldCoverImage(data.cover_image); // Store the old cover image URL
+        if (data.cover_image)
+          setCoverImage(axios.defaults.baseURL + data.cover_image);
+        if (data.cover_image) setFilename(data.cover_image.split("\\")[1]);
       })
       .catch((err) => {
         console.error("Error fetching monument:", err);
       });
   }, [monumentEndpoint]);
 
+  function setImgSrc(files) {
+    if (FileReader && files && files.length) {
+      var fr = new FileReader();
+      fr.onload = function () {
+        document.querySelector(".file-image-display").src = fr.result;
+      };
+      fr.readAsDataURL(files[0]);
+    }
+  }
+
   function handleChange(e) {
     const { name, value, files } = e.target;
+    setFilename(files[0].name);
+    setImgSrc(files);
     setMonument((prevMonument) => ({
       ...prevMonument,
       [name]: files ? files[0] : value,
@@ -212,20 +229,29 @@ const EditMonument = () => {
               onChange={handleChange}
             />
           </div>
-
           <div className="inp">
             <label htmlFor="cover_image">Cover Image</label>
-            <input
-              name="cover_image"
-              type="file"
-              id="cover_image"
-              onChange={handleChange}
-            />
-          
-              <div className="old-cover-image">
-                <img src={monument.cover_image} alt="Old Cover Image" />
+            <div className="fileSelect">
+              <div className="filebtncon">
+                <label htmlFor="cover_image" className="fileopen btn">
+                  <span>Open file</span>
+                </label>
+                <p className="filename">{filename}</p>
               </div>
-            
+              <input
+                name="cover_image"
+                type="file"
+                id="cover_image"
+                onChange={handleChange}
+              />
+
+              <img
+                src={coverImage}
+                alt="Old Cover Image"
+                className="file-image-display"
+                ref={c_img}
+              />
+            </div>
           </div>
 
           <div className="sub">

@@ -34,63 +34,72 @@ const Gallery = () => {
   }
 
   return (
-    <>
+    <div className="container">
       <div className="topbar">
+        <div className="main-head">Gallery</div>
         <Link to={`/gallery/create/${id}`}>
           <button className="btn">Create</button>
         </Link>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Title</th>
-            <th>Short Description</th>
-            <th>Media</th>
-            <th>Options</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((gallery, index) => (
-            <tr key={gallery._id}>
-              <td>{index + 1}</td>
-              <td>{gallery.imgTitle}</td>
-              <td>{gallery.description}</td>
-              <td className="med">
-                {gallery.image && gallery.image.endsWith(".mp4") ? (
-                  <video className="media" controls>
-                    <source
-                      src={axios.defaults.baseURL + gallery.image}
-                      type="video/mp4"
-                    />
-                    Your browser does not support the video tag.
-                  </video>
-                ) : (
-                  <img
-                    src={axios.defaults.baseURL + gallery.image}
-                    alt="Gallery Media"
-                    className="media"
-                  />
-                )}
-              </td>
-              <td>
-                <Link to={`/gallery/edit/${gallery._id}`}>
-                  <span className="material-symbols-outlined tool edit">
-                    edit_square
-                  </span>
-                </Link>
-                <span
-                  className="material-symbols-outlined tool del"
-                  onClick={() => deleteGallery(gallery._id)}
-                >
-                  delete
+      <div className="table">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Title</th>
+              <th>Short Description</th>
+              <th>Media</th>
+              <th>
+                <span className="material-symbols-outlined tool">
+                  more_vert
                 </span>
-              </td>
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+          </thead>
+          <tbody>
+            {data.map((gallery, index) => (
+              <tr key={gallery._id}>
+                <td>{index + 1}</td>
+                <td>{gallery.imgTitle}</td>
+                <td>{gallery.description}</td>
+                <td>
+                  {gallery.image && gallery.image.endsWith(".mp4") ? (
+                    <video className="image-display" controls>
+                      <source
+                        src={axios.defaults.baseURL + gallery.image}
+                        type="video/mp4"
+                      />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <img
+                      src={axios.defaults.baseURL + gallery.image}
+                      alt="Gallery Media"
+                      className="image-display"
+                    />
+                  )}
+                </td>
+                <td className="icons">
+                  <div className="tool-con">
+                    <Link to={`/gallery/edit/${gallery._id}`}>
+                      <span className="material-symbols-outlined tool edit">
+                        edit_square
+                      </span>
+                    </Link>
+                    <span
+                      className="material-symbols-outlined tool del"
+                      onClick={() => deleteGallery(gallery._id)}
+                    >
+                      delete
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 

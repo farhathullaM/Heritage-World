@@ -10,6 +10,7 @@
 
 :root {
   --tableBorderRadius: 10px;
+  --borderGrey: rgb(163, 163, 163);
 }
 
 #root {
