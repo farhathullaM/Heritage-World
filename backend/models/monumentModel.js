@@ -6,6 +6,10 @@ const monumentSchema = mongoose.Schema(
             type:String,
             required:true,
         },
+        cover_image: {
+            type: String,
+            required: true,
+          },
         shortdescription:{
             type:String,
             required:true,

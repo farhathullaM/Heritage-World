@@ -1,9 +1,28 @@
 import express from "express";
 import { Monument } from "../models/monumentModel.js";
+import multer from "multer";
+import fs from "fs";
+
 
 const router = express.Router();
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/coverimg/");
+  },
+  filename: function (req, file, cb) {
+    // Generate a random number between 1000 and 9999
+    const randomNumber = Math.floor(Math.random() * 9000) + 1000;
+    // Append the random number to the original filename
+    const modifiedFilename = randomNumber + "-" + file.originalname;
+    cb(null, modifiedFilename);
+  },
+});
 
-router.post("/", async (request, response) => {
+const upload = multer({ storage: storage });
+
+router.post("/",
+  upload.single("cover_image"),
+  async (request, response) => {
   try {
     if (
       !request.body.title ||
@@ -11,11 +30,12 @@ router.post("/", async (request, response) => {
       !request.body.description ||
       !request.body.nation ||
       !request.body.state ||
+      !request.file ||
       !request.body.place
     ) {
       return response.status(400).send({
         message:
-          "send all required fields : title , shortdescription , description",
+          "send all required fields : title , shortdescription ,file, description,place"
       });
     }
     const newmonument = {
@@ -31,8 +51,10 @@ router.post("/", async (request, response) => {
       nation: request.body.nation,
       state: request.body.state,
       place: request.body.place,
+      cover_image: request.file.path, 
       user: request.body.user,
       status: request.body.status,
+      
     };
     const monument = await Monument.create(newmonument);
 
@@ -67,7 +89,7 @@ router.get("/:id", async (request, response) => {
   }
 });
 //update
-router.put("/:id", async (request, response) => {
+router.put("/:id", upload.single("cover_image"), async (request, response) => {
   try {
     if (
       !request.body.title ||
@@ -83,16 +105,42 @@ router.put("/:id", async (request, response) => {
       });
     }
     const { id } = request.params;
-    const result = await Monument.findByIdAndUpdate(id, request.body);
-    if (!result) {
-      return response.status(404).json({ mesage: "monument not found " });
+    const monument = await Monument.findById(id);
+    if (!monument) {
+      return response.status(404).json({ message: "Monument is not found" });
     }
-    return response
-      .status(200)
-      .json({ mesage: "monument updated success fully " });
+
+    // Check if a new image or video is uploaded
+    if (request.file) {
+      // Delete previous image or video if exists
+      if (monument.cover_image) {
+        fs.unlinkSync(monument.cover_image); // Delete previous image or video file
+      }
+      monument.cover_image = request.file.path; // Update image or video path with new file
+    }
+    monument.title = request.body.title;
+    monument.shortdescription = request.body.shortdescription;
+    monument.description = request.body.description;
+    monument.nation = request.body.nation;
+    monument.state = request.body.state;
+    monument.place = request.body.place;
+    monument.location = request.body.location;
+    monument.hst_chronology = request.body.hst_chronology;
+    monument.ipms_place = request.body.ipms_place;
+    monument.past_condition = request.body.past_condition;
+    monument.present_condition = request.body.present_condition;
+    monument.archi_imps = request.body.archi_imps;
+    // Save the updated monument
+    await monument.save();
+
+    // const result = await Monument.findByIdAndUpdate(id, request.body);
+    // if (!result) {
+    //   return response.status(404).json({ mesage: "monument not found " });
+    // }
+    return response.status(200).json({ message: "Monument updated successfully" });
   } catch (error) {
-    console.log(error.message);
-    response.status(500).send({ message: error.message });
+    console.error(error.message);
+    return response.status(500).send({ message: "Internal Server Error" });
   }
 });
 
