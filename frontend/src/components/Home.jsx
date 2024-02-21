@@ -46,7 +46,7 @@ const Home = () => {
               <th>Description</th>
               <th>Place</th>
               <th>State</th>
-              <th>Location</th>
+              <th>Image</th>
               <th>Importance</th>
               <th>Gallery</th>
               <th>
@@ -65,7 +65,7 @@ const Home = () => {
                 <td>{monument.description}</td>
                 <td>{monument.place}</td>
                 <td>{monument.state}</td>
-                <td>{monument.location}</td>
+                <td>{monument.cover_image}</td>
                 <td>{monument.ipms_place}</td>
                 <td className="icons">
                   <div className="tool-con">

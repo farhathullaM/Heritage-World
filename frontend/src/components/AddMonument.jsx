@@ -1,30 +1,37 @@
 import axios from "axios";
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Form.css";
 
 const AddMonument = () => {
   const navigate = useNavigate();
-  const monumentEndpoint = "monuments/";
+  const monumentEndpoint = "http://localhost:3001/monuments/";
+  const imageRef = useRef(null); // Ref for the new file input
 
   function submit(e) {
     e.preventDefault();
-    const data = {
-      title: title.value,
-      shortdescription: shdes.value,
-      description: des.value,
-      nation: nat.value,
-      state: state.value,
-      place: place.value,
-      location: loc.value,
-      ipms_place: ipms_place.value,
-      archi_imps: archi_imps.value,
-      hst_chronology: hst_chronology.value,
-      past_condition: past_condition.value,
-      present_condition: present_condition.value,
-    };
+
+    const formData = new FormData();
+    formData.append("title", e.target.title.value);
+    formData.append("shortdescription", e.target.shdes.value);
+    formData.append("description", e.target.des.value);
+    formData.append("nation", e.target.nat.value);
+    formData.append("state", e.target.state.value);
+    formData.append("place", e.target.place.value);
+    formData.append("location", e.target.loc.value);
+    formData.append("ipms_place", e.target.ipms_place.value);
+    formData.append("archi_imps", e.target.archi_imps.value);
+    formData.append("hst_chronology", e.target.hst_chronology.value);
+    formData.append("past_condition", e.target.past_condition.value);
+    formData.append("present_condition", e.target.present_condition.value);
+    formData.append("cover_image", imageRef.current.files[0]); // Append the selected file
+
     axios
-      .post(monumentEndpoint, data)
+      .post(monumentEndpoint, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((res) => {
         alert("Monument Created");
         navigate("/");
@@ -72,14 +79,13 @@ const AddMonument = () => {
             <input name="ipms_place" type="text" id="ipms_place" />
           </div>
           <div className="inp">
-            <label htmlFor="archi_imps">Architecheral Importance</label>
+            <label htmlFor="archi_imps">Architectural Importance</label>
             <input name="archi_imps" type="text" id="archi_imps" />
           </div>
           <div className="inp">
-            <label htmlFor="place">Historical Chronology</label>
+            <label htmlFor="hst_chronology">Historical Chronology</label>
             <input name="hst_chronology" type="text" id="hst_chronology" />
           </div>
-
           <div className="inp">
             <label htmlFor="past_condition">Past Condition of Place</label>
             <input name="past_condition" type="text" id="past_condition" />
@@ -94,16 +100,16 @@ const AddMonument = () => {
               id="present_condition"
             />
           </div>
-          {/* 
-      <div className="inp">
-        <label htmlFor="place">Place</label>
-        <input name="place" type="text" id="place" />
-      </div>
-      <div className="inp">
-        <label htmlFor="place">Place</label>
-        <input name="place" type="text" id="place" />
-      </div> 
-      */}
+
+          <div className="inp">
+            <label htmlFor="image">cover Image/Video</label>
+            <input
+              name="image"
+              type="file"
+              id="image"
+              ref={imageRef}
+            />
+          </div>
 
           <div className="sub">
             <input type="submit" className="btn" />

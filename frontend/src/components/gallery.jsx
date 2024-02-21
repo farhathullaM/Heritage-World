@@ -16,8 +16,10 @@ const Gallery = () => {
   }, [id]);
 
   function deleteGallery(id) {
+    let isDel = confirm("Confirm Delete");
+    if(isDel){
     axios
-      .delete(`gallery/monument/${id}`)
+      .delete(`gallery/${id}`)
       .then((res) => {
         setData((currentData) =>
           currentData.filter((gallery) => gallery._id !== id)
@@ -26,6 +28,7 @@ const Gallery = () => {
       .catch((err) => {
         alert("Delete Error: Could not be deleted");
       });
+    }
   }
 
   return (
@@ -62,7 +65,7 @@ const Gallery = () => {
                 )}
               </td>
               <td>
-                <Link to={`/monument/edit/${gallery._id}`}>
+                <Link to={`/gallery/edit/${gallery._id}`}>
                   <button>Edit</button>
                 </Link>
                 <button onClick={() => deleteGallery(gallery._id)}>
