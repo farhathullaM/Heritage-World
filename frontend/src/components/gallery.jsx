@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
+import "./gallery.css";
+
 const Gallery = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
@@ -17,17 +19,17 @@ const Gallery = () => {
 
   function deleteGallery(id) {
     let isDel = confirm("Confirm Delete");
-    if(isDel){
-    axios
-      .delete(`gallery/${id}`)
-      .then((res) => {
-        setData((currentData) =>
-          currentData.filter((gallery) => gallery._id !== id)
-        ); // Use !== for comparison
-      })
-      .catch((err) => {
-        alert("Delete Error: Could not be deleted");
-      });
+    if (isDel) {
+      axios
+        .delete(`gallery/${id}`)
+        .then((res) => {
+          setData((currentData) =>
+            currentData.filter((gallery) => gallery._id !== id)
+          );
+        })
+        .catch((err) => {
+          alert("Delete Error: Could not be deleted");
+        });
     }
   }
 
@@ -54,23 +56,35 @@ const Gallery = () => {
               <td>{index + 1}</td>
               <td>{gallery.imgTitle}</td>
               <td>{gallery.description}</td>
-              <td>
+              <td className="med">
                 {gallery.image && gallery.image.endsWith(".mp4") ? (
-                  <video width="320" height="240" controls>
-                    <source src={gallery.image} type="video/mp4" />
+                  <video className="media" controls>
+                    <source
+                      src={axios.defaults.baseURL + gallery.image}
+                      type="video/mp4"
+                    />
                     Your browser does not support the video tag.
                   </video>
                 ) : (
-                  <img src={gallery.image} alt="Gallery Media" />
+                  <img
+                    src={axios.defaults.baseURL + gallery.image}
+                    alt="Gallery Media"
+                    className="media"
+                  />
                 )}
               </td>
               <td>
                 <Link to={`/gallery/edit/${gallery._id}`}>
-                  <button>Edit</button>
+                  <span className="material-symbols-outlined tool edit">
+                    edit_square
+                  </span>
                 </Link>
-                <button onClick={() => deleteGallery(gallery._id)}>
-                  Delete
-                </button>
+                <span
+                  className="material-symbols-outlined tool del"
+                  onClick={() => deleteGallery(gallery._id)}
+                >
+                  delete
+                </span>
               </td>
             </tr>
           ))}

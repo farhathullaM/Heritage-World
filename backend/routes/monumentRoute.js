@@ -3,7 +3,6 @@ import { Monument } from "../models/monumentModel.js";
 import multer from "multer";
 import fs from "fs";
 
-
 const router = express.Router();
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -20,9 +19,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/",
-  upload.single("cover_image"),
-  async (request, response) => {
+router.post("/", upload.single("cover_image"), async (request, response) => {
   try {
     if (
       !request.body.title ||
@@ -35,9 +32,10 @@ router.post("/",
     ) {
       return response.status(400).send({
         message:
-          "send all required fields : title , shortdescription ,file, description,place"
+          "send all required fields : title , shortdescription ,file, description,place",
       });
     }
+
     const newmonument = {
       title: request.body.title,
       shortdescription: request.body.shortdescription,
@@ -51,10 +49,9 @@ router.post("/",
       nation: request.body.nation,
       state: request.body.state,
       place: request.body.place,
-      cover_image: request.file.path, 
+      cover_image: request.file.path.replace("uploads\\", ""),
       user: request.body.user,
       status: request.body.status,
-      
     };
     const monument = await Monument.create(newmonument);
 
@@ -137,7 +134,9 @@ router.put("/:id", upload.single("cover_image"), async (request, response) => {
     // if (!result) {
     //   return response.status(404).json({ mesage: "monument not found " });
     // }
-    return response.status(200).json({ message: "Monument updated successfully" });
+    return response
+      .status(200)
+      .json({ message: "Monument updated successfully" });
   } catch (error) {
     console.error(error.message);
     return response.status(500).send({ message: "Internal Server Error" });

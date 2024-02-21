@@ -41,7 +41,7 @@ router.post(
       const newGalleryItem = {
         monumentId: request.params.monumentId,
         imgTitle: request.body.imgTitle,
-        image: request.file.path, // File path of the uploaded image
+        image: request.file.path.replace("uploads\\", ""), // File path of the uploaded image
         description: request.body.description,
       };
 
@@ -90,22 +90,15 @@ router.get("/:id", async (request, response) => {
   }
 });
 
-// PUT route to update a specific gallery item by ID
 router.put("/:id", upload.single("image"), async (request, response) => {
   try {
-    //   const {imgTitle, description } = request.body;
-
-    // Find the gallery item by ID
     let galleryItem = await Gallery.findById(request.params.id);
 
-    // If no gallery item found, return 404 Not Found
     if (!galleryItem) {
       return response.status(404).json({ message: "Gallery item not found" });
     }
 
-    // Check if a new image or video is uploaded
     if (request.file) {
-      // Delete previous image or video if exists
       if (galleryItem.image) {
         fs.unlinkSync(galleryItem.image); // Delete previous image or video file
       }
