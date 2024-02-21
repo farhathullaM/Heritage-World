@@ -1,12 +1,32 @@
 import axios from "axios";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Form.css";
+import imgIcon from "../static/img.svg";
 
 const AddMonument = () => {
   const navigate = useNavigate();
   const monumentEndpoint = "http://localhost:3001/monuments/";
-  const imageRef = useRef(null); // Ref for the new file input
+  const imageRef = useRef(null);
+  const c_img = useRef();
+  const [filename, setFilename] = useState("No file chosen");
+  const [coverImage, setCoverImage] = useState(imgIcon);
+
+  function setImgSrc(files) {
+    if (FileReader && files && files.length) {
+      var fr = new FileReader();
+      fr.onload = function () {
+        document.querySelector(".file-image-display").src = fr.result;
+      };
+      fr.readAsDataURL(files[0]);
+    }
+  }
+
+  function handleChange(e) {
+    const files = e.target.files;
+    setFilename(files[0].name);
+    setImgSrc(files);
+  }
 
   function submit(e) {
     e.preventDefault();
@@ -24,7 +44,7 @@ const AddMonument = () => {
     formData.append("hst_chronology", e.target.hst_chronology.value);
     formData.append("past_condition", e.target.past_condition.value);
     formData.append("present_condition", e.target.present_condition.value);
-    formData.append("cover_image", imageRef.current.files[0]); // Append the selected file
+    formData.append("cover_image", imageRef.current.files[0]);
 
     axios
       .post(monumentEndpoint, formData, {
@@ -102,13 +122,29 @@ const AddMonument = () => {
           </div>
 
           <div className="inp">
-            <label htmlFor="image">cover Image/Video</label>
-            <input
-              name="image"
-              type="file"
-              id="image"
-              ref={imageRef}
-            />
+            <label htmlFor="cover_image">cover Image/Video</label>
+            <div className="fileSelect">
+              <div className="filebtncon">
+                <label htmlFor="cover_image" className="fileopen btn">
+                  <span>Open file</span>
+                </label>
+                <p className="filename">{filename}</p>
+              </div>
+              <input
+                name="cover_image"
+                type="file"
+                id="cover_image"
+                ref={imageRef}
+                onChange={handleChange}
+              />
+
+              <img
+                src={coverImage}
+                alt="Old Cover Image"
+                className="file-image-display"
+                ref={c_img}
+              />
+            </div>
           </div>
 
           <div className="sub">
