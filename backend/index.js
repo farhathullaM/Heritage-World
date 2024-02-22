@@ -1,25 +1,42 @@
+// index.js
+
 import express from "express";
 import cors from "cors";
-import { PORT, mongoDBURL } from "./config.js";
+import { PORT, mongoDBURL, secretKey } from "./config.js"; // Import your secret key
 import mongoose from "mongoose";
 import monumentRoute from "./routes/monumentRoute.js";
 import galleryRoute from "./routes/galleryRoute.js";
-import bcrypt from "bcrypt";
 import loginRoute from "./routes/LoginRoute.js";
 
+import authenticateToken from "./auth/authMiddleware.js";
+
+// import authenticateToken from "./auth/authMiddleware.js"
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(express.static("uploads"));
 
+
+
 app.get("/", (request, response) => {
   console.log(request);
   return response.status(200).send("welcome to Historical monuments project ");
 });
-app.use("/monuments", monumentRoute);
-app.use("/gallery", galleryRoute);
+
+app.use("/monuments", authenticateToken, monumentRoute);
+app.use("/gallery", authenticateToken, galleryRoute);
 app.use("/users", loginRoute);
 
+// Route to log out and revoke the token
+app.post('/logout', (req, res) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (token) {
+    blacklistedTokens.add(token); // Add token to blacklist
+    return res.sendStatus(200); // Successful logout
+  }
+  res.sendStatus(400); // Bad request
+});
 mongoose
   .connect(mongoDBURL)
   .then(() => {
