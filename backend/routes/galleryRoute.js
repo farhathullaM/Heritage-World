@@ -41,7 +41,7 @@ router.post(
       const newGalleryItem = {
         monumentId: request.params.monumentId,
         imgTitle: request.body.imgTitle,
-        image: request.file.path.replace("uploads\\", ""), // File path of the uploaded image
+        image: request.file.path.replace("uploads\\", ""),
         description: request.body.description,
       };
 

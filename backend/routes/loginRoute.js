@@ -5,16 +5,22 @@ import bcrypt from 'bcrypt';
 
 const router = express.Router();
 
-router.post('/',async(req,res)=>{
-    try{
-      const hashedPassword = await bcrypt.hash(req.body.password, 10)
-      const user = {username : req.body.username, password: hashedPassword }
-     
-      const users = await User.create(user);
-      return res.status(200).json(users);
-  
-    }catch{
-      res.status(500).send("send message error")
+router.post('/register',async(req,res)=>{
+  const mail = await User.find({email:req.body.email} );
+  if(mail.length==0){
+  try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const user = { email: req.body.email, password: hashedPassword , phone:req.body.phone , name:req.body.name };
+        console.log("Creating user...");
+        const newUser = await User.create(user);
+        return res.status(200).json(newUser);
+      } catch (error) {
+        console.error("Error creating user:", error.message);
+        return res.status(500).send("Internal Server Error");
+      }
+    }else{
+      
+      return res.status(500).send("The Email Id Is Already Used ");
     }
   
   })
