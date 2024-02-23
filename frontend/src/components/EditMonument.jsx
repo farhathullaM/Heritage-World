@@ -65,19 +65,21 @@ const EditMonument = () => {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("title", monument.title);
-    formData.append("shortdescription", monument.shortdescription);
-    formData.append("description", monument.description);
-    formData.append("nation", monument.nation);
-    formData.append("state", monument.state);
-    formData.append("place", monument.place);
-    formData.append("location", monument.location);
-    formData.append("ipms_place", monument.ipms_place);
-    formData.append("archi_imps", monument.archi_imps);
-    formData.append("hst_chronology", monument.hst_chronology);
-    formData.append("past_condition", monument.past_condition);
-    formData.append("present_condition", monument.present_condition);
+    formData.append("title", title.value);
+    formData.append("shortdescription", shortdescription.value);
+    formData.append("description", description.value);
+    formData.append("nation", nation.value);
+    formData.append("state", state.value);
+    formData.append("place", place.value);
+    formData.append("location", location.value);
+    formData.append("ipms_place", ipms_place.value);
+    formData.append("archi_imps", archi_imps.value);
+    formData.append("hst_chronology", hst_chronology.value);
+    formData.append("past_condition", past_condition.value);
+    formData.append("present_condition", present_condition.value);
     formData.append("cover_image", monument.cover_image);
+
+    console.log(title.value);
 
     axios
       .put(monumentEndpoint, formData, {
@@ -104,8 +106,7 @@ const EditMonument = () => {
               name="title"
               type="text"
               id="title"
-              value={monument.title}
-              onChange={handleChange}
+              defaultValue={monument.title}
             />
           </div>
 
@@ -114,8 +115,7 @@ const EditMonument = () => {
             <textarea
               name="shortdescription"
               id="shortdescription"
-              value={monument.shortdescription}
-              onChange={handleChange}
+              defaultValue={monument.shortdescription}
             />
           </div>
 
@@ -124,8 +124,7 @@ const EditMonument = () => {
             <textarea
               name="description"
               id="description"
-              value={monument.description}
-              onChange={handleChange}
+              defaultValue={monument.description}
             />
           </div>
 
@@ -135,8 +134,7 @@ const EditMonument = () => {
               name="nation"
               type="text"
               id="nation"
-              value={monument.nation}
-              onChange={handleChange}
+              defaultValue={monument.nation}
             />
           </div>
 
@@ -146,8 +144,7 @@ const EditMonument = () => {
               name="state"
               type="text"
               id="state"
-              value={monument.state}
-              onChange={handleChange}
+              defaultValue={monument.state}
             />
           </div>
 
@@ -157,8 +154,7 @@ const EditMonument = () => {
               name="place"
               type="text"
               id="place"
-              value={monument.place}
-              onChange={handleChange}
+              defaultValue={monument.place}
             />
           </div>
 
@@ -168,8 +164,7 @@ const EditMonument = () => {
               name="location"
               type="text"
               id="location"
-              value={monument.location}
-              onChange={handleChange}
+              defaultValue={monument.location}
             />
           </div>
 
@@ -179,8 +174,7 @@ const EditMonument = () => {
               name="ipms_place"
               type="text"
               id="ipms_place"
-              value={monument.ipms_place}
-              onChange={handleChange}
+              defaultValue={monument.ipms_place}
             />
           </div>
 
@@ -190,8 +184,7 @@ const EditMonument = () => {
               name="archi_imps"
               type="text"
               id="archi_imps"
-              value={monument.archi_imps}
-              onChange={handleChange}
+              defaultValue={monument.archi_imps}
             />
           </div>
 
@@ -201,8 +194,7 @@ const EditMonument = () => {
               name="hst_chronology"
               type="text"
               id="hst_chronology"
-              value={monument.hst_chronology}
-              onChange={handleChange}
+              defaultValue={monument.hst_chronology}
             />
           </div>
 
@@ -212,8 +204,7 @@ const EditMonument = () => {
               name="past_condition"
               type="text"
               id="past_condition"
-              value={monument.past_condition}
-              onChange={handleChange}
+              defaultValue={monument.past_condition}
             />
           </div>
 
@@ -225,8 +216,7 @@ const EditMonument = () => {
               name="present_condition"
               type="text"
               id="present_condition"
-              value={monument.present_condition}
-              onChange={handleChange}
+              defaultValue={monument.present_condition}
             />
           </div>
           <div className="inp">

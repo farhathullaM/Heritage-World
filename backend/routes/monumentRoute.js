@@ -1,7 +1,7 @@
 import express from "express";
 import { Monument } from "../models/monumentModel.js";
 import multer from "multer";
-import fs from "fs";
+import fs, { copyFileSync } from "fs";
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -88,6 +88,7 @@ router.get("/:id", async (request, response) => {
 //update
 router.put("/:id", upload.single("cover_image"), async (request, response) => {
   try {
+    console.log(request.body.title);
     if (
       !request.body.title ||
       !request.body.shortdescription ||
@@ -111,9 +112,10 @@ router.put("/:id", upload.single("cover_image"), async (request, response) => {
     if (request.file) {
       // Delete previous image or video if exists
       if (monument.cover_image) {
-        fs.unlinkSync(monument.cover_image); // Delete previous image or video file
+        console.log(monument.cover_image);
+        fs.unlinkSync("uploads\\" + monument.cover_image); // Delete previous image or video file
       }
-      monument.cover_image = request.file.path; // Update image or video path with new file
+      monument.cover_image = request.file.path.replace("uploads\\", ""); // Update image or video path with new file
     }
     monument.title = request.body.title;
     monument.shortdescription = request.body.shortdescription;
