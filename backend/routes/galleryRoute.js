@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import { Gallery } from "../models/galleryModel.js";
 import fs from "fs";
+import path from "path";
 
 const router = express.Router();
 
@@ -100,9 +101,16 @@ router.put("/:id", upload.single("image"), async (request, response) => {
 
     if (request.file) {
       if (galleryItem.image) {
-        fs.unlinkSync(galleryItem.image); // Delete previous image or video file
+        const imagePath = path.join("uploads", galleryItem.image);
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            console.error("Error deleting image:", err);
+          } else {
+            console.log("Image deleted successfully");
+          }
+        });
       }
-      galleryItem.image = request.file.path; // Update image or video path with new file
+      galleryItem.image = request.file.path.replace("uploads\\", "");
     }
 
     // Update other fields if provided
@@ -132,6 +140,16 @@ router.delete("/:id", async (request, response) => {
     if (!galleryItem) {
       return response.status(404).send({ message: "Gallery item not found" });
     }
+
+    const imagePath = path.join("uploads", galleryItem.image);
+    fs.unlink(imagePath, (err) => {
+      if (err) {
+        console.error("Error deleting image:", err);
+      } else {
+        console.log("Image deleted successfully");
+      }
+    });
+
     return response
       .status(200)
       .send({ message: "Gallery item deleted successfully" });

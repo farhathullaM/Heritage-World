@@ -2,6 +2,7 @@ import express from "express";
 import { Monument } from "../models/monumentModel.js";
 import multer from "multer";
 import fs, { copyFileSync } from "fs";
+import path from "path";
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -88,7 +89,6 @@ router.get("/:id", async (request, response) => {
 //update
 router.put("/:id", upload.single("cover_image"), async (request, response) => {
   try {
-    console.log(request.body.title);
     if (
       !request.body.title ||
       !request.body.shortdescription ||
@@ -112,8 +112,18 @@ router.put("/:id", upload.single("cover_image"), async (request, response) => {
     if (request.file) {
       // Delete previous image or video if exists
       if (monument.cover_image) {
-        console.log(monument.cover_image);
-        fs.unlinkSync("uploads\\" + monument.cover_image); // Delete previous image or video file
+        const imagePath = path.join(
+          "uploads",
+          "coverimg",
+          monument.cover_image
+        );
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            console.error("Error deleting image:", err);
+          } else {
+            console.log("Image deleted successfully");
+          }
+        });
       }
       monument.cover_image = request.file.path.replace("uploads\\", ""); // Update image or video path with new file
     }
@@ -153,6 +163,16 @@ router.delete("/:id", async (request, response) => {
     if (!result) {
       return response.status(404).json({ mesage: "monument not found " });
     }
+
+    const imagePath = path.join("uploads", "coverimg", result.cover_image);
+    fs.unlink(imagePath, (err) => {
+      if (err) {
+        console.error("Error deleting image:", err);
+      } else {
+        console.log("Image deleted successfully");
+      }
+    });
+
     return response
       .status(200)
       .json({ mesage: "monument deleted success fully " });

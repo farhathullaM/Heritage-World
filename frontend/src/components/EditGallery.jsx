@@ -2,9 +2,13 @@ import axios from "axios";
 import React, { useRef, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Form.css";
+import imgIcon from "../static/img.svg";
 
 const EditGallery = () => {
   const navigate = useNavigate();
+  if (!localStorage.getItem("token")) navigate("/");
+
+  const [filename, setFilename] = useState("No file chosen");
   const { id } = useParams();
   const imageRef = useRef(null);
   const [galleryData, setGalleryData] = useState({
@@ -12,15 +16,44 @@ const EditGallery = () => {
     description: "",
     image: "",
   });
+  const [thumbnail, setThumbnail] = useState(imgIcon);
+
+  function setImgSrc(files) {
+    if (FileReader && files && files.length) {
+      var fr = new FileReader();
+      fr.onload = function () {
+        document.querySelector(".file-image-display").src = fr.result;
+      };
+      fr.readAsDataURL(files[0]);
+    }
+  }
+
+  function handleChange(e) {
+    const { name, value, files } = e.target;
+    setFilename(files[0].name);
+    setImgSrc(files);
+    setGalleryData((prevData) => ({
+      ...prevData,
+      [name]: files ? files[0] : value,
+    }));
+  }
 
   useEffect(() => {
     axios
       .get(`gallery/${id}`)
       .then((res) => {
+        const { data } = res;
         setGalleryData(res.data);
+        if (data.image) {
+          setThumbnail(axios.defaults.baseURL + data.image);
+          setFilename(data.image);
+        }
       })
       .catch((err) => {
-        console.error("Error fetching gallery data:", err);
+        console.error(
+          "Error fetching gallery data:",
+          err.response.data.message
+        );
       });
   }, [id]);
 
@@ -40,7 +73,7 @@ const EditGallery = () => {
       })
       .then((res) => {
         alert("Gallery Updated");
-        navigate("/");
+        navigate(`/gallery/${galleryData.monumentId}`);
       })
       .catch((err) => {
         alert(err);
@@ -50,6 +83,7 @@ const EditGallery = () => {
   return (
     <div className="formcon">
       <div className="formcard">
+        <div className="head">Edit Gallery </div>
         <form onSubmit={submit}>
           <div className="inp">
             <label htmlFor="imgTitle">Title</label>
@@ -70,10 +104,33 @@ const EditGallery = () => {
             />
           </div>
 
-          <div className="inp">
+          {/* <div className="inp">
             <label htmlFor="image">Image/Video</label>
             <input name="image" type="file" id="image" ref={imageRef} />
-            
+          </div> */}
+          <div className="inp">
+            <label htmlFor="image">Image/Video</label>
+            <div className="fileSelect">
+              <div className="filebtncon">
+                <label htmlFor="image" className="fileopen btn">
+                  <span>Open file</span>
+                </label>
+                <p className="filename">{filename}</p>
+              </div>
+              <input
+                name="image"
+                type="file"
+                id="image"
+                onChange={handleChange}
+                ref={imageRef}
+              />
+
+              <img
+                src={thumbnail}
+                alt="Old Cover Image"
+                className="file-image-display"
+              />
+            </div>
           </div>
 
           <div className="sub">

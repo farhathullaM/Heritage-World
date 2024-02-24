@@ -23,9 +23,10 @@ const EditMonument = () => {
   const [filename, setFilename] = useState("No file chosen");
   const navigate = useNavigate();
   const { id } = useParams();
-  const c_img = useRef();
   const monumentEndpoint = `monuments/${id}`;
   const [coverImage, setCoverImage] = useState(imgIcon); // State variable for old cover image URL
+
+  if (!localStorage.getItem("token")) navigate("/");
 
   useEffect(() => {
     axios
@@ -33,9 +34,10 @@ const EditMonument = () => {
       .then((res) => {
         const { data } = res;
         setMonument(data);
-        if (data.cover_image)
+        if (data.cover_image) {
           setCoverImage(axios.defaults.baseURL + data.cover_image);
-        if (data.cover_image) setFilename(data.cover_image.split("\\")[1]);
+          setFilename(data.cover_image.split("\\")[1]);
+        }
       })
       .catch((err) => {
         console.error("Error fetching monument:", err);
@@ -79,8 +81,6 @@ const EditMonument = () => {
     formData.append("present_condition", present_condition.value);
     formData.append("cover_image", monument.cover_image);
 
-    console.log(title.value);
-
     axios
       .put(monumentEndpoint, formData, {
         headers: {
@@ -99,6 +99,7 @@ const EditMonument = () => {
   return (
     <div className="formcon">
       <div className="formcard">
+        <div className="head">Edit Monument </div>
         <form onSubmit={handleSubmit}>
           <div className="inp">
             <label htmlFor="title">Title</label>
@@ -239,7 +240,6 @@ const EditMonument = () => {
                 src={coverImage}
                 alt="Old Cover Image"
                 className="file-image-display"
-                ref={c_img}
               />
             </div>
           </div>

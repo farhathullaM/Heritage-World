@@ -9,12 +9,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   background-color: white;
   width: 900px;
   margin-block: 30px;
   border-radius: 5px;
   padding: 30px;
   color: black;
+}
+
+.formcard .head {
+  font-weight: 600;
+  margin-bottom: 30px;
+  font-size: 25px;
 }
 
 .formcard form {

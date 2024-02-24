@@ -1,18 +1,21 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Home.css";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = useState([]);
   useEffect(() => {
+    if (!localStorage.getItem("token")) navigate("/");
     axios
       .get("monuments/")
       .then((res) => {
         setData(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err.response.data.message));
   }, []);
 
   function deleteMonument(id) {

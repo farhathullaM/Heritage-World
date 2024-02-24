@@ -6,9 +6,8 @@ import imgIcon from "../static/img.svg";
 
 const AddMonument = () => {
   const navigate = useNavigate();
-  const monumentEndpoint = "http://localhost:3001/monuments/";
+  if (!localStorage.getItem("token")) navigate("/");
   const imageRef = useRef(null);
-  const c_img = useRef();
   const [filename, setFilename] = useState("No file chosen");
   const [coverImage, setCoverImage] = useState(imgIcon);
 
@@ -47,7 +46,7 @@ const AddMonument = () => {
     formData.append("cover_image", imageRef.current.files[0]);
 
     axios
-      .post(monumentEndpoint, formData, {
+      .post("/monuments", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -64,6 +63,7 @@ const AddMonument = () => {
   return (
     <div className="formcon">
       <div className="formcard">
+        <div className="head">Add Monument </div>
         <form onSubmit={submit}>
           <div className="inp">
             <label htmlFor="title">Title</label>
@@ -142,7 +142,6 @@ const AddMonument = () => {
                 src={coverImage}
                 alt="Old Cover Image"
                 className="file-image-display"
-                ref={c_img}
               />
             </div>
           </div>

@@ -6,7 +6,7 @@ import { PORT, mongoDBURL, secretKey } from "./config.js"; // Import your secret
 import mongoose from "mongoose";
 import monumentRoute from "./routes/monumentRoute.js";
 import galleryRoute from "./routes/galleryRoute.js";
-import loginRoute from "./routes/LoginRoute.js";
+import loginRoute from "./routes/loginRoute.js";
 
 import authenticateToken from "./auth/authMiddleware.js";
 
@@ -21,10 +21,8 @@ app.get("/", (request, response) => {
   return response.status(200).send("welcome to Historical monuments project ");
 });
 
-// app.use("/monuments", authenticateToken, monumentRoute);
-// app.use("/gallery", authenticateToken, galleryRoute);
-app.use("/monuments", monumentRoute);
-app.use("/gallery", galleryRoute);
+app.use("/monuments", authenticateToken, monumentRoute);
+app.use("/gallery", authenticateToken, galleryRoute);
 app.use("/users", loginRoute);
 
 // Route to log out and revoke the token

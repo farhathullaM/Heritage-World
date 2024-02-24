@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import "./gallery.css";
 
 const Gallery = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const { id } = useParams();
+  if (!localStorage.getItem("token")) navigate("/");
 
   useEffect(() => {
     axios
