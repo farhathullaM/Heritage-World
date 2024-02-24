@@ -17,7 +17,6 @@ app.use(cors());
 app.use(express.static("uploads"));
 
 app.get("/", (request, response) => {
-  console.log(request);
   return response.status(200).send("welcome to Historical monuments project ");
 });
 

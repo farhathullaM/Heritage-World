@@ -36,6 +36,10 @@ const EditGallery = () => {
       ...prevData,
       [name]: files ? files[0] : value,
     }));
+
+    if (files[0].type.startsWith("video")) {
+      setThumbnail(URL.createObjectURL(files[0]));
+    }
   }
 
   useEffect(() => {
@@ -125,11 +129,19 @@ const EditGallery = () => {
                 ref={imageRef}
               />
 
-              <img
-                src={thumbnail}
-                alt="Old Cover Image"
-                className="file-image-display"
-              />
+              {imageRef.current?.files[0] &&
+              imageRef.current.files[0].type.startsWith("video") ? (
+                <video controls className="file-image-display">
+                  <source src={thumbnail} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img
+                  src={thumbnail}
+                  alt="Thumbnail"
+                  className="file-image-display"
+                />
+              )}
             </div>
           </div>
 
