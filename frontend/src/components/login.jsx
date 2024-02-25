@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./Form.css";
 import "./login.css";
-import taj from "../static/taj.jpg";
+import cover from "../static/taj.jpg";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,7 +24,8 @@ const Login = () => {
       })
       .then((res) => {
         if (res.data.auth) {
-          localStorage.setItem("token", "Bearer " + res.data.token);
+          const token = "Bearer " + res.data.token;
+          localStorage.setItem("token", token);
           navigate("/home");
         } else {
           alert("Login Failed");
@@ -38,7 +39,7 @@ const Login = () => {
   return (
     <div className="con">
       <div className="cover">
-        <img src={taj} alt="" />
+        <img src={cover} alt="" />
       </div>
       <div className="formcon" style={{ width: "50vw" }}>
         <div className="formcard" style={{ width: "500px" }}>

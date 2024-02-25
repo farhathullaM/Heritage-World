@@ -11,8 +11,37 @@
 :root {
   --tableBorderRadius: 10px;
   --borderGrey: rgb(163, 163, 163);
+  --darkGrey: rgb(81, 81, 81);
+  --containerMargin: 70px;
+  --navbarHeight: 70px;
 }
 
 #root {
   height: 100%;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--containerMargin);
+  padding-block: 15px;
+  background-color: black;
+  height: var(--navbarHeight);
+  z-index: 99;
+  position: relative;
+}
+
+.navbar .head {
+  font-weight: bold;
+  font-size: 36px;
+  color: white;
+}
+
+.navbar .btn {
+  background-color: rgb(32, 32, 32);
+}
+.navbar .btn:hover {
+  background-color: rgb(196, 196, 196);
+  color: rgb(0, 0, 0);
 }

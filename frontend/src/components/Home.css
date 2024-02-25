@@ -1,5 +1,5 @@
 .container {
-  margin-inline: 70px;
+  margin-inline: var(--containerMargin);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -31,8 +31,9 @@
 }
 
 .topbar .main-head {
-  font-weight: bold;
-  font-size: 36px;
+  font-weight: 500;
+  font-size: 25px;
+  color: var(--darkGrey);
 }
 
 .table {
