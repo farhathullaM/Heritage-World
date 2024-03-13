@@ -1,4 +1,12 @@
-import Home from "./components/Home";
+import Showall from './Pages/Showall.jsx';
+import Home from './Pages/Home.jsx';
+import Placedetails from './Pages/Placedetails.jsx';
+
+import About from './components/About/About.jsx';
+import Navbar from './components/Navbar/Navbar.jsx'
+
+import AdminNavbar from './components/adminNavbar/AdminNavbar.jsx';
+import ListMonuments from "./components/ListMonuments/ListMonuments.jsx";
 import AddMonument from "./components/AddMonument";
 import EditMonument from "./components/EditMonument";
 import Gallery from "./components/gallery";
@@ -22,37 +30,26 @@ function App() {
         localStorage.getItem("token");
   }, []);
 
-  const logout = (e) => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
+  
   return (
     <>
-      <div className="navbar">
-        <div className="head">Historical Monuments</div>
-        {location.pathname === "/" ? (
-          <button className="btn" onClick={() => navigate("/register")}>
-            Register
-          </button>
-        ) : location.pathname === "/register" ? (
-          <button className="btn" onClick={() => navigate("/")}>
-            Login
-          </button>
-        ) : (
-          <button className="btn" onClick={logout}>
-            Logout
-          </button>
-        )}
-      </div>
+{location.pathname.includes("/admin/")?(<AdminNavbar/>) : (<Navbar/>)}
+    
+      
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/monument/create" element={<AddMonument />} />
-        <Route path="/monument/edit/:id" element={<EditMonument />} />
-        <Route path="/gallery/:id" element={<Gallery />} />
-        <Route path="/gallery/create/:id" element={<AddGallery />} />
-        <Route path="/gallery/edit/:id" element={<EditGallery />} />
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin/register" element={<Register />} />
+        <Route path="/admin/ListMonuments" element={<ListMonuments />} />
+        <Route path="/admin/monument/create" element={<AddMonument />} />
+        <Route path="/admin/monument/edit/:id" element={<EditMonument />} />
+        <Route path="/admin/gallery/:id" element={<Gallery />} />
+        <Route path="/admin/gallery/create/:id" element={<AddGallery />} />
+        <Route path="/admin/gallery/edit/:id" element={<EditGallery />} />
+
+        <Route path='/' element={<Home/>}/>
+        <Route path='/about' element={<About/>}/>
+        <Route path='/explore' element={<Showall/>}/>
+        <Route path='/places/:placeId' element={<Placedetails />}/>
       </Routes>
     </>
   );
