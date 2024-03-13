@@ -8,7 +8,7 @@ const Gallery = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const { id } = useParams();
-  if (!localStorage.getItem("token")) navigate("/");
+  if (!localStorage.getItem("token")) navigate("/admin/login");
 
   useEffect(() => {
     axios
@@ -39,7 +39,7 @@ const Gallery = () => {
     <div className="container">
       <div className="topbar">
         <div className="main-head">Gallery</div>
-        <Link to={`/gallery/create/${id}`}>
+        <Link to={`/admin/gallery/create/${id}`}>
           <button className="btn">Create</button>
         </Link>
       </div>
@@ -83,7 +83,7 @@ const Gallery = () => {
                 </td>
                 <td className="icons">
                   <div className="tool-con">
-                    <Link to={`/gallery/edit/${gallery._id}`}>
+                    <Link to={`/admin/gallery/edit/${gallery._id}`}>
                       <span className="material-symbols-outlined tool edit">
                         edit_square
                       </span>

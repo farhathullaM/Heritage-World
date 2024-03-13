@@ -6,7 +6,7 @@ import imgIcon from "../static/img.svg";
 
 const AddGallery = () => {
   const navigate = useNavigate();
-  if (!localStorage.getItem("token")) navigate("/");
+  if (!localStorage.getItem("token")) navigate("/admin/login");
 
   const [filename, setFilename] = useState("No file chosen");
   const { id } = useParams();
@@ -44,7 +44,7 @@ const AddGallery = () => {
       })
       .then((res) => {
         alert("Gallery Created");
-        navigate(`/gallery/${id}`);
+        navigate(`/admin/gallery/${id}`);
       })
       .catch((err) => {
         alert(err);

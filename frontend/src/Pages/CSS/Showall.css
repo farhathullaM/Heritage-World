@@ -97,6 +97,7 @@
 }
 .item img{
     height: 80%;
+    object-position: top;
 }
 .item p{
     padding-left: 23px;
@@ -109,10 +110,14 @@
     line-height: 24px;
 }
 .place{
+    display: flex;
+    flex-direction: row;
     font-size: 14px;
     font-weight: 500;
     color: rgba(0, 0, 0, 0.63);
+    gap: 5px;
 }
-.place i{
+.place span{
     color: rgba(31, 20, 16, 1);
+    font-size: 20px;
 }

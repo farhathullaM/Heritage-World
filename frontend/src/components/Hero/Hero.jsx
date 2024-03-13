@@ -41,7 +41,7 @@ const Hero = ({images, heading}) => {
               <p>Discover the Wonders</p>
             </div>
             <Link to='./explore'>
-            <button className='discover-btn'>DISCOVER <i className="fa-solid fa-arrow-right"></i></button>
+            <button className='discover-btn'>DISCOVER <span className="material-symbols-outlined">arrow_forward</span></button>
             </Link>
         </div>
     </div>

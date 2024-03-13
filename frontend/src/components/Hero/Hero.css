@@ -52,7 +52,7 @@
     font-size: 40px;
 }
 .slick-dots{
-    width: 100vw;
+
     left: 10%;
     left: 50%;
     transform: translateX(-50%);
@@ -136,9 +136,9 @@
     background: rgba(0, 0, 0, 1);
     font-weight: 500;
 }
-.discover-btn i{
+.discover-btn span{
     padding-left: 10px;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 

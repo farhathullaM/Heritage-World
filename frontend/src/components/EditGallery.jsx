@@ -6,7 +6,7 @@ import imgIcon from "../static/img.svg";
 
 const EditGallery = () => {
   const navigate = useNavigate();
-  if (!localStorage.getItem("token")) navigate("/");
+  if (!localStorage.getItem("token")) navigate("/admin/login");
 
   const [filename, setFilename] = useState("No file chosen");
   const { id } = useParams();
@@ -77,7 +77,7 @@ const EditGallery = () => {
       })
       .then((res) => {
         alert("Gallery Updated");
-        navigate(`/gallery/${galleryData.monumentId}`);
+        navigate(`/admin/gallery/${galleryData.monumentId}`);
       })
       .catch((err) => {
         alert(err);

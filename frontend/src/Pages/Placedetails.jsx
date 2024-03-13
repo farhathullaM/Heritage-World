@@ -56,7 +56,10 @@ const Placedetails = () => {
         <img src={monument.image} alt="" />
         <div className='name-loc'>
           <h2>{monument.name}</h2>
-          <p><i className="fa-solid fa-location-dot"></i> {monument.place}, {monument.state}</p>
+          <p>
+            <span class="material-symbols-outlined">explore</span> 
+            <div>{monument.place}, {monument.state}</div>
+          </p>
         </div>
       </div>
 

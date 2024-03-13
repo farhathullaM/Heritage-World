@@ -19,6 +19,7 @@ const Showall = () => {
      },[]);
 
      const handleItemClick = (placeId) => {
+      window.scrollTo(0,0);
       navigate(`/places/${placeId}`)
      }
 
@@ -42,7 +43,10 @@ const Showall = () => {
               <div className="item" key={item.id} onClick={() => handleItemClick(item.id)}>
                 <img src={item.image} alt="" />
                 <p className='title'>{item.name}</p>
-                <p className='place'><i className="fa-solid fa-location-dot"></i> {item.place}, {item.state}</p>
+                <p className='place'>
+                  <span class="material-symbols-outlined">explore</span> 
+                  <div> {item.place}, {item.state}</div> 
+                </p>
               </div>
               
             ))}

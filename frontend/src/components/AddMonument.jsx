@@ -6,7 +6,7 @@ import imgIcon from "../static/img.svg";
 
 const AddMonument = () => {
   const navigate = useNavigate();
-  if (!localStorage.getItem("token")) navigate("/");
+  if (!localStorage.getItem("token")) navigate("/admin/login");
   const imageRef = useRef(null);
   const [filename, setFilename] = useState("No file chosen");
   const [coverImage, setCoverImage] = useState(imgIcon);
@@ -53,7 +53,7 @@ const AddMonument = () => {
       })
       .then((res) => {
         alert("Monument Created");
-        navigate("/");
+        navigate("/admin/login");
       })
       .catch((err) => {
         alert(err);
