@@ -42,7 +42,7 @@ const LastSection = () => {
             
         </div>
         <div className="more-btn-div">
-        <button onClick={window.scrollTo(0,0)} className='more-btn'>More <i className="fa-solid fa-arrow-right"></i></button>
+        <button onClick={window.scrollTo(0,0)} className='more-btn'>More <span className="material-symbols-outlined">arrow_forward</span></button>
         </div>
     </div>
   )

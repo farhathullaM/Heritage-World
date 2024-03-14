@@ -40,7 +40,7 @@ const Hero = ({images, heading}) => {
               <h1>Let the World See</h1>
               <p>Discover the Wonders</p>
             </div>
-            <Link to='./explore'>
+            <Link to='./explore' style={{textDecoration: 'none'}}>
             <button className='discover-btn'>DISCOVER <span className="material-symbols-outlined">arrow_forward</span></button>
             </Link>
         </div>
