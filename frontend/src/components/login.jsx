@@ -23,7 +23,7 @@ const Login = () => {
         },
       })
       .then((res) => {
-        if (res.data.auth) {
+        if (res?.data.auth) {
           const token = "Bearer " + res.data.token;
           localStorage.setItem("token", token);
           navigate("/admin/ListMonuments");
@@ -33,7 +33,7 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        alert(err.response.data.message);
+        alert(err.response?.data.message);
       });
   }
   return (

@@ -2,10 +2,15 @@ import React from 'react';
 import './SecondSection.css';
 import img1 from '../Assets/pexels-pixabay-208277.jpg';
 import img2 from '../Assets/pexels-pixabay-218480.jpg';
-
+import { Link } from 'react-router-dom';
 
 
 const SecondSection = () => {
+
+  const handleClick = () => {
+    window.scrollTo(0,0);
+  }
+
   return (
     <div className='second-section'>
 
@@ -16,7 +21,9 @@ const SecondSection = () => {
           <div className="details-sec">
             <h2>Miskhal Masjid</h2>
             <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
-            <button className='more-btn'>More <span className="material-symbols-outlined">arrow_forward</span></button>
+            <Link to='/places/1'  style={{textDecoration: 'none'}}>
+              <button onClick={() => handleClick()} className='more-btn'>More <span className="material-symbols-outlined">arrow_forward</span></button>
+            </Link>
           </div>
       </div>
 
@@ -24,7 +31,9 @@ const SecondSection = () => {
           <div className="details-sec">
             <h2>Miskhal Masjid</h2>
             <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
-            <button className='more-btn'>More <span className="material-symbols-outlined">arrow_forward</span></button>
+            <Link to='/places/5' style={{textDecoration: 'none'}}>
+              <button onClick={() => handleClick()} className='more-btn'>More <span className="material-symbols-outlined">arrow_forward</span></button>
+            </Link>
           </div>
           <div className="image-sec">
             <img className='sec-img' src={img1} alt="" />

@@ -28,11 +28,12 @@ function toggleNav(){
 
 return (
     <nav className='navbar'>
-        
+        <Link to='/' style={{textDecoration: 'none'}}>
         <div className="nav-logo">
             <img src={logo_new} alt="" />
             <h1>MONUMENTS</h1>
         </div>
+        </Link>
 
         <div className="menu-icons" onClick={toggleNav}>
             <i className='fa-solid fa-bars fa-lg' style={{color: 'white'}}></i>
