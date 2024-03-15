@@ -25,7 +25,7 @@ app.use("/gallery", authenticateToken, galleryRoute);
 app.use("/users", loginRoute);
 
 mongoose
-  .connect(mongoDBURL)
+  .connect("mongodb://localhost:27017/monuments")
   .then(() => {
     console.log("app connected to database");
     app.listen(PORT, () => {
