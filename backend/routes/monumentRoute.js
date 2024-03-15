@@ -24,7 +24,7 @@ router.post("/", upload.single("cover_image"), async (request, response) => {
   try {
     if (
       !request.body.title ||
-      !request.body.shortdescription ||
+      
       !request.body.description ||
       !request.body.nation ||
       !request.body.state ||
@@ -39,9 +39,9 @@ router.post("/", upload.single("cover_image"), async (request, response) => {
 
     const newmonument = {
       title: request.body.title,
-      shortdescription: request.body.shortdescription,
+      // shortdescription: request.body.shortdescription,
       description: request.body.description,
-      hst_chronology: request.body.hst_chronology,
+      // hst_chronology: request.body.hst_chronology,
       ipms_place: request.body.ipms_place,
       archi_imps: request.body.archi_imps,
       past_condition: request.body.past_condition,
@@ -91,7 +91,7 @@ router.put("/:id", upload.single("cover_image"), async (request, response) => {
   try {
     if (
       !request.body.title ||
-      !request.body.shortdescription ||
+
       !request.body.description ||
       !request.body.nation ||
       !request.body.state ||

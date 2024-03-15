@@ -32,7 +32,7 @@ const AddMonument = () => {
 
     const formData = new FormData();
     formData.append("title", e.target.title.value);
-    formData.append("shortdescription", e.target.shdes.value);
+    // formData.append("shortdescription", e.target.shdes.value);
     formData.append("description", e.target.des.value);
     formData.append("nation", e.target.nat.value);
     formData.append("state", e.target.state.value);
@@ -40,7 +40,7 @@ const AddMonument = () => {
     formData.append("location", e.target.loc.value);
     formData.append("ipms_place", e.target.ipms_place.value);
     formData.append("archi_imps", e.target.archi_imps.value);
-    formData.append("hst_chronology", e.target.hst_chronology.value);
+    // formData.append("hst_chronology", e.target.hst_chronology.value);
     formData.append("past_condition", e.target.past_condition.value);
     formData.append("present_condition", e.target.present_condition.value);
     formData.append("cover_image", imageRef.current.files[0]);
@@ -53,7 +53,7 @@ const AddMonument = () => {
       })
       .then((res) => {
         alert("Monument Created");
-        navigate("/admin/login");
+        navigate("/admin/ListMonuments");
       })
       .catch((err) => {
         alert(err);
@@ -70,17 +70,18 @@ const AddMonument = () => {
             <input name="title" type="text" id="title" />
           </div>
 
+         
           <div className="inp">
-            <label htmlFor="nat">Nation</label>
-            <input name="nation" type="text" id="nat" />
-          </div>
-          <div className="inp">
-            <label htmlFor="des">Description</label>
+            <label htmlFor="des">Description/About Monuments</label>
             <textarea name="description" id="des" />
           </div>
-          <div className="inp">
+          {/* <div className="inp">
             <label htmlFor="shdes">Short Description</label>
             <textarea name="shortdescription" id="shdes" />
+          </div> */}
+           <div className="inp">
+            <label htmlFor="nat">Nation</label>
+            <input name="nation" type="text" id="nat" />
           </div>
           <div className="inp">
             <label htmlFor="state">State</label>
@@ -102,10 +103,10 @@ const AddMonument = () => {
             <label htmlFor="archi_imps">Architectural Importance</label>
             <input name="archi_imps" type="text" id="archi_imps" />
           </div>
-          <div className="inp">
+          {/* <div className="inp">
             <label htmlFor="hst_chronology">Historical Chronology</label>
             <input name="hst_chronology" type="text" id="hst_chronology" />
-          </div>
+          </div> */}
           <div className="inp">
             <label htmlFor="past_condition">Past Condition of Place</label>
             <input name="past_condition" type="text" id="past_condition" />

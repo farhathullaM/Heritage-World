@@ -45,7 +45,7 @@ const ListMonuments = () => {
             <tr>
               <th>No</th>
               <th>Title</th>
-              <th>short Description</th>
+              {/* <th>short Description</th> */}
               <th>Description</th>
               <th>Place</th>
               <th>State</th>
@@ -64,11 +64,28 @@ const ListMonuments = () => {
               <tr key={monument._id}>
                 <td>{index + 1}</td>
                 <td>{monument.title}</td>
-                <td>{monument.shortdescription}</td>
+                {/* <td>{monument.shortdescription}</td> */}
                 <td>{monument.description}</td>
                 <td>{monument.place}</td>
                 <td>{monument.state}</td>
-                <td>{monument.cover_image}</td>
+                {/* <td>{monument.cover_image}</td> */}
+                <td>
+                  {monument.cover_image && monument.cover_image.endsWith(".mp4") ? (
+                    <video className="image-display" controls>
+                      <source
+                        src={axios.defaults.baseURL + monument.cover_image}
+                        type="video/mp4"
+                      />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <img
+                      src={axios.defaults.baseURL + monument.cover_image}
+                      alt="Cover Media"
+                      className="image-display"
+                    />
+                  )}
+                </td>
                 <td>{monument.ipms_place}</td>
                 <td className="icons">
                   <div className="tool-con">

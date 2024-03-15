@@ -12,7 +12,7 @@ const monumentSchema = mongoose.Schema(
           },
         shortdescription:{
             type:String,
-            required:true,
+            required:false,
         },
         description:{
             type:String,
