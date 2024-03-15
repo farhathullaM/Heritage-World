@@ -3,6 +3,7 @@ import one from '../Assets/pexels-pixabay-290386.jpg';
 import two from '../Assets/tajgate.jpg';
 import three from '../Assets/tajmahal.jpg';
 import './LastSection.css';
+import { Link } from 'react-router-dom';
 
 const LastSection = () => {
   
@@ -42,7 +43,9 @@ const LastSection = () => {
             
         </div>
         <div className="more-btn-div">
-        <button onClick={window.scrollTo(0,0)} className='more-btn'>More <span className="material-symbols-outlined">arrow_forward</span></button>
+        <Link to='/explore' style={{textDecoration: 'none'}}>
+          <button className='more-btn'>More <span className="material-symbols-outlined">arrow_forward</span></button>
+        </Link>
         </div>
     </div>
   )

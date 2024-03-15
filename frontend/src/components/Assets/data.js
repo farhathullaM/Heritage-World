@@ -8,32 +8,32 @@ let cover = [
     {
         id : 1,
         image : img1,
-        head : "Taj Mahal",
-        para : "The exqusite white marble"
+        head : "Expresso indigo",
+        para : "Journey with a great sight a wonderful expereince"
     },
     {
         id : 2,
         image : img2,
-        head : "qutub minar",
-        para : "The tallest standing"
+        head : "Statue of Liberty",
+        para : "Statue represeting unity and freedom"
     },
     {
         id : 3,
         image : img3,
-        head : "Church",
-        para : "The cross"
+        head : "Taj Mahal",
+        para : "The exquisite white marble brilliance"
     },
     {
         id : 4,
         image : img4,
-        head : "Taj Mahal",
-        para : "The exqusite white marble"
+        head : "Temple of the light",
+        para : "Brilliance of middle age architecture"
     },
     {
         id : 5,
         image : img5,
-        head : "Taj Mahal",
-        para : "The exqusite white marble"
+        head : "Church of Christ",
+        para : "Church in the light of day"
     },
 ];
 
