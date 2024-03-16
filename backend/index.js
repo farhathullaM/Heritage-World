@@ -20,8 +20,8 @@ app.get("/", (request, response) => {
   return response.status(200).send("welcome to Historical monuments project ");
 });
 //authenticateToken need to added !!!!!!!!!!!!!!!!!!!!!!!!
-app.use("/monuments",  monumentRoute);
-app.use("/gallery",  galleryRoute);
+app.use("/monuments", monumentRoute);
+app.use("/gallery", galleryRoute);
 app.use("/users", loginRoute);
 
 mongoose
