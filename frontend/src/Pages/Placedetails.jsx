@@ -43,11 +43,6 @@ const Placedetails = () => {
          .catch(error => console.error(error))
        },[]);
 
-    // const place = places.find(item => item.id === parseInt(placeId));
-  
-    // if (!place) {
-    //   return <div>Place not found</div>;
-    // }
 
 
   return (
@@ -56,10 +51,10 @@ const Placedetails = () => {
         <img src={monument.image} alt="" />
         <div className='name-loc'>
           <h2>{monument.name}</h2>
-          <p>
-            <span class="material-symbols-outlined">explore</span> 
-            <div>{monument.place}, {monument.state}</div>
-          </p>
+          <div className='locatn'>
+            <span className="material-symbols-outlined">explore</span> 
+            <div><p>{monument.place}, {monument.state}</p></div>
+          </div>
         </div>
       </div>
 
@@ -100,34 +95,44 @@ const Placedetails = () => {
       </div>
 
       <div className='pagethree'>
-        <div className="image-container">
+        <div className="img-container">
 
-          <div className="img-one-div">
-            <img className='img-one' src={one} alt="" />
-            <div className="details">
+          <div className="img-1">
+            <img className='img1' src={one} alt="" />
+            <div className="detail">
             <div className="line"></div>
               <h2>Miskhal Masjid</h2>
               <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
             </div>
           </div>
 
-          <div className="img-two-div">
-            <img className='img-two'src={two} alt="" />
-            <div className="details">
+          <div className="img-2">
+            <img className='img2'src={two} alt="" />
+            <div className="detail">
               <div className="line"></div>
               <h2>Miskhal Masjid</h2>
               <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
             </div>
           </div>
 
-          <div className="img-three-div">
-            <img className='img-three'src={three} alt="" />
-            <div className="details">
+          <div className="img-3">
+            <img className='img3'src={three} alt="" />
+            <div className="detail">
               <div className="line"></div>
               <h2>Miskhal Masjid</h2>
               <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
             </div>
-          </div>            
+          </div>     
+          
+          <div className="img-4">
+            <img className='img4'src={three} alt="" />
+            <div className="detail">
+              <div className="line"></div>
+              <h2>Miskhal Masjid</h2>
+              <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
+            </div>
+          </div>     
+                 
         </div>
 
         <div className="map-div">
