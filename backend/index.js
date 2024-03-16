@@ -19,13 +19,13 @@ app.use(express.static("uploads"));
 app.get("/", (request, response) => {
   return response.status(200).send("welcome to Historical monuments project ");
 });
-
-app.use("/monuments", authenticateToken, monumentRoute);
-app.use("/gallery", authenticateToken, galleryRoute);
+//authenticateToken need to added !!!!!!!!!!!!!!!!!!!!!!!!
+app.use("/monuments",  monumentRoute);
+app.use("/gallery",  galleryRoute);
 app.use("/users", loginRoute);
 
 mongoose
-  .connect("mongodb://localhost:27017/monuments")
+  .connect(mongoDBURL)
   .then(() => {
     console.log("app connected to database");
     app.listen(PORT, () => {
