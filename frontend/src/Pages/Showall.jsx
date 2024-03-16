@@ -63,13 +63,13 @@ const Showall = () => {
                 >
                   <img src={axios.defaults.baseURL + item.cover_image} alt="" />
                   <p className="title">{item.title}</p>
-                  <p className="place">
-                    <span class="material-symbols-outlined">explore</span>
-                    <div>
+                  <div className="place">
+                    <span className="material-symbols-outlined">explore</span>
+                    <p>
                       {" "}
                       {item.place}, {item.state}
-                    </div>
-                  </p>
+                    </p>
+                  </div>
                 </div>
               ))}
           </div>
