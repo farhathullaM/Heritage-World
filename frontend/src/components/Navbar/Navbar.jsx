@@ -36,8 +36,8 @@ return (
         </Link>
 
         <div className="menu-icons" onClick={toggleNav}>
-            <i className='fa-solid fa-bars fa-lg' style={{color: 'white'}}></i>
-            <i className='fa-solid fa-times fa-lg' style={{color: 'white'}}></i>
+            <span className="material-symbols-outlined fa-bars" style={{color: 'white'}}>menu</span>
+            <span className="material-symbols-outlined fa-times" style={{color: 'white'}}>close</span>
         </div>
 
         <ul className='nav-menu'>

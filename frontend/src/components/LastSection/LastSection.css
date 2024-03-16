@@ -39,7 +39,6 @@
 .img-one-div, .img-two-div, .img-three-div{
     width: 33.3%;
     height: 100%;
-    height: 100%;
     object-fit: cover;
     transition: all ease-out 0.5s;
     cursor: pointer;
@@ -48,9 +47,6 @@
 
 .img-one-div:hover{
     width: 100%;
-}
-.img-one-div:hover > .line{
-    display: none;
 }
 .img-two-div:hover{
     width: 100%;

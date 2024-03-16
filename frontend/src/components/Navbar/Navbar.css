@@ -95,6 +95,8 @@
         z-index: -1;
         border-radius: 30px;
         border: 1px solid rgb(135, 135, 135);
+        align-items: center;
+        justify-content: center;
     }
     .nav-open{
         display: flex;
@@ -114,7 +116,7 @@
     .menu-icons{
         display: block;
     }
-    .menu-icons i{
+    .menu-icons span{
         color: white;
     }
 } 
