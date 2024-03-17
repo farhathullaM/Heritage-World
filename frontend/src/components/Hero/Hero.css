@@ -161,3 +161,22 @@
         font-weight: 300;
     }
 }
+
+@media (max-width: 640px){
+    .slick-dots li button::before {
+        width: 50px;
+    }
+    .slick-dots li{
+        margin-right: 32px;
+        margin-left: 1px;
+    }
+    .slick-next{
+        margin-right: 60px;
+    }
+    .slick-prev{
+        margin-left: 40px;
+    }
+    .slick-next, .slick-prev{
+        top: 89%;
+    }
+}
