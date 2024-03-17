@@ -21,7 +21,7 @@ const SecondSection = () => {
           <div className="details-sec">
             <h2>Miskhal Masjid</h2>
             <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
-            <Link to='/places/1'  style={{textDecoration: 'none'}}>
+            <Link to='/places/65f5c8c8de4a16e914e2f889'  style={{textDecoration: 'none'}}>
               <button onClick={() => handleClick()} className='more-btn'>More <span className="material-symbols-outlined">arrow_forward</span></button>
             </Link>
           </div>
@@ -31,7 +31,7 @@ const SecondSection = () => {
           <div className="details-sec">
             <h2>Miskhal Masjid</h2>
             <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
-            <Link to='/places/5' style={{textDecoration: 'none'}}>
+            <Link to='/places/65f5ca98de4a16e914e2f89e' style={{textDecoration: 'none'}}>
               <button onClick={() => handleClick()} className='more-btn'>More <span className="material-symbols-outlined">arrow_forward</span></button>
             </Link>
           </div>
