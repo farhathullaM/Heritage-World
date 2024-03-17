@@ -26,12 +26,17 @@ function toggleNav(){
     } 
 }
 
+const closeBlock = () => {
+    closeButton.style.display = "none"
+    menuButton.style.display = "block"
+}
+
 return (
     <nav className='navbar'>
         <Link to='/' style={{textDecoration: 'none'}}>
         <div className="nav-logo">
             <img src={logo_new} alt="" />
-            <h1>MONUMENTS</h1>
+            <h1>HERITAGE</h1><h1> WORLD</h1>
         </div>
         </Link>
 
@@ -41,11 +46,11 @@ return (
         </div>
 
         <ul className='nav-menu'>
-            <li> <Link to='/' className='navlink'> HOME </Link> </li>
+            <li> <Link to='/' className='navlink'  onClick={closeBlock}> HOME </Link> </li>
             
-            <li> <Link to='/about' className='navlink'>  ABOUT US </Link> </li>
-            <li> <Link to='/' className='navlink'>  BLOGS </Link> </li>
-            <li> <Link to='/admin/login' className='navlink'> LOGIN </Link> </li>
+            <li> <Link to='/about' className='navlink'  onClick={closeBlock}>  ABOUT US </Link> </li>
+            <li> <Link to='/' className='navlink'  onClick={closeBlock}>  BLOGS </Link> </li>
+            <li> <Link to='/admin/login' className='navlink'  onClick={closeBlock}> LOGIN </Link> </li>
         </ul>
 
     </nav>
