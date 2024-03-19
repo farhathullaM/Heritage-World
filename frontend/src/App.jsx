@@ -1,11 +1,11 @@
-import Showall from './Pages/Showall.jsx';
-import Home from './Pages/Home.jsx';
-import Placedetails from './Pages/Placedetails.jsx';
+import Showall from "./Pages/Showall.jsx";
+import Home from "./Pages/Home.jsx";
+import Placedetails from "./Pages/Placedetails.jsx";
 
-import About from './components/About/About.jsx';
-import Navbar from './components/Navbar/Navbar.jsx'
+import About from "./components/About/About.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
 
-import AdminNavbar from './components/adminNavbar/AdminNavbar.jsx';
+import AdminNavbar from "./components/adminNavbar/AdminNavbar.jsx";
 import ListMonuments from "./components/ListMonuments/ListMonuments.jsx";
 import AddMonument from "./components/AddMonument";
 import EditMonument from "./components/EditMonument";
@@ -18,24 +18,20 @@ import Register from "./components/register";
 import "./App.css";
 import React, { useEffect } from "react";
 import axios from "axios";
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
-  const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    if (localStorage.getItem("token"))
-      axios.defaults.headers.common["Authorization"] =
-        localStorage.getItem("token");
-  }, []);
+  const token = localStorage.getItem("token");
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = token;
+  }
 
-  
   return (
     <>
-{location.pathname.includes("/admin/")?(<AdminNavbar/>) : (<Navbar/>)}
-    
-      
+      {location.pathname.includes("/admin/") ? <AdminNavbar /> : <Navbar />}
+
       <Routes>
         <Route path="/admin/login" element={<Login />} />
         <Route path="/admin/register" element={<Register />} />
@@ -46,10 +42,10 @@ function App() {
         <Route path="/admin/gallery/create/:id" element={<AddGallery />} />
         <Route path="/admin/gallery/edit/:id" element={<EditGallery />} />
 
-        <Route path='/' element={<Home/>}/>
-        <Route path='/about' element={<About/>}/>
-        <Route path='/explore' element={<Showall/>}/>
-        <Route path='/places/:placeId' element={<Placedetails />}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/explore" element={<Showall />} />
+        <Route path="/places/:placeId" element={<Placedetails />} />
       </Routes>
     </>
   );

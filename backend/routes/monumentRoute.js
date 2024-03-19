@@ -1,8 +1,10 @@
 import express from "express";
-import { Monument } from "../models/monumentModel.js";
+import Monument from "../models/monumentModel.js";
+import User from "../models/userModel.js";
 import multer from "multer";
 import fs, { copyFileSync } from "fs";
 import path from "path";
+import mongoose from "mongoose";
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -24,7 +26,6 @@ router.post("/", upload.single("cover_image"), async (request, response) => {
   try {
     if (
       !request.body.title ||
-      
       !request.body.description ||
       !request.body.nation ||
       !request.body.state ||
@@ -36,7 +37,6 @@ router.post("/", upload.single("cover_image"), async (request, response) => {
           "send all required fields : title , shortdescription ,file, description,place",
       });
     }
-
     const newmonument = {
       title: request.body.title,
       // shortdescription: request.body.shortdescription,
@@ -51,8 +51,8 @@ router.post("/", upload.single("cover_image"), async (request, response) => {
       state: request.body.state,
       place: request.body.place,
       cover_image: request.file.path.replace("uploads\\", ""),
-      user: request.body.user,
-      status: request.body.status,
+      user: request.user.id,
+      status: 0,
     };
     const monument = await Monument.create(newmonument);
 
@@ -62,12 +62,29 @@ router.post("/", upload.single("cover_image"), async (request, response) => {
     response.status(500).send({ message: error.message });
   }
 });
+
 // route get all
 router.get("/", async (request, response) => {
   try {
-    const monument = await Monument.find();
+    let monument = undefined;
+    // const user = await User.find(request.user.id);
+    // if (user.type == "user")
+    //   monuments = await Monument.find({
+    //     user: mongoose.Types.ObjectId(request.user.id),
+    //   });
+    // else if (user.type == "admin") monuments = await Monument.find();
+    // else throw `Account Type Error. Got type : ${user.type}`;
+    const users = await User.findById(request.user.id);
+    if (users.type == "user")
+      monument = await Monument.find({ user: request.user.id });
+    else if (users.type == "admin") monument = await Monument.find();
+    else throw `Account Type Error. Got type : ${users.type}`;
 
-    return response.status(200).json(monument);
+    const data = {
+      monument: monument,
+      userType: users.type,
+    };
+    return response.status(200).json(data);
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
@@ -86,12 +103,12 @@ router.get("/:id", async (request, response) => {
     response.status(500).send({ message: error.message });
   }
 });
+
 //update
 router.put("/:id", upload.single("cover_image"), async (request, response) => {
   try {
     if (
       !request.body.title ||
-
       !request.body.description ||
       !request.body.nation ||
       !request.body.state ||

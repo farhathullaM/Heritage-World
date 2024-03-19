@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 import monumentRoute from "./routes/monumentRoute.js";
 import galleryRoute from "./routes/galleryRoute.js";
 import loginRoute from "./routes/loginRoute.js";
-
+import adminRoute from "./routes/adminRoute.js";
 import authenticateToken from "./auth/authMiddleware.js";
 
 // import authenticateToken from "./auth/authMiddleware.js"
@@ -20,10 +20,10 @@ app.get("/", (request, response) => {
   return response.status(200).send("welcome to Historical monuments project ");
 });
 //authenticateToken need to added !!!!!!!!!!!!!!!!!!!!!!!!
-app.use("/monuments", monumentRoute);
+app.use("/monuments",authenticateToken, monumentRoute);
 app.use("/gallery", galleryRoute);
 app.use("/users", loginRoute);
-
+app.use("/admin", adminRoute);
 mongoose
   .connect(mongoDBURL)
   .then(() => {

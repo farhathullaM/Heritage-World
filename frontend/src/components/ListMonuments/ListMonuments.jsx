@@ -8,12 +8,14 @@ const ListMonuments = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem("token")) navigate("/admin/login");
     axios
       .get("monuments/")
       .then((res) => {
-        setData(res.data);
+        setData(res.data["monument"]);
+        setIsAdmin(res.data["userType"] == "admin" ? true : false);
       })
       .catch((err) => console.error(err.response.data.message));
   }, []);
@@ -50,7 +52,7 @@ const ListMonuments = () => {
               <th>Place</th>
               <th>State</th>
               <th>Image</th>
-              <th>Importance</th>
+              <th>Status</th>
               <th>Gallery</th>
               <th>
                 <span className="material-symbols-outlined tool">
@@ -70,7 +72,8 @@ const ListMonuments = () => {
                 <td>{monument.state}</td>
                 {/* <td>{monument.cover_image}</td> */}
                 <td>
-                  {monument.cover_image && monument.cover_image.endsWith(".mp4") ? (
+                  {monument.cover_image &&
+                  monument.cover_image.endsWith(".mp4") ? (
                     <video className="image-display" controls>
                       <source
                         src={axios.defaults.baseURL + monument.cover_image}
@@ -86,7 +89,16 @@ const ListMonuments = () => {
                     />
                   )}
                 </td>
-                <td>{monument.ipms_place}</td>
+                <td>
+                  <div className="dataAlign">
+                    {monument.status == 1 ? (
+                      <span className="YES">Verified</span>
+                    ) : (
+                      <span className="NO">Pending</span>
+                    )}
+                    <button className="btn">View</button>
+                  </div>
+                </td>
                 <td className="icons">
                   <div className="tool-con">
                     <Link to={`/admin/gallery/${monument._id}`}>
