@@ -2,11 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './CSS/Placedetails.css';
 import { useParams } from 'react-router-dom';
 import star from '../components/Assets/star.png';
-import one from '../components/Assets/pexels-pixabay-290386.jpg';
-import two from '../components/Assets/tajgate.jpg';
-import three from '../components/Assets/tajmahal.jpg';
-import four from '../components/Assets/pexels-fuzail-ahmad-9208715.jpg';
 import axios from "axios";
+import  ModalImage from 'react-modal-image';
 
 const ReadMore = ({ children }) => {
   const text = children || '';
@@ -17,13 +14,14 @@ const ReadMore = ({ children }) => {
   return (
       <p className="text">
           {isReadMore ? text.slice(0, 600) : text}
+          {text.length > 600?(
           <span
               onClick={toggleReadMore}
               className="read-or-hide"
               style={{ color: "rgba(153, 153, 153, 1)" }}
           >
               {isReadMore ? " Read more..." : " Show less"}
-          </span>
+          </span>):undefined}
       </p>
   );
 };
@@ -31,12 +29,39 @@ const ReadMore = ({ children }) => {
 const Placedetails = () => {
 
     const { placeId } = useParams();
-
+    const [loading, setLoading] = useState(true);
     const [monument, setMonument] = useState(null)
+    const [galleryImages, setGalleryImages] = useState([]);
+    // const [slideNumber, setSlideNumber] = useState(0)
+    // const [openModal, setOpenModal] = useState(false)
+  
+    // const handleOpenModal = (index) => {
+    //   setSlideNumber(index)
+    //   setOpenModal(true)
+    // }
+  
+    // // Close Modal
+    // const handleCloseModal = () => {
+    //   setOpenModal(false)
+    // }
+  
+    // // Previous Image
+    // const prevSlide = () => {
+    //   slideNumber === 0 
+    //   ? setSlideNumber( galleryImages.length -1 ) 
+    //   : setSlideNumber( slideNumber - 1 )
+    // }
+  
+    // // Next Image  
+    // const nextSlide = () => {
+    //   slideNumber + 1 === galleryImages.length 
+    //   ? setSlideNumber(0) 
+    //   : setSlideNumber(slideNumber + 1)
+    // }
+  
 
     useEffect(() => {
-      axios
-        .get(`monuments/${placeId}`)
+      axios.get(`monuments/${placeId}`)
         .then(response => {
           setMonument(response.data);
         })
@@ -44,7 +69,20 @@ const Placedetails = () => {
           console.error("Error fetching monument details:", error);
         });
     }, [placeId]);
-    
+  
+    useEffect(() => {
+      setLoading(true);
+      axios
+        .get(`gallery/monument/${placeId}`)
+        .then(response => {
+          setGalleryImages(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching gallery images:", error);
+        })
+        .finally(() => setLoading(false));
+    }, []);
+
 
   return (
     <div className="place-details">
@@ -95,55 +133,42 @@ const Placedetails = () => {
       <div className='gallery'> 
         <h4>GALLERY</h4>
         <div className="line"></div>
+        {/* {openModal && 
+        <div className='sliderWrap'>
+          <span class="material-symbols-outlined" className='btnClose' onClick={handleCloseModal}>close</span>
+          <span class="material-symbols-outlined" className='btnPrev' onClick={prevSlide}>arrow_back_ios</span>
+          <span class="material-symbols-outlined" className='btnNext' onClick={nextSlide}>arrow_forward_ios</span>  
+          <div className='fullScreenImage'>
+            <img src={galleryImages[slideNumber].img} alt='' />
+          </div>
+        </div>
+      } */}
+        {loading ? (
+          "Loading..."
+        ) : (
+          <div className="all-items">
+          {galleryImages &&
+                galleryImages
+                  .filter(item => item.monumentId === placeId)
+                  .map((item) => (
+                  <div className="gallery-images" key={item._id}>
+                    <ModalImage className='gallery-image'
+                      small={axios.defaults.baseURL + item.image}
+                      medium={axios.defaults.baseURL + item.image}
+                      hideZoom
+                      />
+                      {/* <img src={axios.defaults.baseURL + item.image} alt="" /> */}
+                    
+                    <div className="gallery-title">
+                      <p className="title">{item.imgTitle}</p>
+                    </div>
+                  </div>
+                ))}
+          </div>
+        )}
       </div>
 
-      <div className='pagethree'>
-        <div className="img-container">
 
-          <div className="img-1">
-            <img className='img1' src={one} alt="" />
-            <div className="detail">
-            <div className="line"></div>
-              <h2>Miskhal Masjid</h2>
-              <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
-            </div>
-          </div>
-
-          <div className="img-2">
-            <img className='img2'src={two} alt="" />
-            <div className="detail">
-              <div className="line"></div>
-              <h2>Miskhal Masjid</h2>
-              <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
-            </div>
-          </div>
-
-          <div className="img-3">
-            <img className='img3'src={three} alt="" />
-            <div className="detail">
-              <div className="line"></div>
-              <h2>Miskhal Masjid</h2>
-              <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
-            </div>
-          </div>     
-          
-          <div className="img-4">
-            <img className='img4'src={four} alt="" />
-            <div className="detail">
-              <div className="line"></div>
-              <h2>Miskhal Masjid</h2>
-              <p>Mishkal Mosque is a medieval mosque located in Calicut on Malabar Coast, souther India. The mosque, one of the few surviving medeival mosques in Keerala, is regarded as an important cultural, historical and archtectural monument of Kerala</p>
-            </div>
-          </div>     
-                 
-        </div>
-
-        <div className="map-div">
-          <div className="map">
-            
-          </div>
-        </div>
-    </div>
     </>
     )}
     </div>

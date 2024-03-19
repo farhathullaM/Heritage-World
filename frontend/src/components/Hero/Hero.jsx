@@ -1,13 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './Hero.css';
-import data from '../Assets/data.js';
+import "./Hero.css";
+import data from "../Assets/data.js";
 
 const Hero = () => {
-
   const settings = {
     dots: true,
     infinite: true,
@@ -22,31 +21,33 @@ const Hero = () => {
   };
 
   return (
-    <div className='hero'>
+    <div className="hero">
       <div className="image-slider">
-      <Slider {...settings}>
-        {data.map((item, index) => (
-          <div key={index}>
-            <img src={item.image} alt={`Slide ${index}`} />
+        <Slider {...settings}>
+          {data.map((item, index) => (
+            <div key={index}>
+              <img src={item.image} alt={`Slide ${index}`} />
 
-              <div className='black'></div>
+              <div className="black"></div>
 
               <div className="hero-heading">
                 <h1>{item.head}</h1>
                 <p>{item.para}</p>
-                <Link to='/explore' style={{textDecoration: 'none'}}>
-                  <button className='discover-btn'>DISCOVER <span className="material-symbols-outlined">arrow_forward</span>
+                <Link to="/explore" style={{ textDecoration: "none" }}>
+                  <button className="discover-btn">
+                    DISCOVER{" "}
+                    <span className="material-symbols-outlined">
+                      arrow_forward
+                    </span>
                   </button>
                 </Link>
               </div>
-          </div>
-        ))}
-
-      </Slider>
+            </div>
+          ))}
+        </Slider>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
 export default Hero;

@@ -36,7 +36,7 @@ return (
         <Link to='/' style={{textDecoration: 'none'}}>
         <div className="nav-logo">
             <img src={logo_new} alt="" />
-            <h1>HERITAGE</h1><h1> WORLD</h1>
+            <h1>HERITAGE WORLD</h1>
         </div>
         </Link>
 
@@ -49,7 +49,7 @@ return (
             <li> <Link to='/' className='navlink'  onClick={closeBlock}> HOME </Link> </li>
             
             <li> <Link to='/about' className='navlink'  onClick={closeBlock}>  ABOUT US </Link> </li>
-            <li> <Link to='/' className='navlink'  onClick={closeBlock}>  BLOGS </Link> </li>
+            <li> <Link to='/explore' className='navlink'  onClick={closeBlock}>  MONUMENTS </Link> </li>
             <li> <Link to='/admin/login' className='navlink'  onClick={closeBlock}> LOGIN </Link> </li>
         </ul>
 
