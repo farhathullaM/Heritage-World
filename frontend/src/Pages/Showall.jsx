@@ -21,7 +21,7 @@ const Showall = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("monuments/")
+      .get("public/")
       .then((res) => {
         setMonumentList(res.data["monument"]);
       })
