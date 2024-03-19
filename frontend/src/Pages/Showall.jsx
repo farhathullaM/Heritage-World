@@ -23,7 +23,7 @@ const Showall = () => {
     axios
       .get("monuments/")
       .then((res) => {
-        setMonumentList(res.data);
+        setMonumentList(res.data["monument"]);
       })
       .catch((err) => {
         console.error(err.response.data.message);
