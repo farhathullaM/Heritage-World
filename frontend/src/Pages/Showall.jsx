@@ -21,9 +21,9 @@ const Showall = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("public/")
+      .get("/public")
       .then((res) => {
-        setMonumentList(res.data["monument"]);
+        setMonumentList(res.data);
       })
       .catch((err) => {
         console.error(err.response.data.message);
