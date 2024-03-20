@@ -43,10 +43,12 @@ router.put("/verify/:id", async (request, response) => {
         .json({ message: "Verification is not allowed for user" });
 
     const { id } = request.params;
+
     const monument = await Monument.findById(id);
     if (!monument) {
       return response.status(404).json({ message: "Monument is not found" });
     }
+
     monument.status = 1;
     await monument.save();
     return response

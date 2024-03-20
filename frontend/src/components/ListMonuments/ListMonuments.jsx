@@ -102,7 +102,7 @@ const ListMonuments = () => {
                       <span className="NO">Pending</span>
                     )}
                     {isAdmin ? (
-                      <button className="btn">Verify</button>
+                      <button className="btn" onClick={() => handleItemClick(monument._id, true)}>Verify</button>
                     ) : (
                       <button
                         className="btn"

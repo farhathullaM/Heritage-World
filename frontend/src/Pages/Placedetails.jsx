@@ -33,32 +33,47 @@ const Placedetails = () => {
   const [loading, setLoading] = useState(true);
   const [monument, setMonument] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
-  // const [slideNumber, setSlideNumber] = useState(0)
-  // const [openModal, setOpenModal] = useState(false)
+  const isAdmin = true;
+  // const [isAdmin, setIsAdmin] = useState(false);
 
-  // const handleOpenModal = (index) => {
-  //   setSlideNumber(index)
-  //   setOpenModal(true)
-  // }
+  // useEffect(() => {
+  //   if (!localStorage.getItem("token"));
+  //   axios
+  //     .then((res) => {
+  //       setIsAdmin(res.data["userType"] == "admin" ? true : false);
+  //     })
+  //     .catch((err) => console.error(err.response.data.message));
+  // }, []);
 
-  // // Close Modal
-  // const handleCloseModal = () => {
-  //   setOpenModal(false)
-  // }
+  const handleClick = (Id) => {
+    let cfm = confirm("Confirm verification");
+    if (!cfm) return;
+    else {
+      axios
+        .put(`admin/verify/${Id}`)
+        .then((res) => {
+          alert(res.data.message);
+        })
+        .catch((err) => {
+          alert("Error verifing : " + err.message);
+        });
+    }
+  };
 
-  // // Previous Image
-  // const prevSlide = () => {
-  //   slideNumber === 0
-  //   ? setSlideNumber( galleryImages.length -1 )
-  //   : setSlideNumber( slideNumber - 1 )
-  // }
-
-  // // Next Image
-  // const nextSlide = () => {
-  //   slideNumber + 1 === galleryImages.length
-  //   ? setSlideNumber(0)
-  //   : setSlideNumber(slideNumber + 1)
-  // }
+  const clickToUnverify = (Id) => {
+    let cfm = confirm("Do you want to edit");
+    if (!cfm) return;
+    else {
+      axios
+      .put(`admin/verify/${Id}`)
+      .then(response => {
+        console.log("Monument status updated successfully:", response.data);
+      })
+      .catch(error => {
+        console.error("Error updating monument status:", error);
+      });
+    }
+  };
 
   useEffect(() => {
     axios
@@ -137,16 +152,7 @@ const Placedetails = () => {
           <div className="gallery">
             <h4>GALLERY</h4>
             <div className="line"></div>
-            {/* {openModal && 
-        <div className='sliderWrap'>
-          <span class="material-symbols-outlined" className='btnClose' onClick={handleCloseModal}>close</span>
-          <span class="material-symbols-outlined" className='btnPrev' onClick={prevSlide}>arrow_back_ios</span>
-          <span class="material-symbols-outlined" className='btnNext' onClick={nextSlide}>arrow_forward_ios</span>  
-          <div className='fullScreenImage'>
-            <img src={galleryImages[slideNumber].img} alt='' />
-          </div>
-        </div>
-      } */}
+
             {/* {loading ? (
               "Loading..."
             ) : (
@@ -204,6 +210,27 @@ const Placedetails = () => {
               </div>
             )}
           </div>
+          {isAdmin ? (
+            <div className="verify">
+              {monument.status == 1 ? (
+                <button
+                  className="btn"
+                  onClick={() => clickToUnverify(monument._id)}
+                >
+                  Refute
+                </button>
+              ) : (
+                <button
+                  className="btn"
+                  onClick={() => handleClick(monument._id)}
+                >
+                  Unverify
+                </button>
+              )}
+            </div>
+          ) : (
+            false
+          )}
         </>
       )}
     </div>
