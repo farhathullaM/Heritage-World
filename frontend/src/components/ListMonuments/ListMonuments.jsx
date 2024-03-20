@@ -20,6 +20,11 @@ const ListMonuments = () => {
       .catch((err) => console.error(err.response.data.message));
   }, []);
 
+  function handleItemClick(placeId) {
+    window.scrollTo(0, 0);
+    navigate(`/places/${placeId}`);
+  }
+
   function deleteMonument(id) {
     let isDel = confirm("Confirm Delete");
     if (isDel) {
@@ -96,7 +101,16 @@ const ListMonuments = () => {
                     ) : (
                       <span className="NO">Pending</span>
                     )}
-                    <button className="btn">View</button>
+                    {isAdmin ? (
+                      <button className="btn">Verify</button>
+                    ) : (
+                      <button
+                        className="btn"
+                        onClick={() => handleItemClick(monument._id)}
+                      >
+                        View
+                      </button>
+                    )}
                   </div>
                 </td>
                 <td className="icons">
