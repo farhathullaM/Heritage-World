@@ -1,5 +1,6 @@
 import express from "express";
 import Monument from "../models/monumentModel.js";
+import User from "../models/userModel.js";
 import multer from "multer";
 import fs, { copyFileSync } from "fs";
 import path from "path";
@@ -42,10 +43,12 @@ router.put("/verify/:id", async (request, response) => {
         .json({ message: "Verification is not allowed for user" });
 
     const { id } = request.params;
+
     const monument = await Monument.findById(id);
     if (!monument) {
       return response.status(404).json({ message: "Monument is not found" });
     }
+
     monument.status = 1;
     await monument.save();
     return response

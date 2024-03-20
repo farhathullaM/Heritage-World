@@ -13,7 +13,7 @@ const AdminNavbar = () => {
       };
   return (
     <div className="admin-navbar">
-        <div className="head">Historical Monuments</div>
+        <div className="head">Heritage World</div>
         {location.pathname === "/admin/login" ? (
           <button className="btn" onClick={() => navigate("/admin/register")}>
             Register

@@ -11,7 +11,7 @@ const router = express.Router();
 // route get all
 router.get("/", async (request, response) => {
   try {
-    const monument = await Monument.find();
+    const monument = await Monument.find({ status: 1 });
 
     return response.status(200).json(monument);
   } catch (error) {
