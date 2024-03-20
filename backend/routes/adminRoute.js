@@ -35,6 +35,12 @@ router.get("/", async (request, response) => {
 // verify
 router.put("/verify/:id", async (request, response) => {
   try {
+    const users = await User.findById(request.user.id);
+    if (users.type == "user")
+      return response
+        .status(404)
+        .json({ message: "Verification is not allowed for user" });
+
     const { id } = request.params;
     const monument = await Monument.findById(id);
     if (!monument) {

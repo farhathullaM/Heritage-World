@@ -156,6 +156,7 @@ router.put("/:id", upload.single("cover_image"), async (request, response) => {
     monument.past_condition = request.body.past_condition;
     monument.present_condition = request.body.present_condition;
     monument.archi_imps = request.body.archi_imps;
+    monument.status = 0;
     // Save the updated monument
     await monument.save();
 

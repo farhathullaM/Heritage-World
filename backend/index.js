@@ -22,9 +22,9 @@ app.get("/", (request, response) => {
 });
 //authenticateToken need to added !!!!!!!!!!!!!!!!!!!!!!!!
 app.use("/monuments", authenticateToken, monumentRoute);
-app.use("/gallery", galleryRoute);
+app.use("/gallery", authenticateToken, galleryRoute);
 app.use("/users", loginRoute);
-app.use("/admin", adminRoute);
+app.use("/admin", authenticateToken, adminRoute);
 app.use("/public", publicRoute);
 mongoose
   .connect(mongoDBURL)
