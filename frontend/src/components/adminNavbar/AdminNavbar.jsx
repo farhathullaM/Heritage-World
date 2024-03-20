@@ -1,5 +1,4 @@
 import React from "react";
-import "../Navbar/Navbar.css";
 import "./AdminNavbar.css";
 import logo_new from "../Assets/image.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -16,8 +15,9 @@ const adminNavbar = () => {
 
   function toggleNav() {
     const navMenu = document.querySelector(".nav-menu");
-    const closeButton = document.querySelector(".menu-icons .fa-times");
-    const menuButton = document.querySelector(".menu-icons .fa-bars");
+    const closeButton = document.querySelector(".close-menu");
+    const menuButton = document.querySelector(".bar-menu");
+    console.log(isNavOpen);
     if (isNavOpen) {
       navMenu.classList.remove("nav-open");
       isNavOpen = false;
@@ -47,13 +47,13 @@ const adminNavbar = () => {
 
       <div className="menu-icons" onClick={toggleNav}>
         <span
-          className="material-symbols-outlined fa-bars"
+          className="material-symbols-outlined fa-bars bar-menu"
           style={{ color: "white" }}
         >
           menu
         </span>
         <span
-          className="material-symbols-outlined fa-times"
+          className="material-symbols-outlined fa-times close-menu"
           style={{ color: "white" }}
         >
           close
@@ -63,7 +63,7 @@ const adminNavbar = () => {
       <ul className="nav-menu">
         <li>
           <Link
-            to=" /ListMonuments"
+            to="/ListMonuments/"
             className="admin-navlink"
             onClick={closeBlock}
           >

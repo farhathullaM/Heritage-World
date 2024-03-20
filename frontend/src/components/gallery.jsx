@@ -39,7 +39,7 @@ const Gallery = () => {
     <div className="container">
       <div className="topbar">
         <div className="main-head">Gallery</div>
-        <Link to={` /gallery/create/${id}`}>
+        <Link to={`/gallery/create/${id}`}>
           <button className="btn">Create</button>
         </Link>
       </div>
@@ -79,7 +79,7 @@ const Gallery = () => {
                 </td>
                 <td className="icons">
                   <div className="tool-con">
-                    <Link to={` /gallery/edit/${gallery._id}`}>
+                    <Link to={`/gallery/edit/${gallery._id}`}>
                       <span className="material-symbols-outlined tool edit">
                         edit_square
                       </span>

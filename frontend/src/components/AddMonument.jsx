@@ -53,7 +53,7 @@ const AddMonument = () => {
       })
       .then((res) => {
         alert("Monument Created");
-        navigate(" /ListMonuments");
+        navigate("/ListMonuments");
       })
       .catch((err) => {
         alert(err);
