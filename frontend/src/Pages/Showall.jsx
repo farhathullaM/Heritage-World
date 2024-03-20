@@ -9,15 +9,6 @@ const Showall = () => {
   const [monumentList, setMonumentList] = useState([]);
   const navigate = useNavigate();
 
-  //  useEffect(() => {
-  //   setLoading(true);
-  //    fetch('https://farhathullam.github.io/json-api/all_places.json')
-  //      .then(res => res.json())
-  //      .then(data => setMonumentList(data))
-  //      .catch(error => console.error(error))
-  //      .finally(() => setLoading(false));
-  //    },[]);
-
   useEffect(() => {
     setLoading(true);
     axios

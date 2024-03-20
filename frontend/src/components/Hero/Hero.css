@@ -79,10 +79,10 @@
     border-radius: 30%;
 } */
 
-/* .background-img::before{
+/* .slick-list::before{
     content: '';
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
     position: absolute;
     z-index: 10;
@@ -93,7 +93,7 @@
     height: 100vh;
     width: 100%;
     top: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.868) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.544) 100%);
 }
 .hero-heading{
     position: absolute;
