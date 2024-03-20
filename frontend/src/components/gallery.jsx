@@ -8,7 +8,7 @@ const Gallery = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const { id } = useParams();
-  if (!localStorage.getItem("token")) navigate("/admin/login");
+  if (!localStorage.getItem("token")) navigate("/login");
 
   useEffect(() => {
     axios
@@ -39,7 +39,7 @@ const Gallery = () => {
     <div className="container">
       <div className="topbar">
         <div className="main-head">Gallery</div>
-        <Link to={`/admin/gallery/create/${id}`}>
+        <Link to={` /gallery/create/${id}`}>
           <button className="btn">Create</button>
         </Link>
       </div>
@@ -49,13 +49,9 @@ const Gallery = () => {
             <tr>
               <th>No</th>
               <th>Title</th>
-              <th>Short Description</th>
+              {/* <th>Short Description</th> */}
               <th>Media</th>
-              <th>
-                <span className="material-symbols-outlined tool">
-                  more_vert
-                </span>
-              </th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -63,7 +59,7 @@ const Gallery = () => {
               <tr key={gallery._id}>
                 <td>{index + 1}</td>
                 <td>{gallery.imgTitle}</td>
-                <td>{gallery.description}</td>
+                {/* <td>{gallery.description}</td> */}
                 <td>
                   {gallery.image && gallery.image.endsWith(".mp4") ? (
                     <video className="image-display" controls>
@@ -83,7 +79,7 @@ const Gallery = () => {
                 </td>
                 <td className="icons">
                   <div className="tool-con">
-                    <Link to={`/admin/gallery/edit/${gallery._id}`}>
+                    <Link to={` /gallery/edit/${gallery._id}`}>
                       <span className="material-symbols-outlined tool edit">
                         edit_square
                       </span>

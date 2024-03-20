@@ -1,4 +1,4 @@
-.admin-navbar {
+/* .admin-navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23,4 +23,28 @@
     background-color: rgb(196, 196, 196);
     color: rgb(0, 0, 0);
   }
-  
+   */
+
+.navbar {
+  background-color: rgb(38, 38, 38);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 30px;
+  gap: 30px;
+}
+.nav-logo h1 {
+  color: white;
+  filter: none;
+}
+.admin-navlink {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+.admin-navlink:hover {
+  color: rgb(127, 127, 127);
+}

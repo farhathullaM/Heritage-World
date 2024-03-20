@@ -6,7 +6,7 @@ import imgIcon from "../static/img.svg";
 
 const AddGallery = () => {
   const navigate = useNavigate();
-  if (!localStorage.getItem("token")) navigate("/admin/login");
+  if (!localStorage.getItem("token")) navigate("/login");
 
   const [filename, setFilename] = useState("No file chosen");
   const { id } = useParams();
@@ -33,7 +33,7 @@ const AddGallery = () => {
 
     const formData = new FormData();
     formData.append("imgTitle", e.target.imgTitle.value);
-    formData.append("description", e.target.description.value);
+    // formData.append("description", e.target.description.value);
     formData.append("image", imageRef.current.files[0]);
 
     axios
@@ -44,7 +44,7 @@ const AddGallery = () => {
       })
       .then((res) => {
         alert("Gallery Created");
-        navigate(`/admin/gallery/${id}`);
+        navigate(` /gallery/${id}`);
       })
       .catch((err) => {
         alert(err);
@@ -61,10 +61,10 @@ const AddGallery = () => {
             <input name="imgTitle" type="text" id="imgTitle" />
           </div>
 
-          <div className="inp">
+          {/* <div className="inp">
             <label htmlFor="des">Description</label>
             <textarea name="description" id="des" />
-          </div>
+          </div> */}
 
           {/* <div className="inp">
             <label htmlFor="image">Image/Video</label>

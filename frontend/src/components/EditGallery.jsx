@@ -6,14 +6,14 @@ import imgIcon from "../static/img.svg";
 
 const EditGallery = () => {
   const navigate = useNavigate();
-  if (!localStorage.getItem("token")) navigate("/admin/login");
+  if (!localStorage.getItem("token")) navigate("/login");
 
   const [filename, setFilename] = useState("No file chosen");
   const { id } = useParams();
   const imageRef = useRef(null);
   const [galleryData, setGalleryData] = useState({
     imgTitle: "",
-    description: "",
+    // description: "",
     image: "",
   });
   const [thumbnail, setThumbnail] = useState(imgIcon);
@@ -66,7 +66,7 @@ const EditGallery = () => {
 
     const formData = new FormData();
     formData.append("imgTitle", e.target.imgTitle.value);
-    formData.append("description", e.target.description.value);
+    // formData.append("description", e.target.description.value);
     formData.append("image", imageRef.current.files[0]);
 
     axios
@@ -77,7 +77,7 @@ const EditGallery = () => {
       })
       .then((res) => {
         alert("Gallery Updated");
-        navigate(`/admin/gallery/${galleryData.monumentId}`);
+        navigate(` /gallery/${galleryData.monumentId}`);
       })
       .catch((err) => {
         alert(err);
@@ -99,14 +99,14 @@ const EditGallery = () => {
             />
           </div>
 
-          <div className="inp">
+          {/* <div className="inp">
             <label htmlFor="des">Description</label>
             <textarea
               name="description"
               id="des"
               defaultValue={galleryData.description}
             />
-          </div>
+          </div> */}
 
           {/* <div className="inp">
             <label htmlFor="image">Image/Video</label>

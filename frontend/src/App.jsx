@@ -16,7 +16,7 @@ import Login from "./components/login";
 import Register from "./components/register";
 
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Route, Routes, useLocation } from "react-router-dom";
 
@@ -24,23 +24,21 @@ function App() {
   const location = useLocation();
 
   const token = localStorage.getItem("token");
-  if (token) {
-    axios.defaults.headers.common["Authorization"] = token;
-  }
+  if (token) axios.defaults.headers.common["Authorization"] = token;
 
   return (
     <>
-      {location.pathname.includes("/admin/") ? <AdminNavbar /> : <Navbar />}
+      {token ? <AdminNavbar /> : <Navbar />}
 
       <Routes>
-        <Route path="/admin/login" element={<Login />} />
-        <Route path="/admin/register" element={<Register />} />
-        <Route path="/admin/ListMonuments" element={<ListMonuments />} />
-        <Route path="/admin/monument/create" element={<AddMonument />} />
-        <Route path="/admin/monument/edit/:id" element={<EditMonument />} />
-        <Route path="/admin/gallery/:id" element={<Gallery />} />
-        <Route path="/admin/gallery/create/:id" element={<AddGallery />} />
-        <Route path="/admin/gallery/edit/:id" element={<EditGallery />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/ListMonuments" element={<ListMonuments />} />
+        <Route path="/monument/create" element={<AddMonument />} />
+        <Route path="/monument/edit/:id" element={<EditMonument />} />
+        <Route path="/gallery/:id" element={<Gallery />} />
+        <Route path="/gallery/create/:id" element={<AddGallery />} />
+        <Route path="/gallery/edit/:id" element={<EditGallery />} />
 
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

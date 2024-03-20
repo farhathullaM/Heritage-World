@@ -26,7 +26,7 @@ const EditMonument = () => {
   const monumentEndpoint = `monuments/${id}`;
   const [coverImage, setCoverImage] = useState(imgIcon); // State variable for old cover image URL
 
-  if (!localStorage.getItem("token")) navigate("/admin/login");
+  if (!localStorage.getItem("token")) navigate("/login");
 
   useEffect(() => {
     axios
@@ -89,7 +89,7 @@ const EditMonument = () => {
       })
       .then((res) => {
         alert("Monument Updated");
-        navigate("/admin/login");
+        navigate("/login");
       })
       .catch((err) => {
         alert("Error updating monument: " + err);

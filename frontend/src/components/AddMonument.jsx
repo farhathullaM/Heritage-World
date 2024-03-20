@@ -6,7 +6,7 @@ import imgIcon from "../static/img.svg";
 
 const AddMonument = () => {
   const navigate = useNavigate();
-  if (!localStorage.getItem("token")) navigate("/admin/login");
+  if (!localStorage.getItem("token")) navigate("/login");
   const imageRef = useRef(null);
   const [filename, setFilename] = useState("No file chosen");
   const [coverImage, setCoverImage] = useState(imgIcon);
@@ -53,7 +53,7 @@ const AddMonument = () => {
       })
       .then((res) => {
         alert("Monument Created");
-        navigate("/admin/ListMonuments");
+        navigate(" /ListMonuments");
       })
       .catch((err) => {
         alert(err);
@@ -70,7 +70,6 @@ const AddMonument = () => {
             <input name="title" type="text" id="title" />
           </div>
 
-         
           <div className="inp">
             <label htmlFor="des">Description/About Monuments</label>
             <textarea name="description" id="des" />
@@ -79,7 +78,7 @@ const AddMonument = () => {
             <label htmlFor="shdes">Short Description</label>
             <textarea name="shortdescription" id="shdes" />
           </div> */}
-           <div className="inp">
+          <div className="inp">
             <label htmlFor="nat">Nation</label>
             <input name="nation" type="text" id="nat" />
           </div>

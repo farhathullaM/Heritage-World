@@ -67,13 +67,7 @@ router.post("/", upload.single("cover_image"), async (request, response) => {
 router.get("/", async (request, response) => {
   try {
     let monument = undefined;
-    // const user = await User.find(request.user.id);
-    // if (user.type == "user")
-    //   monuments = await Monument.find({
-    //     user: mongoose.Types.ObjectId(request.user.id),
-    //   });
-    // else if (user.type == "admin") monuments = await Monument.find();
-    // else throw `Account Type Error. Got type : ${user.type}`;
+
     const users = await User.findById(request.user.id);
     if (users.type == "user")
       monument = await Monument.find({ user: request.user.id });

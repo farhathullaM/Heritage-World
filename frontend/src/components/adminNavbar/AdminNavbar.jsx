@@ -1,34 +1,83 @@
-import React from 'react'
-import { useNavigate, useLocation } from "react-router-dom";
+import React from "react";
+import "../Navbar/Navbar.css";
+import "./AdminNavbar.css";
+import logo_new from "../Assets/image.png";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-import './AdminNavbar.css'
-
-const AdminNavbar = () => {
-    const navigate = useNavigate();
+const adminNavbar = () => {
+  let isNavOpen = false;
+  const navigate = useNavigate();
   const location = useLocation();
 
-    const logout = (e) => {
-        localStorage.removeItem("token");
-        navigate("/admin/login");
-      };
-  return (
-    <div className="admin-navbar">
-        <div className="head">Historical Monuments</div>
-        {location.pathname === "/admin/login" ? (
-          <button className="btn" onClick={() => navigate("/admin/register")}>
-            Register
-          </button>
-        ) : location.pathname === "/admin/register" ? (
-          <button className="btn" onClick={() => navigate("/admin/login")}>
-            Login
-          </button>
-        ) : (
-          <button className="btn" onClick={logout}>
-            Logout
-          </button>
-        )}
-      </div>
-  )
-}
+  const logout = (e) => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
-export default AdminNavbar
+  function toggleNav() {
+    const navMenu = document.querySelector(".nav-menu");
+    const closeButton = document.querySelector(".menu-icons .fa-times");
+    const menuButton = document.querySelector(".menu-icons .fa-bars");
+    if (isNavOpen) {
+      navMenu.classList.remove("nav-open");
+      isNavOpen = false;
+      closeButton.style.display = "none";
+      menuButton.style.display = "block";
+    } else {
+      navMenu.classList.add("nav-open");
+      isNavOpen = true;
+      closeButton.style.display = "block";
+      menuButton.style.display = "none";
+    }
+  }
+
+  const closeBlock = () => {
+    closeButton.style.display = "none";
+    menuButton.style.display = "block";
+  };
+
+  return (
+    <nav className="navbar">
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <div className="nav-logo">
+          <img src={logo_new} alt="" />
+          <h1>HERITAGE WORLD</h1>
+        </div>
+      </Link>
+
+      <div className="menu-icons" onClick={toggleNav}>
+        <span
+          className="material-symbols-outlined fa-bars"
+          style={{ color: "white" }}
+        >
+          menu
+        </span>
+        <span
+          className="material-symbols-outlined fa-times"
+          style={{ color: "white" }}
+        >
+          close
+        </span>
+      </div>
+
+      <ul className="nav-menu">
+        <li>
+          <Link
+            to=" /ListMonuments"
+            className="admin-navlink"
+            onClick={closeBlock}
+          >
+            HOME
+          </Link>
+        </li>
+        <li>
+          <div className="admin-navlink" onClick={logout}>
+            LOGOUT
+          </div>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default adminNavbar;

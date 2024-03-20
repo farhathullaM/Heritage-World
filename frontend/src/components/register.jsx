@@ -25,7 +25,7 @@ const register = () => {
         },
       })
       .then((res) => {
-        navigate("/admin/login");
+        navigate("/login");
       })
       .catch((err) => {
         alert(err.response.data.message);

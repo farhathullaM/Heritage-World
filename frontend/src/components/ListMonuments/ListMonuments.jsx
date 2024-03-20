@@ -10,7 +10,7 @@ const ListMonuments = () => {
   const [data, setData] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
-    if (!localStorage.getItem("token")) navigate("/admin/login");
+    if (!localStorage.getItem("token")) navigate("/login");
     axios
       .get("monuments/")
       .then((res) => {
@@ -42,7 +42,7 @@ const ListMonuments = () => {
     <div className="container">
       <div className="topbar">
         <div className="main-head">Monuments</div>
-        <Link to={"/admin/monument/create"}>
+        <Link to={" /monument/create"}>
           <button className="btn">Create</button>
         </Link>
       </div>
@@ -115,7 +115,7 @@ const ListMonuments = () => {
                 </td>
                 <td className="icons">
                   <div className="tool-con">
-                    <Link to={`/admin/gallery/${monument._id}`}>
+                    <Link to={` /gallery/${monument._id}`}>
                       <span className="material-symbols-outlined tool gal">
                         photo_library
                       </span>
@@ -124,7 +124,7 @@ const ListMonuments = () => {
                 </td>
                 <td className="icons">
                   <div className="tool-con">
-                    <Link to={`/admin/monument/edit/${monument._id}`}>
+                    <Link to={` /monument/edit/${monument._id}`}>
                       <span className="material-symbols-outlined tool edit">
                         edit_square
                       </span>

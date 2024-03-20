@@ -26,10 +26,10 @@ const Login = () => {
         if (res?.data.auth) {
           const token = "Bearer " + res.data.token;
           localStorage.setItem("token", token);
-          navigate("/admin/ListMonuments");
+          navigate("/ListMonuments");
         } else {
           alert("Login Failed");
-          navigate("/admin/login");
+          navigate("/login");
         }
       })
       .catch((err) => {

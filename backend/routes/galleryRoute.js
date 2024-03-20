@@ -28,11 +28,7 @@ router.post(
   upload.single("image"),
   async (request, response) => {
     try {
-      if (
-        !request.body.imgTitle ||
-        !request.file ||
-        !request.body.description
-      ) {
+      if (!request.body.imgTitle || !request.file) {
         return response.status(400).send({
           message: "Send all required fields: imgTitle, image, description",
         });
@@ -43,7 +39,6 @@ router.post(
         monumentId: request.params.monumentId,
         imgTitle: request.body.imgTitle,
         image: request.file.path.replace("uploads\\", ""),
-        description: request.body.description,
       };
 
       // Create a new gallery item using Mongoose model
@@ -117,9 +112,7 @@ router.put("/:id", upload.single("image"), async (request, response) => {
     if (request.body.imgTitle) {
       galleryItem.imgTitle = request.body.imgTitle;
     }
-    if (request.body.description) {
-      galleryItem.description = request.body.description;
-    }
+
     //   if (image) {
     //     galleryItem.image = image;
     //   }
