@@ -37,9 +37,10 @@ router.get("/", async (request, response) => {
 router.put("/verify/:id", async (request, response) => {
   try {
     const users = await User.findById(request.user.id);
+    console.log(users.type);
     if (users.type == "user")
       return response
-        .status(404)
+        .status(403)
         .json({ message: "Verification is not allowed for user" });
 
     const { id } = request.params;
@@ -53,7 +54,7 @@ router.put("/verify/:id", async (request, response) => {
     await monument.save();
     return response
       .status(200)
-      .json({ message: "Monument verify successfully" });
+      .json({ message: "Monument verified successfully" });
   } catch (error) {
     console.error(error.message);
     return response.status(500).send({ message: "Internal Server Error" });

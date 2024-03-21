@@ -89,7 +89,7 @@ const EditMonument = () => {
       })
       .then((res) => {
         alert("Monument Updated");
-        navigate("/login");
+        navigate("/manage/ListMonuments");
       })
       .catch((err) => {
         alert("Error updating monument: " + err);

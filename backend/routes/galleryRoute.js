@@ -30,7 +30,7 @@ router.post(
     try {
       if (!request.body.imgTitle || !request.file) {
         return response.status(400).send({
-          message: "Send all required fields: imgTitle, image, description",
+          message: "Send all required fields: imgTitle, image",
         });
       }
 

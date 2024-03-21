@@ -77,7 +77,7 @@ const EditGallery = () => {
       })
       .then((res) => {
         alert("Gallery Updated");
-        navigate(` /gallery/${galleryData.monumentId}`);
+        navigate(`/manage/gallery/${galleryData.monumentId}`);
       })
       .catch((err) => {
         alert(err);

@@ -15,8 +15,10 @@ import EditGallery from "./components/EditGallery";
 import Login from "./components/login";
 import Register from "./components/register";
 
+import checkAdmin from "./util/Token.jsx";
+
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Route, Routes, useLocation } from "react-router-dom";
 
@@ -26,19 +28,24 @@ function App() {
   const token = localStorage.getItem("token");
   if (token) axios.defaults.headers.common["Authorization"] = token;
 
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    checkAdmin(setIsAdmin);
+  });
+
   return (
     <>
-      {token ? <AdminNavbar /> : <Navbar />}
-
+      {token  ? <AdminNavbar /> : <Navbar />}
+      
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/ListMonuments" element={<ListMonuments />} />
-        <Route path="/monument/create" element={<AddMonument />} />
-        <Route path="/monument/edit/:id" element={<EditMonument />} />
-        <Route path="/gallery/:id" element={<Gallery />} />
-        <Route path="/gallery/create/:id" element={<AddGallery />} />
-        <Route path="/gallery/edit/:id" element={<EditGallery />} />
+        <Route path="/manage/ListMonuments" element={<ListMonuments />} />
+        <Route path="/manage/monument/create" element={<AddMonument />} />
+        <Route path="/manage/monument/edit/:id" element={<EditMonument />} />
+        <Route path="/manage/gallery/:id" element={<Gallery />} />
+        <Route path="/manage/gallery/create/:id" element={<AddGallery />} />
+        <Route path="/manage/gallery/edit/:id" element={<EditGallery />} />
 
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

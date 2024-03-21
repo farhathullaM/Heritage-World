@@ -42,7 +42,7 @@ const ListMonuments = () => {
     <div className="container">
       <div className="topbar">
         <div className="main-head">Monuments</div>
-        <Link to={"/monument/create"}>
+        <Link to={"/manage/monument/create"}>
           <button className="btn">Create</button>
         </Link>
       </div>
@@ -106,7 +106,7 @@ const ListMonuments = () => {
                         className="btn"
                         onClick={() => handleItemClick(monument._id, true)}
                       >
-                        Verify
+                        Verification
                       </button>
                     ) : (
                       <button
@@ -120,7 +120,7 @@ const ListMonuments = () => {
                 </td>
                 <td className="icons">
                   <div className="tool-con">
-                    <Link to={`/gallery/${monument._id}`}>
+                    <Link to={`/manage/gallery/${monument._id}`}>
                       <span className="material-symbols-outlined tool gal">
                         photo_library
                       </span>
@@ -129,7 +129,7 @@ const ListMonuments = () => {
                 </td>
                 <td className="icons">
                   <div className="tool-con">
-                    <Link to={`/monument/edit/${monument._id}`}>
+                    <Link to={`/manage/monument/edit/${monument._id}`}>
                       <span className="material-symbols-outlined tool edit">
                         edit_square
                       </span>

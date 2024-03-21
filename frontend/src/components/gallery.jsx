@@ -12,7 +12,7 @@ const Gallery = () => {
 
   useEffect(() => {
     axios
-      .get(`gallery/monument/${id}`)
+      .get(`/gallery/monument/${id}`)
       .then((res) => {
         setData(res.data);
       })
@@ -23,7 +23,7 @@ const Gallery = () => {
     let isDel = confirm("Confirm Delete");
     if (isDel) {
       axios
-        .delete(`gallery/${id}`)
+        .delete(`/gallery/${id}`)
         .then((res) => {
           setData((currentData) =>
             currentData.filter((gallery) => gallery._id !== id)
@@ -39,7 +39,7 @@ const Gallery = () => {
     <div className="container">
       <div className="topbar">
         <div className="main-head">Gallery</div>
-        <Link to={`/gallery/create/${id}`}>
+        <Link to={`/manage/gallery/create/${id}`}>
           <button className="btn">Create</button>
         </Link>
       </div>
@@ -79,7 +79,7 @@ const Gallery = () => {
                 </td>
                 <td className="icons">
                   <div className="tool-con">
-                    <Link to={`/gallery/edit/${gallery._id}`}>
+                    <Link to={`/manage/gallery/edit/${gallery._id}`}>
                       <span className="material-symbols-outlined tool edit">
                         edit_square
                       </span>

@@ -26,7 +26,7 @@ const Login = () => {
         if (res?.data.auth) {
           const token = "Bearer " + res.data.token;
           localStorage.setItem("token", token);
-          navigate("/ListMonuments");
+          navigate("/manage/ListMonuments");
         } else {
           alert("Login Failed");
           navigate("/login");

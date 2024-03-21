@@ -22,7 +22,10 @@ img{
     font-size: 3rem;
     font-weight: 800;
     color: #511d1d;
-    -webkit-background-clip: text;
+}
+.abt-img img{
+    width: 200px;
+    height: 200px;
 }
 .home-txt p{
     font-size: 1.3rem;

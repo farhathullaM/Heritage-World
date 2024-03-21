@@ -5,6 +5,7 @@ import star from "../components/Assets/star.png";
 import axios from "axios";
 import ModalImage from "react-modal-image";
 import ReactPlayer from "react-player";
+import checkAdmin from "../util/Token";
 
 //Read more component
 const ReadMore = ({ children }) => {
@@ -35,17 +36,29 @@ const Placedetails = () => {
   const [loading, setLoading] = useState(true);
   const [monument, setMonument] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
-  const isAdmin = true;
-  // const [isAdmin, setIsAdmin] = useState(null);
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    checkAdmin(setIsAdmin);
+  });
 
   // useEffect(() => {
-  //   axios
-  //     .get('/users')
-  //     .then((res) => {
-  //       setIsAdmin(res.data);
-  //     })
-  //     .catch((err) => console.error(err.response.data.message));
-  // }, []);
+  //   const token = localStorage.getItem("token");
+  //   if (token == null) {
+  //     setIsAdmin(false)
+  //     return
+  //   }
+  //   const usertk = token.split(".")[1];
+  //   const decodedtk = JSON.parse(atob(usertk));
+  //   const type = decodedtk.type;
+  //   console.log(type)
+  //   if (type == 'admin'){
+  //     setIsAdmin(true)
+  //   }
+  //   else{
+  //     setIsAdmin(false)
+  //   }
+  // });
 
   const handleClick = (Id) => {
     let cfm = confirm("Confirm verification");
@@ -55,7 +68,7 @@ const Placedetails = () => {
         .put(`admin/verify/${Id}`)
         .then((res) => {
           alert(res.data.message);
-          navigate("/ListMonuments")
+          navigate("/manage/ListMonuments");
         })
         .catch((err) => {
           alert("Error verifing : " + err.message);
@@ -71,7 +84,7 @@ const Placedetails = () => {
         .put(`admin/unverify/${Id}`)
         .then((res) => {
           alert(res.data.message);
-          navigate("/ListMonuments");
+          navigate("/manage/ListMonuments");
         })
         .catch((err) => {
           alert("Error verifing : " + err.message);
@@ -98,7 +111,7 @@ const Placedetails = () => {
         setGalleryImages(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching gallery images:", error);
+        console.error("Error fetching gallery images:", error.message);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -214,6 +227,7 @@ const Placedetails = () => {
               </div>
             )}
           </div>
+
           {isAdmin ? (
             <div className="verify">
               {monument.status == 1 ? (

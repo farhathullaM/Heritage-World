@@ -37,14 +37,14 @@ const AddGallery = () => {
     formData.append("image", imageRef.current.files[0]);
 
     axios
-      .post(`gallery/${id}`, formData, {
+      .post(`/gallery/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
         alert("Gallery Created");
-        navigate(` /gallery/${id}`);
+        navigate(`/manage/gallery/${id}`);
       })
       .catch((err) => {
         alert(err);

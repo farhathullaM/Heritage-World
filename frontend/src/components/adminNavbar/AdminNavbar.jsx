@@ -63,11 +63,16 @@ const adminNavbar = () => {
       <ul className="nav-menu">
         <li>
           <Link
-            to="/ListMonuments/"
+            to="/manage/ListMonuments/"
             className="admin-navlink"
             onClick={closeBlock}
           >
             HOME
+          </Link>
+        </li>
+        <li>
+          <Link to="/" className="admin-navlink">
+            PUBLIC HOME
           </Link>
         </li>
         <li>
