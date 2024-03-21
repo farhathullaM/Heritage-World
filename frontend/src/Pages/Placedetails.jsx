@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./CSS/Placedetails.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import star from "../components/Assets/star.png";
 import axios from "axios";
 import ModalImage from "react-modal-image";
 import ReactPlayer from "react-player";
 
+//Read more component
 const ReadMore = ({ children }) => {
   const text = children || "";
   const [isReadMore, setIsReadMore] = useState(true);
@@ -29,18 +30,19 @@ const ReadMore = ({ children }) => {
 };
 
 const Placedetails = () => {
+  const navigate = useNavigate();
   const { placeId } = useParams();
   const [loading, setLoading] = useState(true);
   const [monument, setMonument] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
   const isAdmin = true;
-  // const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(null);
 
   // useEffect(() => {
-  //   if (!localStorage.getItem("token"));
   //   axios
+  //     .get('/users')
   //     .then((res) => {
-  //       setIsAdmin(res.data["userType"] == "admin" ? true : false);
+  //       setIsAdmin(res.data);
   //     })
   //     .catch((err) => console.error(err.response.data.message));
   // }, []);
@@ -53,6 +55,7 @@ const Placedetails = () => {
         .put(`admin/verify/${Id}`)
         .then((res) => {
           alert(res.data.message);
+          navigate("/ListMonuments")
         })
         .catch((err) => {
           alert("Error verifing : " + err.message);
@@ -61,17 +64,18 @@ const Placedetails = () => {
   };
 
   const clickToUnverify = (Id) => {
-    let cfm = confirm("Do you want to edit");
+    let cfm = confirm("Do you want to edit the verification");
     if (!cfm) return;
     else {
       axios
-      .put(`admin/verify/${Id}`)
-      .then(response => {
-        console.log("Monument status updated successfully:", response.data);
-      })
-      .catch(error => {
-        console.error("Error updating monument status:", error);
-      });
+        .put(`admin/unverify/${Id}`)
+        .then((res) => {
+          alert(res.data.message);
+          navigate("/ListMonuments");
+        })
+        .catch((err) => {
+          alert("Error verifing : " + err.message);
+        });
     }
   };
 
@@ -217,14 +221,14 @@ const Placedetails = () => {
                   className="btn"
                   onClick={() => clickToUnverify(monument._id)}
                 >
-                  Refute
+                  Unverify
                 </button>
               ) : (
                 <button
                   className="btn"
                   onClick={() => handleClick(monument._id)}
                 >
-                  Unverify
+                  Verify
                 </button>
               )}
             </div>
