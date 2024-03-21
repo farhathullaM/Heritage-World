@@ -59,73 +59,33 @@ router.put("/verify/:id", async (request, response) => {
     return response.status(500).send({ message: "Internal Server Error" });
   }
 });
-//// router.put("/:id", upload.single("cover_image"), async (request, response) => {
-//   try {
-//     if (
-//       !request.body.title ||
-//       !request.body.description ||
-//       !request.body.nation ||
-//       !request.body.state ||
-//       !request.body.place
-//     ) {
-//       return response.status(400).send({
-//         message:
-//           "send all required fields : title , shortdescription , description",
-//       });
-//     }
-//     const { id } = request.params;
-//     const monument = await Monument.findById(id);
-//     if (!monument) {
-//       return response.status(404).json({ message: "Monument is not found" });
-//     }
 
-//     // Check if a new image or video is uploaded
-//     if (request.file) {
-//       // Delete previous image or video if exists
-//       if (monument.cover_image) {
-//         const imagePath = path.join(
-//           "uploads",
-//           "coverimg",
-//           monument.cover_image
-//         );
-//         fs.unlink(imagePath, (err) => {
-//           if (err) {
-//             console.error("Error deleting image:", err);
-//           } else {
-//             console.log("Image deleted successfully");
-//           }
-//         });
-//       }
-//       monument.cover_image = request.file.path.replace("uploads\\", ""); // Update image or video path with new file
-//     }
-//     monument.title = request.body.title;
-//     monument.shortdescription = request.body.shortdescription;
-//     monument.description = request.body.description;
-//     monument.nation = request.body.nation;
-//     monument.state = request.body.state;
-//     monument.place = request.body.place;
-//     monument.location = request.body.location;
-//     monument.hst_chronology = request.body.hst_chronology;
-//     monument.ipms_place = request.body.ipms_place;
-//     monument.past_condition = request.body.past_condition;
-//     monument.present_condition = request.body.present_condition;
-//     monument.archi_imps = request.body.archi_imps;
-//     // Save the updated monument
-//     await monument.save();
+// unverify
+router.put("/unverify/:id", async (request, response) => {
+  try {
+    const users = await User.findById(request.user.id);
+    if (users.type == "user")
+      return response
+        .status(404)
+        .json({ message: "Verification is not allowed for user" });
 
-//     // const result = await Monument.findByIdAndUpdate(id, request.body);
-//     // if (!result) {
-//     //   return response.status(404).json({ mesage: "monument not found " });
-//     // }
-//     return response
-//       .status(200)
-//       .json({ message: "Monument updated successfully" });
-//   } catch (error) {
-//     console.error(error.message);
-//     return response.status(500).send({ message: "Internal Server Error" });
-//   }
-// });
+    const { id } = request.params;
 
+    const monument = await Monument.findById(id);
+    if (!monument) {
+      return response.status(404).json({ message: "Monument is not found" });
+    }
+
+    monument.status = 0;
+    await monument.save();
+    return response
+      .status(200)
+      .json({ message: "Monument successfully  unverified" });
+  } catch (error) {
+    console.error(error.message);
+    return response.status(500).send({ message: "Internal Server Error" });
+  }
+});
 //delete
 router.delete("/:id", async (request, response) => {
   try {
