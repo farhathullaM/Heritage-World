@@ -40,6 +40,9 @@
   .nav-menu {
     display: none;
   }
+  .nav-menu.nav-open {
+    display: flex;
+  }
 }
 .nav-logo h1 {
   color: white;

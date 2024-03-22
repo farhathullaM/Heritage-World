@@ -10,7 +10,8 @@ const adminNavbar = () => {
 
   const logout = (e) => {
     localStorage.removeItem("token");
-    navigate("/login");
+    if (location.pathname.includes("/manage/")) navigate("/login");
+    else navigate(Window.location);
   };
 
   function toggleNav() {

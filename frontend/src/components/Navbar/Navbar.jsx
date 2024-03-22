@@ -55,26 +55,22 @@ const Navbar = () => {
 
       <ul className="nav-menu">
         <li>
-          {" "}
           <Link to="/" className="navlink" onClick={closeBlock}>
-            {" "}
-            HOME{" "}
-          </Link>{" "}
+            HOME
+          </Link>
         </li>
 
         <li>
-          {" "}
+
           <Link to="/about" className="navlink" onClick={closeBlock}>
-            {" "}
-            ABOUT US{" "}
-          </Link>{" "}
+        
+            ABOUT US
+          </Link>
         </li>
         <li>
-          {" "}
           <Link to="/explore" className="navlink" onClick={closeBlock}>
-            {" "}
-            MONUMENTS{" "}
-          </Link>{" "}
+            MONUMENTS
+          </Link>
         </li>
         <li>
           {location.pathname.includes("/login") ? (
