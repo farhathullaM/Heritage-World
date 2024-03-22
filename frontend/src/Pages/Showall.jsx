@@ -57,7 +57,6 @@ const Showall = () => {
                   <div className="place">
                     <span className="material-symbols-outlined">explore</span>
                     <p>
-                      {" "}
                       {item.place}, {item.state}
                     </p>
                   </div>
