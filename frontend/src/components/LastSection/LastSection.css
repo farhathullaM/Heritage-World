@@ -60,6 +60,7 @@
   padding-left: 30px;
   padding-right: 30px;
   align-items: center;
+  width: 100%;
 }
 .details h2 {
   font-size: 32px;

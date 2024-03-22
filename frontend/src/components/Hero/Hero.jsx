@@ -35,7 +35,7 @@ const Hero = () => {
                 <p>{item.para}</p>
                 <Link to="/explore" style={{ textDecoration: "none" }}>
                   <button className="discover-btn">
-                    DISCOVER{" "}
+                    DISCOVER
                     <span className="material-symbols-outlined">
                       arrow_forward
                     </span>
