@@ -76,6 +76,11 @@ const adminNavbar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/explore" className="admin-navlink">
+            MONUMENTS
+          </Link>
+        </li>
+        <li>
           <div className="admin-navlink" onClick={logout}>
             LOGOUT
           </div>

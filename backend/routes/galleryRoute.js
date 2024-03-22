@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import { Gallery } from "../models/galleryModel.js";
+import Gallery from "../models/galleryModel.js";
 import fs from "fs";
 import path from "path";
 

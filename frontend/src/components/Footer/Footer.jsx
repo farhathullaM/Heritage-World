@@ -36,11 +36,11 @@ const Footer = () => {
 
       <div className="footer-btm">
         <div className="sponser">
-          <p>Sponsored by Indian Council of Social Science Research</p>
+          <p>Sponsored by <a href="https://icssr.org/">Indian Council of Social Science Research</a></p>
         </div>
 
         <div className="develop">
-          <p>Developed by Altazzai</p>
+          <p>Developed by <a href="https://altezzai.com/">Altazzai</a></p>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import express from "express";
 import Monument from "../models/monumentModel.js";
+import Gallery from "../models/galleryModel.js";
 import User from "../models/userModel.js";
 import multer from "multer";
 import fs, { copyFileSync } from "fs";
@@ -31,6 +32,25 @@ router.get("/:id", async (request, response) => {
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
+  }
+});
+
+router.get("/monument/:monumentId", async (request, response) => {
+  try {
+    // const id = "65cf253a709063993bd5362b";
+    // const galleryItems = await Gallery.find({
+    //   monumentId: id,
+    // });
+    const galleryItems = await Gallery.find({
+      monumentId: request.params.monumentId,
+    });
+    // setTimeout(() => {
+    //   console.log(galleryItems);
+    // }, 500);
+    return response.status(200).json(galleryItems);
+  } catch (error) {
+    console.error(error.message);
+    return response.status(500).send({ message: "Internal Server Error" });
   }
 });
 

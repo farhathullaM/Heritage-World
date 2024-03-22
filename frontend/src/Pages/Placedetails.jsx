@@ -106,7 +106,7 @@ const Placedetails = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`gallery/monument/${placeId}`)
+      .get(`public/monument/${placeId}`)
       .then((response) => {
         setGalleryImages(response.data);
       })
