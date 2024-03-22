@@ -21,6 +21,19 @@ router.get("/", async (request, response) => {
   }
 });
 
+// route get latest 3 only only
+router.get("/latest3/", async (request, response) => {
+  try {
+    const monuments = await Monument.find({ status: 1 })
+      .sort({ createdAt: -1 }) // Sort by creation date in descending order
+      .limit(3); // Limit the result to 3 documents
+
+    return response.status(200).json(monuments);
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
 // route get one
 router.get("/:id", async (request, response) => {
   try {
