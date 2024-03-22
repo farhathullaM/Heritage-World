@@ -4,6 +4,7 @@ import Placedetails from "./Pages/Placedetails.jsx";
 
 import About from "./components/About/About.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 import AdminNavbar from "./components/adminNavbar/AdminNavbar.jsx";
 import ListMonuments from "./components/ListMonuments/ListMonuments.jsx";
@@ -15,10 +16,8 @@ import EditGallery from "./components/EditGallery";
 import Login from "./components/login";
 import Register from "./components/register";
 
-import checkAdmin from "./util/Token.jsx";
-
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import { Route, Routes, useLocation } from "react-router-dom";
 
@@ -28,10 +27,6 @@ function App() {
   const token = localStorage.getItem("token");
   if (token) axios.defaults.headers.common["Authorization"] = token;
 
-  const [isAdmin, setIsAdmin] = useState(false);
-  useEffect(() => {
-    checkAdmin(setIsAdmin);
-  });
 
   return (
     <>
@@ -52,6 +47,8 @@ function App() {
         <Route path="/explore" element={<Showall />} />
         <Route path="/places/:placeId" element={<Placedetails />} />
       </Routes>
+      
+      <Footer/>
     </>
   );
 }
