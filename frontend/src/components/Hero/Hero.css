@@ -106,6 +106,17 @@
     width: 100vw;
     z-index: 100;
 }
+.discover{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    top: 60%;
+    width: 100vw;
+    z-index: 100;
+}
 /* .hero-head{
     color: white;
     position: absolute;
@@ -134,10 +145,12 @@
     color: white;
     font-size: 20px;
     font-weight: 300;
+    transition: all .1s ease-in;
 }
 .discover-btn:hover{
     cursor: pointer;
-    background: rgba(0, 0, 0, 1);
+    background: rgb(255, 255, 255);
+    color: black;
     font-weight: 500;
 }
 .discover-btn span{

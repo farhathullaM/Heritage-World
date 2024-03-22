@@ -33,7 +33,14 @@ const Hero = () => {
               <div className="hero-heading">
                 <h1>{item.head}</h1>
                 <p>{item.para}</p>
-                <Link to="/explore" style={{ textDecoration: "none" }}>
+              </div>
+
+            </div>
+          ))}
+        </Slider>
+      </div>
+      <div className="discover">
+      <Link to="/explore" style={{ textDecoration: "none" }}>
                   <button className="discover-btn">
                     DISCOVER
                     <span className="material-symbols-outlined">
@@ -41,10 +48,6 @@ const Hero = () => {
                     </span>
                   </button>
                 </Link>
-              </div>
-            </div>
-          ))}
-        </Slider>
       </div>
     </div>
   );
