@@ -1,13 +1,22 @@
-import React from 'react';
+import React from "react";
+import "./ImagePopup.css";
 
-const ImagePopup = ({ imageUrl, onClose }) => {
+const ImagePopup = ({ clickedImg, setClickedImg }) => {
+  const handleClick = (e) => {
+    if (e.target.classList.contains("dismiss")) {
+      setClickedImg(null);
+    }
+  };
+
   return (
-    <div className="image-popup-overlay" onClick={onClose}>
-      <div className="image-popup">
-        <button className="close-btn" onClick={onClose}>Close</button>
-        <img src={imageUrl} alt="Popup Image" />
+    <>
+      <div className="overlay dismiss" onClick={handleClick}>
+        <img src={clickedImg} alt="bigger pic" />
+        <span className="dismiss" onClick={handleClick}>
+          X
+        </span>
       </div>
-    </div>
+    </>
   );
 };
 

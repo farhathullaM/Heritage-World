@@ -52,6 +52,7 @@
     font-size: 16px;
     font-weight: 500;
     gap: 10px;
+    transition: all .1s ease-in;
 }
 .more-btn:hover{
     cursor: pointer;

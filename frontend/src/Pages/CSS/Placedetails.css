@@ -165,17 +165,6 @@
   gap: 20px;
   /* grid-auto-rows: minmax(50px, auto); */
 }
-.__react_modal_image__modal_container {
-  left: 20% !important;
-  top: 10% !important;
-  width: 50% !important;
-  height: 80% !important;
-  background-color: black !important;
-}
-.__react_modal_image__modal_content img,
-.__react_modal_image__modal_content svg {
-  object-fit: contain !important;
-}
 .gallery-images {
   border-radius: 3px;
   overflow: hidden;

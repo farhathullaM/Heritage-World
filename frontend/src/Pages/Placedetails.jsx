@@ -3,9 +3,9 @@ import "./CSS/Placedetails.css";
 import { useParams, useNavigate } from "react-router-dom";
 import star from "../components/Assets/star.png";
 import axios from "axios";
-import ModalImage from "react-modal-image";
 import ReactPlayer from "react-player";
 import checkAdmin from "../util/Token";
+import ImagePopup from "../components/ImagePopup/ImagePopup";
 
 //Read more component
 const ReadMore = ({ children }) => {
@@ -36,31 +36,19 @@ const Placedetails = () => {
   const [loading, setLoading] = useState(true);
   const [monument, setMonument] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
+  const [clickedImg, setClickedImg] = useState(null);
 
   const [isAdmin, setIsAdmin] = useState(false);
+
   useEffect(() => {
     checkAdmin(setIsAdmin);
   });
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token == null) {
-  //     setIsAdmin(false)
-  //     return
-  //   }
-  //   const usertk = token.split(".")[1];
-  //   const decodedtk = JSON.parse(atob(usertk));
-  //   const type = decodedtk.type;
-  //   console.log(type)
-  //   if (type == 'admin'){
-  //     setIsAdmin(true)
-  //   }
-  //   else{
-  //     setIsAdmin(false)
-  //   }
-  // });
+  const handleClick = (item) => {
+    setClickedImg(axios.defaults.baseURL + item.image);
+  };
 
-  const handleClick = (Id) => {
+  const clickToVerify = (Id) => {
     let cfm = confirm("Confirm verification");
     if (!cfm) return;
     else {
@@ -170,30 +158,6 @@ const Placedetails = () => {
             <h4>GALLERY</h4>
             <div className="line"></div>
 
-            {/* {loading ? (
-              "Loading..."
-            ) : (
-              <div className="all-items">
-                {galleryImages &&
-                  galleryImages
-                    .filter((item) => item.monumentId === placeId)
-                    .map((item) => (
-                      <div className="gallery-images" key={item._id}>
-                        <ModalImage
-                          className="gallery-image"
-                          small={axios.defaults.baseURL + item.image}
-                          medium={axios.defaults.baseURL + item.image}
-                          hideZoom
-                        />
-                        <img src={axios.defaults.baseURL + item.image} alt="" />
-
-                        <div className="gallery-title">
-                          <p className="title">{item.imgTitle}</p>
-                        </div>
-                      </div>
-                    ))}
-              </div>
-            )}{" "} */}
             {loading ? (
               "Loading..."
             ) : (
@@ -201,7 +165,7 @@ const Placedetails = () => {
                 {galleryImages &&
                   galleryImages
                     .filter((item) => item.monumentId === placeId)
-                    .map((item) => (
+                    .map((item , index) => (
                       <div className="gallery-images" key={item._id}>
                         {item.image.endsWith(".MP4") ? (
                           <ReactPlayer
@@ -213,12 +177,19 @@ const Placedetails = () => {
                             muted
                           />
                         ) : (
-                          <ModalImage
-                            small={axios.defaults.baseURL + item.image}
-                            medium={axios.defaults.baseURL + item.image}
-                            hideZoom
+                          <img
+                            src={axios.defaults.baseURL + item.image}
+                            onClick={() => handleClick(item)}
                           />
                         )}
+                        <div>
+                          {clickedImg && (
+                            <ImagePopup
+                              clickedImg={clickedImg}
+                              setClickedImg={setClickedImg}
+                            />
+                          )}
+                        </div>
                         <div className="gallery-title">
                           <p className="titles">{item.imgTitle}</p>
                         </div>
@@ -240,7 +211,7 @@ const Placedetails = () => {
               ) : (
                 <button
                   className="btn"
-                  onClick={() => handleClick(monument._id)}
+                  onClick={() => clickToVerify(monument._id)}
                 >
                   Verify
                 </button>
