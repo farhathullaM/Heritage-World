@@ -63,6 +63,7 @@ const Login = () => {
                 name="paswd"
                 type="password"
                 id="paswd"
+                required
                 style={{ width: "300px" }}
               />
             </div>

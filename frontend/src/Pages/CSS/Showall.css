@@ -133,17 +133,16 @@
     height: 20vh;
   }
   .search-box {
-    top: 7%;
+    top: 10%;
     width: 250px;
   }
   .search-box input {
-    height: 45px;
+    height: 40px;
     font-size: 14px;
   }
   .search-box input::placeholder {
     font-size: 14px;
   }
-
   .search-icon-box {
     width: 36px;
     height: 36px;
@@ -153,16 +152,10 @@
     font-size: 20px;
   }
   .each-places {
-    display: flex;
-    justify-content: center;
-    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
-    width: 100%;
-    padding-top: 60px;
+    padding-top: 30px;
     gap: 35px;
     top: 60%;
-    flex-wrap: wrap;
-    background: black;
-    padding-bottom: 100px;
+    padding-bottom: 30px;
   }
   .item {
     width: 150px;
