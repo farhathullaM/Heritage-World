@@ -7,7 +7,7 @@ import imgIcon from "../static/img.svg";
 const EditMonument = () => {
   const [monument, setMonument] = useState({
     title: "",
-    shortdescription: "",
+    // shortdescription: "",
     description: "",
     nation: "",
     state: "",
@@ -15,7 +15,7 @@ const EditMonument = () => {
     location: "",
     ipms_place: "",
     archi_imps: "",
-    hst_chronology: "",
+    // hst_chronology: "",
     past_condition: "",
     present_condition: "",
     cover_image: null,
@@ -68,7 +68,7 @@ const EditMonument = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title.value);
-    formData.append("shortdescription", shortdescription.value);
+    // formData.append("shortdescription", shortdescription.value);
     formData.append("description", description.value);
     formData.append("nation", nation.value);
     formData.append("state", state.value);
@@ -76,7 +76,7 @@ const EditMonument = () => {
     formData.append("location", location.value);
     formData.append("ipms_place", ipms_place.value);
     formData.append("archi_imps", archi_imps.value);
-    formData.append("hst_chronology", hst_chronology.value);
+    // formData.append("hst_chronology", hst_chronology.value);
     formData.append("past_condition", past_condition.value);
     formData.append("present_condition", present_condition.value);
     formData.append("cover_image", monument.cover_image);
@@ -108,17 +108,18 @@ const EditMonument = () => {
               type="text"
               id="title"
               defaultValue={monument.title}
+              required
             />
           </div>
 
-          <div className="inp">
+          {/* <div className="inp">
             <label htmlFor="shortdescription">Short Description</label>
             <textarea
               name="shortdescription"
               id="shortdescription"
               defaultValue={monument.shortdescription}
             />
-          </div>
+          </div> */}
 
           <div className="inp">
             <label htmlFor="description">Description</label>
@@ -126,6 +127,7 @@ const EditMonument = () => {
               name="description"
               id="description"
               defaultValue={monument.description}
+              required
             />
           </div>
 
@@ -136,6 +138,7 @@ const EditMonument = () => {
               type="text"
               id="nation"
               defaultValue={monument.nation}
+              required
             />
           </div>
 
@@ -146,6 +149,7 @@ const EditMonument = () => {
               type="text"
               id="state"
               defaultValue={monument.state}
+              required
             />
           </div>
 
@@ -156,6 +160,7 @@ const EditMonument = () => {
               type="text"
               id="place"
               defaultValue={monument.place}
+              required
             />
           </div>
 
@@ -171,9 +176,8 @@ const EditMonument = () => {
 
           <div className="inp">
             <label htmlFor="ipms_place">Importance of a Place</label>
-            <input
+            <textarea
               name="ipms_place"
-              type="text"
               id="ipms_place"
               defaultValue={monument.ipms_place}
             />
@@ -181,29 +185,26 @@ const EditMonument = () => {
 
           <div className="inp">
             <label htmlFor="archi_imps">Architectural Importance</label>
-            <input
+            <textarea
               name="archi_imps"
-              type="text"
               id="archi_imps"
               defaultValue={monument.archi_imps}
             />
           </div>
 
-          <div className="inp">
+          {/* <div className="inp">
             <label htmlFor="hst_chronology">Historical Chronology</label>
             <input
               name="hst_chronology"
-              type="text"
               id="hst_chronology"
               defaultValue={monument.hst_chronology}
             />
-          </div>
+          </div> */}
 
           <div className="inp">
             <label htmlFor="past_condition">Past Condition of Place</label>
-            <input
+            <textarea
               name="past_condition"
-              type="text"
               id="past_condition"
               defaultValue={monument.past_condition}
             />
@@ -213,9 +214,8 @@ const EditMonument = () => {
             <label htmlFor="present_condition">
               Present Condition of a Place
             </label>
-            <input
+            <textarea
               name="present_condition"
-              type="text"
               id="present_condition"
               defaultValue={monument.present_condition}
             />

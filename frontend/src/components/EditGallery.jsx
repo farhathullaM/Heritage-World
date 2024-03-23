@@ -96,6 +96,7 @@ const EditGallery = () => {
               type="text"
               id="imgTitle"
               defaultValue={galleryData.imgTitle}
+              required
             />
           </div>
 

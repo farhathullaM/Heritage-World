@@ -12,6 +12,7 @@ const AddGallery = () => {
   const { id } = useParams();
   const imageRef = useRef(null);
   const [Image, setImage] = useState(imgIcon);
+  const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submit button disabled state
 
   function setImgSrc(files) {
     if (FileReader && files && files.length) {
@@ -31,6 +32,9 @@ const AddGallery = () => {
   function submit(e) {
     e.preventDefault();
 
+    // Disable the submit button
+    setIsSubmitting(true);
+
     const formData = new FormData();
     formData.append("imgTitle", e.target.imgTitle.value);
     // formData.append("description", e.target.description.value);
@@ -48,6 +52,10 @@ const AddGallery = () => {
       })
       .catch((err) => {
         alert(err);
+      })
+      .finally(() => {
+        // Re-enable the submit button after the request is complete
+        setIsSubmitting(false);
       });
   }
 
@@ -85,18 +93,20 @@ const AddGallery = () => {
                 id="image"
                 ref={imageRef}
                 onChange={handleChange}
+                required
               />
 
               <img
                 src={Image}
                 alt="Old Cover Image"
                 className="file-image-display"
+                required
               />
             </div>
           </div>
 
           <div className="sub">
-            <input type="submit" className="btn" />
+            <input type="submit" className="btn" disabled={isSubmitting}/>
           </div>
         </form>
       </div>
