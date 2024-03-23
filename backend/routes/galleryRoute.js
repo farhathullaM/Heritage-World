@@ -38,7 +38,7 @@ router.post(
       const newGalleryItem = {
         monumentId: request.params.monumentId,
         imgTitle: request.body.imgTitle,
-        image: request.file.path.replace("uploads\\", ""),
+        image: request.file.filename,
       };
 
       // Create a new gallery item using Mongoose model
@@ -105,7 +105,7 @@ router.put("/:id", upload.single("image"), async (request, response) => {
           }
         });
       }
-      galleryItem.image = request.file.path.replace("uploads\\", "");
+      galleryItem.image = request.file.filename;
     }
 
     // Update other fields if provided
