@@ -164,6 +164,7 @@
   /* grid-template-columns: repeat(3, 1fr); */
   gap: 20px;
   /* grid-auto-rows: minmax(50px, auto); */
+  justify-content: center;
 }
 .gallery-images {
   border-radius: 3px;
@@ -227,18 +228,119 @@
 */
 
 @media (max-width: 760px) {
+  .place-img {
+    height: 80vh;
+  }
+  .place-img::before {
+    height: 80vh;
+  }
   .name-loc {
-    top: 60vh;
-    left: 10%;
+    top: 65vh;
+    left: 5%;
     z-index: 11;
   }
   .name-loc h2 {
-    font-size: 30px;
+    font-size: 20px;
   }
   .name-loc p {
-    font-size: 18px;
+    font-size: 15px;
   }
-  .name-loc i {
-    padding-right: 10px;
+  .name-loc span {
+    font-size: 20px;
+  }
+  .importance {
+    margin-top: 20px;
+    margin-bottom: 0;
+    width: 95%;
+  }
+  .top {
+    padding-top: 10px;
+  }
+  .top img {
+    width: 20px;
+    height: 20px;
+  }
+  .top h4 {
+    font-weight: 500;
+    font-size: 20px;
+    padding-left: 15px;
+    line-height: 20px;
+  }
+  .importance p {
+    font-size: 13px;
+    font-weight: 400;
+    text-align: start;
+    padding: 20px 10px 20px 20px;
+  }
+  .about-monument {
+    margin-top: 20px;
+    margin-bottom: 0;
+    width: 95%;
+  }
+  .about-monument h4 {
+    font-weight: 600;
+    font-size: 25px;
+    padding-bottom: 5px;
+  }
+  .about-monument p {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 1);
+  }
+  .arch-imp {
+    margin-bottom: 10px;
+    width: 95%;
+  }
+  .arch-imp h4 {
+    font-weight: 600;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-left: 20px;
+  }
+  .arch-imp p {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 10px 20px 20px;
+  }
+  .gallery {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  .gallery h4 {
+    font-weight: 500;
+    font-size: 25px;
+    padding-bottom: 10px;
+  }
+  .all-items {
+    grid-gap: 1rem;
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-columns: 1fr 1fr;
+    padding-top: 30px;
+    gap: 10px;
+    justify-content: center;
+  }
+  .gallery-images {
+    width: 45vw;
+  }
+  .gallery-images img {
+    height: 20vh;
+  }
+  .gallery-images video {
+    height: 20vh;
+  }
+  .gallery-title {
+    height: 30px;
+    font-size: 8px;
+    padding: 5px;
+  }
+  .titles {
+    font-size: 12px;
+    font-weight: 300;
+  }
+  .verify {
+    bottom: 20px;
+    right: 30px;
   }
 }

@@ -133,23 +133,23 @@
     height: 20vh;
   }
   .search-box {
-    top: 10%;
+    top: 90px;
     width: 250px;
   }
   .search-box input {
-    height: 40px;
+    height: 35px;
     font-size: 14px;
   }
   .search-box input::placeholder {
     font-size: 14px;
   }
   .search-icon-box {
-    width: 36px;
-    height: 36px;
-    margin-left: -40px;
+    width: 30px;
+    height: 30px;
+    margin-left: -32px;
   }
   .search-icon-box span {
-    font-size: 20px;
+    font-size: 18px;
   }
   .each-places {
     padding-top: 30px;

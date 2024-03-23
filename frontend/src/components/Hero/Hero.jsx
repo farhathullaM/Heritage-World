@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Hero.css";
 import data from "../Assets/data.js";
+import arrow from '../Assets/right-arrow.png'
 
 const Hero = () => {
   const settings = {
@@ -43,9 +44,7 @@ const Hero = () => {
       <Link to="/explore" style={{ textDecoration: "none" }}>
                   <button className="discover-btn">
                     DISCOVER
-                    <span className="material-symbols-outlined">
-                      arrow_forward
-                    </span>
+                    <img src={arrow} alt="" />
                   </button>
                 </Link>
       </div>
