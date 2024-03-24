@@ -12,7 +12,7 @@
 .search-box {
   display: flex;
   position: absolute;
-  top: 20%;
+  top: 150px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;
@@ -56,6 +56,7 @@
 .search-icon-box span {
   color: rgba(255, 255, 255, 1);
   font-size: 25px;
+  cursor: pointer;
 }
 /* .every-places{
     display: flex;
@@ -80,7 +81,7 @@
   top: 60%;
   flex-wrap: wrap;
   background: black;
-  padding-bottom: 100px;
+  padding-bottom: 240px;
 }
 .item {
   width: 279px;
@@ -133,8 +134,9 @@
     height: 20vh;
   }
   .search-box {
-    top: 90px;
+    top: 50px;
     width: 250px;
+    position: fixed;
   }
   .search-box input {
     height: 35px;

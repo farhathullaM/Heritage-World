@@ -7,6 +7,8 @@ import backcover from "../components/Assets/taj_mahal_cover.jpg";
 const Showall = () => {
   const [loading, setLoading] = useState(true);
   const [monumentList, setMonumentList] = useState([]);
+  const [filteredMonumentList, setFilteredMonumentList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,6 +17,8 @@ const Showall = () => {
       .get("/public")
       .then((res) => {
         setMonumentList(res.data);
+        // Initialize filtered list with all monuments
+        setFilteredMonumentList(res.data); 
       })
       .catch((err) => {
         console.error(err.response.data.message);
@@ -23,6 +27,23 @@ const Showall = () => {
       .finally(() => setLoading(false));
   }, []);
 
+  // Function to handle search query changes
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    
+    // Filter the monument list based on the search query
+    const filteredList = monumentList.filter((monument) =>
+      monument.title.toLowerCase().includes(query) ||
+      monument.place.toLowerCase().includes(query) ||
+      monument.state.toLowerCase().includes(query) ||
+      monument.nation.toLowerCase().includes(query) 
+    );
+    setFilteredMonumentList(query === "" ? monumentList : filteredList);
+  };
+
+  //function to navigate to the selected object
   const handleItemClick = (placeId) => {
     window.scrollTo(0, 0);
     navigate(`/places/${placeId}`);
@@ -32,8 +53,14 @@ const Showall = () => {
     <div className="showall">
       <div className="back_cover">
         <img src={backcover} alt="" />
+
         <div className="search-box">
-          <input type="text" placeholder="Search here..." />
+          <input
+            type="text"
+            placeholder="Search here..."
+            value={searchQuery}
+            onChange={handleSearch}
+          />
           <div className="search-icon-box">
             <span className="material-symbols-outlined">search</span>
           </div>
@@ -45,8 +72,7 @@ const Showall = () => {
           "Loading..."
         ) : (
           <div className="each-places">
-            {monumentList &&
-              monumentList.map((item) => (
+            {filteredMonumentList.map((item) => (
                 <div
                   className="item"
                   key={item._id}
