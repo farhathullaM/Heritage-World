@@ -9,6 +9,8 @@ const ListMonuments = () => {
 
   const [data, setData] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     if (!localStorage.getItem("token")) navigate("/login");
     axios
@@ -38,14 +40,40 @@ const ListMonuments = () => {
         });
     }
   }
+
+  function handleSearch(e) {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+  }
+
+  const filteredData = data.filter(
+    (monument) =>
+      monument.title.toLowerCase().includes(searchQuery) ||
+      monument.state.toLowerCase().includes(searchQuery) ||
+      monument.place.toLowerCase().includes(searchQuery)
+  );
+
   return (
     <div className="container">
       <div className="topbar">
+
         <div className="main-head">Monuments</div>
+
+        <div className="monument-search">
+        <label htmlFor="">Search: </label>
+        <input 
+          type="text"
+          placeholder="example : title, place, state."
+          value={searchQuery}
+          onChange={handleSearch} />
+        </div>
+        
         <Link to={"/manage/monument/create"}>
           <button className="btn">Create</button>
         </Link>
+        
       </div>
+      
       <div className="table">
         <table>
           <thead>
@@ -67,7 +95,7 @@ const ListMonuments = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((monument, index) => (
+            {filteredData.map((monument, index) => (
               <tr key={monument._id}>
                 <td>{index + 1}</td>
                 <td>{monument.title}</td>
