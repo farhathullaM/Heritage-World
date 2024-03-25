@@ -61,9 +61,7 @@ const Navbar = () => {
         </li>
 
         <li>
-
           <Link to="/about" className="navlink" onClick={closeBlock}>
-        
             ABOUT US
           </Link>
         </li>
@@ -72,17 +70,36 @@ const Navbar = () => {
             MONUMENTS
           </Link>
         </li>
-        <li>
-          {location.pathname.includes("/login") ? (
+        {location.pathname.includes("/login") ? (
+          <li>
             <Link to="/register" className="navlink" onClick={closeBlock}>
               REGISTER
             </Link>
-          ) : (
+          </li>
+        ) : null}
+                {location.pathname.includes("/register") ? (
+          <li>
             <Link to="/login" className="navlink" onClick={closeBlock}>
               LOGIN
             </Link>
-          )}
-        </li>
+          </li>
+        ) : null}
+
+          {location.pathname !== "/register" &&
+            location.pathname !== "/login" && (
+              <>
+                <li>
+                  <Link to="/register" className="navlink" onClick={closeBlock}>
+                    REGISTER
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/login" className="navlink" onClick={closeBlock}>
+                    LOGIN
+                  </Link>
+                </li>
+              </>
+            )}
       </ul>
     </nav>
   );
