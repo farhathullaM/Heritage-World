@@ -50,30 +50,30 @@ const ListMonuments = () => {
     (monument) =>
       monument.title.toLowerCase().includes(searchQuery) ||
       monument.state.toLowerCase().includes(searchQuery) ||
-      monument.place.toLowerCase().includes(searchQuery)
+      monument.place.toLowerCase().includes(searchQuery) ||
+      monument.nation.toLowerCase().includes(searchQuery) 
   );
 
   return (
     <div className="container">
       <div className="topbar">
-
         <div className="main-head">Monuments</div>
 
         <div className="monument-search">
-        <label htmlFor="">Search: </label>
-        <input 
-          type="text"
-          placeholder="example : title, place, state."
-          value={searchQuery}
-          onChange={handleSearch} />
+          <label htmlFor="">Search: </label>
+          <input
+            type="text"
+            placeholder="example : title/place/state/nation"
+            value={searchQuery}
+            onChange={handleSearch}
+          />
         </div>
-        
+
         <Link to={"/manage/monument/create"}>
           <button className="btn">Create</button>
         </Link>
-        
       </div>
-      
+
       <div className="table">
         <table>
           <thead>
