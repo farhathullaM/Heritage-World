@@ -40,6 +40,10 @@ const Placedetails = () => {
 
   const [isAdmin, setIsAdmin] = useState(false);
 
+  const handleMapClick = ( latitude ) => {
+    window.location.href = `https://maps.google.com/?q=${latitude}`;
+  };
+
   useEffect(() => {
     checkAdmin(setIsAdmin);
   });
@@ -165,7 +169,7 @@ const Placedetails = () => {
                 {galleryImages &&
                   galleryImages
                     .filter((item) => item.monumentId === placeId)
-                    .map((item , index) => (
+                    .map((item, index) => (
                       <div className="gallery-images" key={item._id}>
                         {item.image.endsWith(".MP4") ? (
                           <ReactPlayer
@@ -197,6 +201,15 @@ const Placedetails = () => {
                     ))}
               </div>
             )}
+          </div>
+
+          <div className="map-btn">
+            <button
+              className="w3-button w3-green"
+              onClick={handleMapClick(monument.location)}
+            >
+              <i className="fa fa-map-marker" aria-hidden="true"></i>MAP
+            </button>
           </div>
 
           {isAdmin ? (
