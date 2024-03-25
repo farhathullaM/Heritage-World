@@ -157,7 +157,16 @@
     width: 28px;
     height: 28px;
 }
-
+.discover-btn img {
+    width: 28px;
+    height: 28px;
+    transition: all 0.1s ease-in;
+  }
+  
+  .discover-btn:hover img {
+    filter: invert();
+  }
+  
 
 @media (max-width: 760px) {
     .hero-heading h1{
