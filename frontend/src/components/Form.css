@@ -40,6 +40,25 @@
   margin-top: 20px;
 }
 
+.inp .location {
+  display: flex;
+  align-items: center;
+}
+.inp .location input {
+  margin-right: -190px;
+}
+.inp .location button {
+  height: 30px;
+}
+.fetch-loc{
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 15px;
+}
+
 .inp .fileSelect {
   display: flex;
   align-items: center;

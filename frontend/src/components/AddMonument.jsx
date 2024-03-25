@@ -12,6 +12,41 @@ const AddMonument = () => {
   const [coverImage, setCoverImage] = useState(imgIcon);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  //fetching current location from user
+  const [location, setLocation] = useState(""); // State to manage the location
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+      setLocation("Geolocation is not supported by this browser.");
+    }
+  }
+
+  function showPosition(position) {
+    setLocation(position.coords.latitude + "," + position.coords.longitude);
+  }
+
+  function showError(error) {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        setLocation("User denied the request for Geolocation.");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        setLocation("Location information is unavailable.");
+        break;
+      case error.TIMEOUT:
+        setLocation("The request to get user location timed out.");
+        break;
+      case error.UNKNOWN_ERROR:
+        setLocation("An unknown error occurred.");
+        break;
+      default:
+        setLocation("An error occurred while fetching location.");
+        break;
+    }
+  }
+
   function setImgSrc(files) {
     if (FileReader && files && files.length) {
       var fr = new FileReader();
@@ -105,7 +140,22 @@ const AddMonument = () => {
 
           <div className="inp">
             <label htmlFor="location">Location</label>
-            <input name="location" type="text" id="loc" />
+            <div className="location">
+              <input
+                name="location"
+                type="text"
+                value={location} // Use state value here
+                onChange={(e) => setLocation(e.target.value)} // Update state on change
+                id="loc"
+              />
+              <button
+                className="btn fetch-loc"
+                type="button"
+                onClick={() => getLocation()}
+              >
+                Get Current Location
+              </button>
+            </div>
           </div>
 
           <div className="inp">
