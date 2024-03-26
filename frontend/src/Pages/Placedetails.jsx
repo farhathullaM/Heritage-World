@@ -6,6 +6,7 @@ import axios from "axios";
 import ReactPlayer from "react-player";
 import checkAdmin from "../util/Token";
 import ImagePopup from "../components/ImagePopup/ImagePopup";
+import Map from "../components/Map/Map";
 
 //Read more component
 const ReadMore = ({ children }) => {
@@ -40,9 +41,6 @@ const Placedetails = () => {
 
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const handleMapClick = ( latitude ) => {
-    window.location.href = `https://maps.google.com/?q=${latitude}`;
-  };
 
   useEffect(() => {
     checkAdmin(setIsAdmin);
@@ -82,6 +80,14 @@ const Placedetails = () => {
           alert("Error verifing : " + err.message);
         });
     }
+  };
+
+  const isValidLatLong = (location) => {
+    const lat = location.split(",")[0];
+    const long = location.split(",")[1];
+
+    if (!isNaN(parseFloat(lat)) && !isNaN(parseFloat(long))) return true;
+    return false;
   };
 
   useEffect(() => {
@@ -203,14 +209,15 @@ const Placedetails = () => {
             )}
           </div>
 
-          <div className="map-btn">
-            <button
-              className="w3-button w3-green"
-              onClick={handleMapClick(monument.location)}
-            >
-              <i className="fa fa-map-marker" aria-hidden="true"></i>MAP
-            </button>
-          </div>
+
+          {isValidLatLong(monument.location) ? (
+            <div className="mapview">
+              <Map
+                latitude={monument.location.split(",")[0]}
+                longitude={monument.location.split(",")[1]}
+              />
+            </div>
+          ) : undefined}
 
           {isAdmin ? (
             <div className="verify">
