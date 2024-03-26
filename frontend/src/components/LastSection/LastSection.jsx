@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import one from "../Assets/pexels-pixabay-290386.jpg";
-import two from "../Assets/tajgate.jpg";
-import three from "../Assets/tajmahal.jpg";
 import "./LastSection.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import arrow from "../Assets/right-arrow.png";
 
 const LastSection = () => {
   const [latest, setLatest] = useState([]);
@@ -48,8 +46,8 @@ const LastSection = () => {
       <div className="more-btn-div">
         <Link to="/explore" style={{ textDecoration: "none" }}>
           <button className="more-btn">
-            More{" "}
-            <span className="material-symbols-outlined">arrow_forward</span>
+            More
+            <img src={arrow} className="arrow-img" alt="" />
           </button>
         </Link>
       </div>
