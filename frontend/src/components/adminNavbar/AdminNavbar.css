@@ -25,16 +25,16 @@
   }
    */
 
-.navbar {
+/* .navbar {
   background-color: rgb(38, 38, 38);
-}
+} */
 
 .nav-menu {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   margin-right: 30px;
-  gap: 20px;
+  gap: 30px;
 }
 @media (max-width: 896px) {
   .nav-menu {

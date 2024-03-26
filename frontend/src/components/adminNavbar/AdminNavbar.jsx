@@ -38,7 +38,7 @@ const adminNavbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" style={location.pathname.includes("/manage/")?{backgroundColor:'rgb(38, 38, 38)'}:{}}>
       <Link to="/" style={{ textDecoration: "none" }}>
         <div className="nav-logo">
           <img src={logo_new} alt="" />

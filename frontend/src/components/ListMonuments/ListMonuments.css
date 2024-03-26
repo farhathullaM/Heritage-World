@@ -41,10 +41,13 @@
   color: var(--darkGrey);
 }
 .monument-search{
-  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .monument-search input {
-  border-radius: 10px;
+  border-radius: 5px;
   width: 250px;
   height: 35px;
   border: .5px solid grey;

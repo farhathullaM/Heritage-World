@@ -10,7 +10,7 @@
   top: 28px;
   left: 50%;
   transform: translate(-50%);
-  background: rgba(255, 255, 255, 0.17);
+  /* background: rgba(255, 255, 255, 0.17); */
   backdrop-filter: blur(10px);
   border: 1px solid rgb(135, 135, 135);
   z-index: 90;

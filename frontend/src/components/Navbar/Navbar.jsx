@@ -30,7 +30,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" >
       <Link to="/" style={{ textDecoration: "none" }}>
         <div className="nav-logo">
           <img src={logo_new} alt="" />
