@@ -13,8 +13,8 @@ import EditMonument from "./components/EditMonument";
 import Gallery from "./components/gallery";
 import AddGallery from "./components/addGallery";
 import EditGallery from "./components/EditGallery";
-import Login from "./components/login";
-import Register from "./components/register";
+import Login from "./components/Login/login.jsx";
+import Register from "./components/Login/register.jsx";
 
 import "./App.css";
 import React from "react";
