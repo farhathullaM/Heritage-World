@@ -30,7 +30,6 @@
   width: 100%;
   margin-block: 20px;
 }
-
 .topbar .main-head {
   font-weight: 500;
   font-size: 25px;
@@ -40,7 +39,7 @@
 .monument-search label {
   color: var(--darkGrey);
 }
-.monument-search{
+.monument-search {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -50,7 +49,7 @@
   border-radius: 5px;
   width: 250px;
   height: 35px;
-  border: .5px solid grey;
+  border: 0.5px solid grey;
   outline: none;
   padding-left: 5px;
 }
@@ -136,4 +135,34 @@
   font-weight: 300;
   text-align: center;
   padding: 10px;
+}
+
+@media (max-width: 820px) {
+  .container {
+    margin-inline: 20px;
+    height: 100vh;
+    margin-top: 100px;
+  }
+  .table {
+    border: 1px solid;
+  }
+}
+
+@media (max-width: 700px) {
+  .topbar {
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 10px;
+  }
+  .link-to-create {
+    align-self: self-end;
+    margin-top: -50px;
+  }
+  .monument-search label {
+    font-size: 15px;
+  }
+  .monument-search input{
+    width: 150px;
+  }
 }

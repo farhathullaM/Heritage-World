@@ -11,10 +11,10 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-top">
         <div className="log-ico">
-          <div className="logo-hw">
+          <Link to="/" className="logo-hw" style={{ textDecoration: "none" }}>
             <img src={logos} alt="" />
             <h4>HERITAGE WORLD</h4>
-          </div>
+          </Link>
           <div className="footer-icons">
             <img src={facebook} alt="" />
             <img src={twitter} alt="" />
@@ -25,22 +25,35 @@ const Footer = () => {
         <div className="contact">
           <h4>CONTACT US</h4>
           <p>Department of History</p>
+          <p>Kannur University</p>
           <p>+91 912345667807</p>
         </div>
 
         <div className="contact">
-          <h4>ABOUT US</h4>
-          <Link to='/about' style={{textDecoration:"none"}}><p>Details</p></Link>
+          <Link to="/about" style={{ textDecoration: "none" }} onClick={window.scrollTo(0, 0)}>
+            <h4>ABOUT US</h4>
+          </Link>
+          <Link to="/explore" style={{ textDecoration: "none" }}>
+            <h4>MONUMENTS</h4>
+          </Link>
         </div>
       </div>
 
       <div className="footer-btm">
         <div className="sponser">
-          <p>Sponsored by <a href="https://icssr.org/">Indian Council of Social Science Research</a></p>
+          <p>
+            Sponsored by{" "}
+            <a href="https://icssr.org/">
+              Indian Council of Social Science Research
+            </a>
+            , New Delhi
+          </p>
         </div>
 
         <div className="develop">
-          <p>Developed by <a href="https://altezzai.com/">Altazzai</a></p>
+          <p>
+            Developed by <a href="https://altezzai.com/">Altezzai</a>
+          </p>
         </div>
       </div>
     </div>

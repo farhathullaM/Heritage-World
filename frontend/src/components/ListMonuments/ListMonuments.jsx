@@ -69,7 +69,7 @@ const ListMonuments = () => {
           />
         </div>
 
-        <Link to={"/manage/monument/create"}>
+        <Link className="link-to-create" to={"/manage/monument/create"}>
           <button className="btn">Create</button>
         </Link>
       </div>
