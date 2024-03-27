@@ -9,12 +9,12 @@
 }
 .place-img {
   background: black;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   position: relative;
 }
 .place-img img {
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   object-position: top;
 }
@@ -23,7 +23,7 @@
   flex-direction: column;
   align-items: start;
   position: absolute;
-  top: 80vh;
+  top: 60vh;
   left: 10%;
   z-index: 11;
 }
@@ -49,7 +49,7 @@
 }
 .place-img::before {
   content: "";
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   background: linear-gradient(
     180deg,
@@ -176,10 +176,12 @@
   height: 50vh;
   object-fit: cover;
   display: block;
+  width: 100%;
 }
 .gallery-images video {
   height: 40vh;
   object-fit: cover;
+  width: 100%;
 }
 .gallery-title {
   width: 100%;
@@ -204,13 +206,16 @@
 
 @media (max-width: 760px) {
   .place-img {
-    height: 80vh;
+    height: 60vh;
+  }
+  .place-img img{
+    height: 60vh;
   }
   .place-img::before {
-    height: 80vh;
+    height: 60vh;
   }
   .name-loc {
-    top: 65vh;
+    top: 45vh;
     left: 5%;
     z-index: 11;
   }
@@ -318,11 +323,24 @@
     bottom: 20px;
     right: 30px;
   }
+  .map-line{
+    width: 40px;
+  }
 }
 
+.map{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+.map-line{
+  width: 100px;
+}
 .mapview {
   width: 90%;
   height: 300px;
-  background-color: red;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  padding-top: 20px;
 }

@@ -105,6 +105,8 @@
 .item img {
   height: 80%;
   object-position: top;
+  object-fit: cover;
+  width: 100%;
 }
 
 .title {

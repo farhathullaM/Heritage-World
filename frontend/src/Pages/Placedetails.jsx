@@ -41,7 +41,6 @@ const Placedetails = () => {
 
   const [isAdmin, setIsAdmin] = useState(false);
 
-
   useEffect(() => {
     checkAdmin(setIsAdmin);
   });
@@ -209,15 +208,20 @@ const Placedetails = () => {
             )}
           </div>
 
-
-          {isValidLatLong(monument.location) ? (
-            <div className="mapview">
-              <Map
-                latitude={monument.location.split(",")[0]}
-                longitude={monument.location.split(",")[1]}
-              />
+          <div className="gallery">
+            <h4>MAP</h4>
+            <div className="line map-line"></div>
+            <div className="map">
+              {isValidLatLong(monument.location) ? (
+                <div className="mapview">
+                  <Map
+                    latitude={monument.location.split(",")[0]}
+                    longitude={monument.location.split(",")[1]}
+                  />
+                </div>
+              ) : undefined}
             </div>
-          ) : undefined}
+          </div>
 
           {isAdmin ? (
             <div className="verify">
