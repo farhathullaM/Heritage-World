@@ -8,31 +8,31 @@ let cover = [
     {
         id : 1,
         image : img1,
-        head : "Expresso indigo",
+        head : "Holy Rosary Church - Thalassery",
         para : "Journey with a great sight a wonderful expereince"
     },
     {
         id : 2,
         image : img2,
-        head : "Statue of Liberty",
+        head : "Jumaath Mosque - Thalassery",
         para : "Statue represeting unity and freedom"
     },
     {
         id : 3,
         image : img3,
-        head : "Taj Mahal",
+        head : "Maliyekkal House - Thalassery",
         para : "The exquisite white marble brilliance"
     },
     {
         id : 4,
         image : img4,
-        head : "Temple of the light",
+        head : "St. Angelo Fort - Kannur",
         para : "Brilliance of middle age architecture"
     },
     {
         id : 5,
         image : img5,
-        head : "Church of Christ",
+        head : "Kapparatti Bhavanam - Ponniyam",
         para : "Church in the light of day"
     },
 ];

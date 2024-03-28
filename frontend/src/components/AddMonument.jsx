@@ -138,7 +138,7 @@ const AddMonument = () => {
             <input name="place" type="text" id="place" required />
           </div>
 
-          <div className="inp">
+          <div className="inp current-loc">
             <label htmlFor="location">Location</label>
             <div className="location">
               <input
