@@ -55,31 +55,31 @@ const Navbar = () => {
 
       <ul className="nav-menu">
         <li>
-          <Link to="/" className="navlink" onClick={closeBlock}>
+          <Link to="/" className="navlink" onClick={ () => closeBlock()}>
             HOME
           </Link>
         </li>
 
         <li>
-          <Link to="/about" className="navlink" onClick={closeBlock}>
+          <Link to="/about" className="navlink" onClick={() => closeBlock()}>
             ABOUT US
           </Link>
         </li>
         <li>
-          <Link to="/explore" className="navlink" onClick={closeBlock}>
+          <Link to="/explore" className="navlink" onClick={() => closeBlock()}>
             MONUMENTS
           </Link>
         </li>
         {location.pathname.includes("/login") ? (
           <li>
-            <Link to="/register" className="navlink" onClick={closeBlock}>
+            <Link to="/register" className="navlink" onClick={() => closeBlock()}>
               REGISTER
             </Link>
           </li>
         ) : null}
                 {location.pathname.includes("/register") ? (
           <li>
-            <Link to="/login" className="navlink" onClick={closeBlock}>
+            <Link to="/login" className="navlink" onClick={() => closeBlock()}>
               LOGIN
             </Link>
           </li>
@@ -89,12 +89,12 @@ const Navbar = () => {
             location.pathname !== "/login" && (
               <>
                 <li>
-                  <Link to="/register" className="navlink" onClick={closeBlock}>
+                  <Link to="/register" className="navlink" onClick={() => closeBlock()}>
                     REGISTER
                   </Link>
                 </li>
                 <li>
-                  <Link to="/login" className="navlink" onClick={closeBlock}>
+                  <Link to="/login" className="navlink" onClick={() => closeBlock()}>
                     LOGIN
                   </Link>
                 </li>

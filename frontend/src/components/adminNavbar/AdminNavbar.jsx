@@ -66,23 +66,23 @@ const adminNavbar = () => {
           <Link
             to="/manage/ListMonuments/"
             className="admin-navlink"
-            onClick={closeBlock}
+            onClick={() => closeBlock()}
           >
             HOME
           </Link>
         </li>
         <li>
-          <Link to="/" className="admin-navlink">
+          <Link to="/" className="admin-navlink" onClick={() => closeBlock()}>
             PUBLIC HOME
           </Link>
         </li>
         <li>
-          <Link to="/explore" className="admin-navlink">
+          <Link to="/explore" className="admin-navlink" onClick={() => closeBlock()}>
             MONUMENTS
           </Link>
         </li>
         <li>
-          <div className="admin-navlink" onClick={logout}>
+          <div className="admin-navlink" onClick={logout} >
             LOGOUT
           </div>
         </li>
