@@ -97,8 +97,8 @@
   top: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.544) 100%
+    rgb(0 0 0 / 17%) 0%,
+    rgb(0 0 0 / 66%) 100%
   );
 }
 .hero-heading {
@@ -110,7 +110,7 @@
   color: white;
   top: 40%;
   width: 100vw;
-  z-index: 100;
+  z-index: 10;
 }
 .discover {
   position: absolute;
@@ -131,11 +131,12 @@
 }*/
 
 .hero-heading h1 {
-  font-size: 60px;
+  font-size: 50px;
+  font-weight: 600;
 }
 .hero-heading p {
-  font-size: 30px;
-  font-weight: 400;
+  font-size: 25px;
+  font-weight: 300;
 }
 .discover-btn {
   display: flex;
