@@ -9,7 +9,7 @@
 .image-slider {
   width: 100%;
   margin: auto;
-  height: 100vh;
+  height: 100%;
   text-align: center;
   position: relative;
 }
@@ -20,7 +20,9 @@
 }
 .image-slider img {
   width: 100%;
-  background-size: cover;
+  object-fit: cover;
+  object-position: center;
+  /* background-size: cover; */
   height: 100vh;
 }
 /* .image-slider h1{
@@ -83,10 +85,14 @@
 
 .black::before {
   content: "";
-  height: 100vh;
+  height: 100%;
   width: 100%;
   left: 0;
-  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 35%) 100%);
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0%) 0%,
+    rgb(0 0 0 / 25%) 100%
+  );
   position: absolute;
   z-index: 10;
 }
@@ -173,11 +179,7 @@
 
 @media (max-width: 760px) {
   .hero-heading h1 {
-    font-size: 30px;
-  }
-  .hero-heading p {
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 25px;
   }
   .discover-btn {
     margin-top: 30px;
@@ -185,6 +187,21 @@
     width: 150px;
     font-size: 15px;
     font-weight: 300;
+  }
+  .image-slider .slick-dots {
+    bottom: 10%;
+    position: absolute;
+    z-index: 15;
+  }
+  .image-slider img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* background-size: cover; */
+    height: 80vh;
+  }
+  .hero-heading p{
+    display: none;
   }
 }
 
