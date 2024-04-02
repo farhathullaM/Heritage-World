@@ -8,18 +8,6 @@ import mongoose from "mongoose";
 
 const router = express.Router();
 import sharp from "sharp";
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "uploads/coverimg/");
-//   },
-//   filename: function (req, file, cb) {
-//     // Generate a random number between 1000 and 9999
-//     const randomNumber = Math.floor(Math.random() * 9000) + 1000;
-//     // Append the random number to the original filename
-//     const modifiedFilename = randomNumber + "-" + file.originalname;
-//     cb(null, modifiedFilename);
-//   },
-// });
 
 const storage = multer.memoryStorage(); // Use memory storage to process image with Sharp
 const upload = multer({ storage: storage });
