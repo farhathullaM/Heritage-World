@@ -70,7 +70,7 @@
 .menu-icons .fa-times {
   display: none;
 }
-/* .menu-icons span{
+/* .menu-icons span {
   -webkit-tap-highlight-color: transparent;
   background: none;
   background-color: none;
@@ -81,19 +81,14 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-.material-symbols-outlined {
-  background: none;
-  background-color: none;
-  background: transparent;
-  -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 } */
+.material-symbols-outlined {
+  -webkit-tap-highlight-color: rgba(255, 255,  255,  0);
+}
 
 @media (max-width: 896px) {
   .navbar {

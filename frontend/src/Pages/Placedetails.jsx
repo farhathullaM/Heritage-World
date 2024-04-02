@@ -176,7 +176,7 @@ const Placedetails = () => {
                     .filter((item) => item.monumentId === placeId)
                     .map((item, index) => (
                       <div className="gallery-images" key={item._id}>
-                        {item.image.endsWith(".MP4") ? (
+                        {item.image.endsWith(".mp4") ? (
                           <ReactPlayer
                             url={axios.defaults.baseURL + item.image}
                             controls
