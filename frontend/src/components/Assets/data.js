@@ -1,5 +1,5 @@
 import img1 from './rosary_church.jpg';
-import img2 from './jumaath_mosque.jpg';
+import img2 from './muhayiddin_masjeed.jpg';
 import img3 from './maniyoor_temple.png';
 
 
@@ -13,14 +13,14 @@ let cover = [
     {
         id : 2,
         image : img2,
-        head : "Jumaath Mosque - Thalassery",
-        para : "Oldest surviving mosque in Thalasseri buit by Malik Dinar"
+        head : "Muhayuddin Masjid - Ayikkara",
+        para : "Ancient mosque situated near Arakkal Palace"
     },
     {
         id : 3,
         image : img3,
         head : "Maniyoor Sree Subrahmanya Swamy Temple",
-        para : "One of the oldest temples in North Malabar dedicated to lord Subrahmanya"
+        para : "One of the oldest temples in North Malabar dedicated to Lord Subrahmanya"
     }
 ];
 
