@@ -62,8 +62,10 @@
 ::placeholder {
   color: #e5e5e5;
 }
-.login-sub input {
+.login-sub {
   margin-top: 50px;
+}
+.login-sub .inp {
   width: 100%;
   background-color: #ffffff;
   color: #080710;
@@ -72,11 +74,18 @@
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.login-sub input:hover {
+.login-sub .inp:hover {
   background-color: #6e717f;
   color: white;
   transition: all 0.2s;
+}
+
+.login-sub .load {
+  background-color: #6e717f;
 }
 
 @media (max-width: 460px) {
