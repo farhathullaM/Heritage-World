@@ -82,7 +82,7 @@
 
 .inp label {
   padding: 7px;
-  font-size: 14px;
+  font-size: 18px;
   color: rgb(117, 116, 116);
 }
 
@@ -150,6 +150,20 @@
 .filename {
   word-break: break-all;
   font-size: 12px;
+}
+
+.sub .inp {
+  width: 200px;
+  right: 0;
+  background-color: #ffffff;
+  color: #080710;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 900px) {

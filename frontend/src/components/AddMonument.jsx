@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Form.css";
 import imgIcon from "../static/img.svg";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const AddMonument = () => {
   const navigate = useNavigate();
@@ -10,7 +11,8 @@ const AddMonument = () => {
   const imageRef = useRef(null);
   const [filename, setFilename] = useState("No file chosen");
   const [coverImage, setCoverImage] = useState(imgIcon);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   //fetching current location from user
   const [location, setLocation] = useState(""); // State to manage the location
@@ -67,7 +69,10 @@ const AddMonument = () => {
     e.preventDefault();
 
     // Disable the submit button
-    setIsSubmitting(true);
+    // setIsSubmitting(true);
+    setIsSubmit((current) => {
+      return !current;
+    });
 
     const formData = new FormData();
     formData.append("title", e.target.title.value);
@@ -96,11 +101,14 @@ const AddMonument = () => {
       })
       .catch((err) => {
         alert(err);
-      })
-      .finally(() => {
-        // Re-enable the submit button after the request is complete
-        setIsSubmitting(false);
+        setIsSubmit((current) => {
+          return !current;
+        });
       });
+    // .finally(() => {
+    //   // Re-enable the submit button after the request is complete
+    //   setIsSubmitting(false);
+    // });
   }
 
   return (
@@ -211,7 +219,20 @@ const AddMonument = () => {
           </div>
 
           <div className="sub">
-            <input type="submit" className="btn" disabled={isSubmitting} />
+            {isSubmit ? (
+              <div className="inp load">
+                <ClipLoader
+                  color="blue"
+                  // loading={isLoginClicked}
+                  cssOverride={true}
+                  size={20}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
+            ) : (
+              <input type="submit" className="btn"  />
+            )}
           </div>
         </form>
       </div>

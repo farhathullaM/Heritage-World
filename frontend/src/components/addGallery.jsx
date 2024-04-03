@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Form.css";
 import imgIcon from "../static/img.svg";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const AddGallery = () => {
   const navigate = useNavigate();
@@ -12,7 +13,8 @@ const AddGallery = () => {
   const { id } = useParams();
   const imageRef = useRef(null);
   const [Image, setImage] = useState(imgIcon);
-  const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submit button disabled state
+  const [isSubmit, setIsSubmit] = useState(false);
+  //const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submit button disabled state
 
   function setImgSrc(files) {
     if (FileReader && files && files.length) {
@@ -33,7 +35,10 @@ const AddGallery = () => {
     e.preventDefault();
 
     // Disable the submit button
-    setIsSubmitting(true);
+    // setIsSubmitting(true);
+    setIsSubmit((current) => {
+      return !current;
+    });
 
     const formData = new FormData();
     formData.append("imgTitle", e.target.imgTitle.value);
@@ -52,11 +57,10 @@ const AddGallery = () => {
       })
       .catch((err) => {
         alert(err);
+        setIsSubmit((current) => {
+          return !current;
+        });
       })
-      .finally(() => {
-        // Re-enable the submit button after the request is complete
-        setIsSubmitting(false);
-      });
   }
 
   return (
@@ -106,7 +110,20 @@ const AddGallery = () => {
           </div>
 
           <div className="sub">
-            <input type="submit" className="btn" disabled={isSubmitting}/>
+            {isSubmit ? (
+              <div className="inp load">
+                <ClipLoader
+                  color="blue"
+                  // loading={isLoginClicked}
+                  cssOverride={true}
+                  size={20}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
+            ) : (
+              <input type="submit" className="btn"  />
+            )}
           </div>
         </form>
       </div>

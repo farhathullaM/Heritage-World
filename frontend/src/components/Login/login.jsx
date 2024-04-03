@@ -37,7 +37,6 @@ const Login = () => {
       })
       .catch((err) => {
         alert(err.response?.data.message);
-        console.log(isSubmit);
         setIsSubmit((current) => {
           return !current;
         });

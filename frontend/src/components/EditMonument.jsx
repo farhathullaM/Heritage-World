@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Form.css";
 import imgIcon from "../static/img.svg";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const EditMonument = () => {
   const [monument, setMonument] = useState({
@@ -25,6 +26,7 @@ const EditMonument = () => {
   const { id } = useParams();
   const monumentEndpoint = `monuments/${id}`;
   const [coverImage, setCoverImage] = useState(imgIcon); // State variable for old cover image URL
+  const [isSubmit, setIsSubmit] = useState(false);
 
   if (!localStorage.getItem("token")) navigate("/login");
 
@@ -66,6 +68,12 @@ const EditMonument = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    // setIsSubmitting(true);
+    setIsSubmit((current) => {
+      return !current;
+    });
+
     const formData = new FormData();
     formData.append("title", title.value);
     // formData.append("shortdescription", shortdescription.value);
@@ -93,6 +101,9 @@ const EditMonument = () => {
       })
       .catch((err) => {
         alert("Error updating monument: " + err);
+        setIsSubmit((current) => {
+          return !current;
+        });
       });
   }
 
@@ -245,7 +256,20 @@ const EditMonument = () => {
           </div>
 
           <div className="sub">
-            <input type="submit" className="btn" />
+            {isSubmit ? (
+              <div className="inp load">
+                <ClipLoader
+                  color="blue"
+                  // loading={isLoginClicked}
+                  cssOverride={true}
+                  size={20}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
+            ) : (
+              <input type="submit" className="btn"  />
+            )}
           </div>
         </form>
       </div>

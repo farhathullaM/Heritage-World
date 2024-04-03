@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Form.css";
 import imgIcon from "../static/img.svg";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const EditGallery = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const EditGallery = () => {
     image: "",
   });
   const [thumbnail, setThumbnail] = useState(imgIcon);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   function setImgSrc(files) {
     if (FileReader && files && files.length) {
@@ -64,6 +66,12 @@ const EditGallery = () => {
   function submit(e) {
     e.preventDefault();
 
+    // Disable the submit button
+    // setIsSubmitting(true);
+    setIsSubmit((current) => {
+      return !current;
+    });
+
     const formData = new FormData();
     formData.append("imgTitle", e.target.imgTitle.value);
     // formData.append("description", e.target.description.value);
@@ -81,6 +89,9 @@ const EditGallery = () => {
       })
       .catch((err) => {
         alert(err);
+        setIsSubmit((current) => {
+          return !current;
+        });
       });
   }
 
@@ -147,7 +158,20 @@ const EditGallery = () => {
           </div>
 
           <div className="sub">
-            <input type="submit" className="btn" />
+            {isSubmit ? (
+              <div className="inp load">
+                <ClipLoader
+                  color="blue"
+                  // loading={isLoginClicked}
+                  cssOverride={true}
+                  size={20}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
+            ) : (
+              <input type="submit" className="btn" />
+            )}
           </div>
         </form>
       </div>
