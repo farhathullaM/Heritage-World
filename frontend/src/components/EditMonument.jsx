@@ -28,6 +28,42 @@ const EditMonument = () => {
   const [coverImage, setCoverImage] = useState(imgIcon); // State variable for old cover image URL
   const [isSubmit, setIsSubmit] = useState(false);
 
+    //fetching current location from user
+    const [location, setLocation] = useState(""); // State to manage the location
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        setLocation("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function showPosition(position) {
+      setLocation(position.coords.latitude + "," + position.coords.longitude);
+    }
+  
+    function showError(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          setLocation("User denied the request for Geolocation.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          setLocation("Location information is unavailable.");
+          break;
+        case error.TIMEOUT:
+          setLocation("The request to get user location timed out.");
+          break;
+        case error.UNKNOWN_ERROR:
+          setLocation("An unknown error occurred.");
+          break;
+        default:
+          setLocation("An error occurred while fetching location.");
+          break;
+      }
+    }
+  
+
   if (!localStorage.getItem("token")) navigate("/login");
 
   useEffect(() => {
@@ -81,7 +117,7 @@ const EditMonument = () => {
     formData.append("nation", nation.value);
     formData.append("state", state.value);
     formData.append("place", place.value);
-    formData.append("location", location.value);
+    formData.append("location", latlong.value);
     formData.append("ipms_place", ipms_place.value);
     formData.append("archi_imps", archi_imps.value);
     // formData.append("hst_chronology", hst_chronology.value);
@@ -175,14 +211,25 @@ const EditMonument = () => {
             />
           </div>
 
-          <div className="inp">
+          <div className="inp current-loc">
             <label htmlFor="location">Location</label>
-            <input
-              name="location"
-              type="text"
-              id="location"
-              defaultValue={monument.location}
-            />
+            <div className="location">
+              <input
+                name="location"
+                type="text"
+                id="latlong"
+                value={location} // Use state value here
+                onChange={(e) => setLocation(e.target.value)} // Update state on change
+                defaultValue={monument.location}
+              />
+              <button
+                className="btn fetch-loc"
+                type="button"
+                onClick={() => getLocation()}
+              >
+                Get Current Location
+              </button>
+            </div>
           </div>
 
           <div className="inp">
@@ -269,7 +316,7 @@ const EditMonument = () => {
                 />
               </div>
             ) : (
-              <input type="submit" className="btn"  />
+              <input type="submit" className="btn" />
             )}
           </div>
         </form>

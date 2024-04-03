@@ -55,7 +55,14 @@ const register = () => {
           <label htmlFor="paswd" style={{ marginTop: "10px" }}>
             Password
           </label>
-          <input name="paswd" type="password" id="paswd" required />
+          <input
+            name="paswd"
+            type="password"
+            id="paswd"
+            minLength="6"
+            pattern=".{6,}"
+            required
+          />
 
           <label htmlFor="name" style={{ marginTop: "10px" }}>
             Name
