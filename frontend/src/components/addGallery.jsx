@@ -60,7 +60,7 @@ const AddGallery = () => {
         setIsSubmit((current) => {
           return !current;
         });
-      })
+      });
   }
 
   return (
@@ -95,17 +95,25 @@ const AddGallery = () => {
                 name="image"
                 type="file"
                 id="image"
+                accept="image/*, video/*"
                 ref={imageRef}
                 onChange={handleChange}
                 required
               />
-
-              <img
-                src={Image}
-                alt="Old Cover Image"
-                className="file-image-display"
-                required
-              />
+              {imageRef.current?.files[0] &&
+              imageRef.current.files[0].type.startsWith("video") ? (
+                <video controls className="file-image-display">
+                  <source src={Image} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img
+                  src={Image}
+                  alt="Old Cover Image"
+                  className="file-image-display"
+                  required
+                />
+              )}
             </div>
           </div>
 
@@ -122,7 +130,7 @@ const AddGallery = () => {
                 />
               </div>
             ) : (
-              <input type="submit" className="btn"  />
+              <input type="submit" className="btn" />
             )}
           </div>
         </form>

@@ -205,6 +205,7 @@ const AddMonument = () => {
                 name="cover_image"
                 type="file"
                 id="cover_image"
+                accept="image/*"
                 ref={imageRef}
                 onChange={handleChange}
                 required

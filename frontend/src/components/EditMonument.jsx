@@ -244,6 +244,7 @@ const EditMonument = () => {
                 name="cover_image"
                 type="file"
                 id="cover_image"
+                accept="image/*"
                 onChange={handleChange}
               />
 

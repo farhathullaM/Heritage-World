@@ -137,6 +137,7 @@ const EditGallery = () => {
                 name="image"
                 type="file"
                 id="image"
+                accept="image/*, video/*"
                 onChange={handleChange}
                 ref={imageRef}
               />
