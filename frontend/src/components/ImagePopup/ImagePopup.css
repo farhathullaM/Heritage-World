@@ -1,0 +1,51 @@
+/*modal*/
+.overlay {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%);
+  right: 0;
+  width: 70%;
+  height: 80vh;
+  background: rgb(61 59 59 / 41%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overlay img {
+  display: block;
+  object-fit: contain;
+  width: 90%;
+  height: 90%;
+}
+.overlay > span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  color: #ffffff;
+  z-index: 999;
+  cursor: pointer;
+}
+.overlay-arrows_right {
+  display: flex;
+  background-color: #6d6d6d;
+  justify-content: space-between;
+  position: absolute;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  z-index: 999;
+}
+
+@media (max-width: 830px) {
+  .overlay {
+    width: 95%;
+    height: 60vh;
+  }
+  .overlay img {
+    width: 90%;
+    height: 90%;
+  }
+}
