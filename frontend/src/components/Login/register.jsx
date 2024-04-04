@@ -8,6 +8,18 @@ const register = () => {
   const navigate = useNavigate();
   const [isSubmit, setIsSubmit] = useState(false);
 
+  const validateName = (value) => {
+    return /^[A-Za-z]+$/.test(value);
+    // Only alphabets allowed
+  };
+
+  const validateEmail = (value) => {
+    // Email validation regex
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  };
+
+  
+
   function submit(e) {
     e.preventDefault();
     setIsSubmit((current) => {
@@ -50,7 +62,19 @@ const register = () => {
           <label htmlFor="email" style={{ marginTop: "10px" }}>
             Email
           </label>
-          <input name="email" type="email" id="email" required />
+          <input
+            name="email"
+            type="email"
+            id="email"
+            required
+            onChange={(e) => {
+              if (!validateEmail(e.target.value)) {
+                e.target.setCustomValidity("Invalid email format");
+              } else {
+                e.target.setCustomValidity("");
+              }
+            }}
+          />
 
           <label htmlFor="paswd" style={{ marginTop: "10px" }}>
             Password
@@ -62,12 +86,35 @@ const register = () => {
             minLength="6"
             pattern=".{6,}"
             required
+            onChange={(e) => {
+              if (e.target.value.length < 6) {
+                e.target.setCustomValidity(
+                  "Password must be at least 6 characters"
+                );
+              } else {
+                e.target.setCustomValidity("");
+              }
+            }}
           />
 
           <label htmlFor="name" style={{ marginTop: "10px" }}>
             Name
           </label>
-          <input name="name" type="text" id="name" required />
+          <input
+            name="name"
+            type="text"
+            id="name"
+            required
+            onChange={(e) => {
+              if (!validateName(e.target.value)) {
+                e.target.setCustomValidity(
+                  "Name should contain only alphabets"
+                );
+              } else {
+                e.target.setCustomValidity("");
+              }
+            }}
+          />
 
           <label htmlFor="pno" style={{ marginTop: "10px" }}>
             Phone
