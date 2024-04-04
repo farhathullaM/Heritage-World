@@ -1,6 +1,6 @@
 import React from "react";
 import "./AdminNavbar.css";
-import logo_new from "../Assets/image.png";
+import logo_new from "../Assets/logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const adminNavbar = () => {
@@ -42,7 +42,7 @@ const adminNavbar = () => {
       <Link to="/" style={{ textDecoration: "none" }}>
         <div className="nav-logo">
           <img src={logo_new} alt="" />
-          <h1>HERITAGE WORLD</h1>
+          {/* <h1>HERITAGE WORLD</h1> */}
         </div>
       </Link>
 

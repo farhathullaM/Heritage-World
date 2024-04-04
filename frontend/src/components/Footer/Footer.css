@@ -31,12 +31,12 @@
   cursor: pointer;
   padding-bottom: 10px;
 }
-.logo-hw h4 {
+/* .logo-hw h4 {
   font-size: 15px;
-}
+} */
 .logo-hw img {
-  width: 40px;
-  height: 40px;
+  width: 140px;
+  height: 60px;
 }
 .footer-icons {
   display: flex;
@@ -118,11 +118,11 @@
     font-size: 13px;
   }
   .logo-hw img {
-    width: 30px;
-    height: 30px;
+    width: 90px;
+    height: 45px;
   }
   .logo-hw {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
   }
   .sponser {
     font-size: 10px;

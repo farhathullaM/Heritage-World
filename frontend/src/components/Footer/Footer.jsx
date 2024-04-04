@@ -1,5 +1,5 @@
 import React from "react";
-import logos from "../Assets/image.png";
+import logos from "../Assets/logo.png";
 import facebook from "../Assets/facebook.png";
 import twitter from "../Assets/twitter.png";
 import instagram from "../Assets/instagram.png";
@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="log-ico">
           <Link to="/" className="logo-hw" style={{ textDecoration: "none" }}>
             <img src={logos} alt="" />
-            <h4>HERITAGE WORLD</h4>
+            {/* <h4>HERITAGE WORLD</h4> */}
           </Link>
           <div className="footer-icons">
             <img src={facebook} alt="" />

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Navbar.css";
-import logo_new from "../Assets/image.png";
+import logo_new from "../Assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -34,7 +34,7 @@ const Navbar = () => {
       <Link to="/" style={{ textDecoration: "none" }}>
         <div className="nav-logo">
           <img src={logo_new} alt="" />
-          <h1>HERITAGE WORLD</h1>
+          {/* <h1>HERITAGE WORLD</h1> */}
         </div>
       </Link>
 
