@@ -117,12 +117,12 @@ const AddMonument = () => {
         <div className="head">Add Monument </div>
         <form onSubmit={submit}>
           <div className="inp">
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title" className="required">Title</label>
             <input name="title" type="text" id="title" required />
           </div>
 
           <div className="inp">
-            <label htmlFor="des">Description/About Monuments</label>
+            <label htmlFor="des" className="required">Description/About Monuments</label>
             <textarea name="description" id="des" required />
           </div>
 
@@ -132,17 +132,17 @@ const AddMonument = () => {
           </div> */}
 
           <div className="inp">
-            <label htmlFor="nat">Nation</label>
+            <label htmlFor="nat" className="required">Nation</label>
             <input name="nation" type="text" id="nat" required />
           </div>
 
           <div className="inp">
-            <label htmlFor="state">State</label>
+            <label htmlFor="state" className="required">State</label>
             <input name="state" type="text" id="state" required />
           </div>
 
           <div className="inp">
-            <label htmlFor="place">Place</label>
+            <label htmlFor="place" className="required">Place</label>
             <input name="place" type="text" id="place" required />
           </div>
 
@@ -193,7 +193,7 @@ const AddMonument = () => {
           </div>
 
           <div className="inp">
-            <label htmlFor="cover_image">cover Image/Video</label>
+            <label htmlFor="cover_image" className="required">cover Image/Video</label>
             <div className="fileSelect">
               <div className="filebtncon">
                 <label htmlFor="cover_image" className="fileopen btn">

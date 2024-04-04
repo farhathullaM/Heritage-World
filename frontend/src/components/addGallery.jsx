@@ -69,8 +69,8 @@ const AddGallery = () => {
         <div className="head">Add Gallery </div>
         <form onSubmit={submit}>
           <div className="inp">
-            <label htmlFor="imgTitle">Title</label>
-            <input name="imgTitle" type="text" id="imgTitle" />
+            <label htmlFor="imgTitle" className="required">Title</label>
+            <input name="imgTitle" type="text" id="imgTitle" required/>
           </div>
 
           {/* <div className="inp">
@@ -83,7 +83,7 @@ const AddGallery = () => {
             <input name="image" type="file" id="image" ref={imageRef} />
           </div> */}
           <div className="inp">
-            <label htmlFor="image">Image/Video</label>{" "}
+            <label htmlFor="image" className="required">Image/Video</label>{" "}
             <div className="fileSelect">
               <div className="filebtncon">
                 <label htmlFor="image" className="fileopen btn">

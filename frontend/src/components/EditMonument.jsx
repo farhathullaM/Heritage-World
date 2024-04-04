@@ -149,7 +149,7 @@ const EditMonument = () => {
         <div className="head">Edit Monument </div>
         <form onSubmit={handleSubmit}>
           <div className="inp">
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title" className="required">Title</label>
             <input
               name="title"
               type="text"
@@ -169,7 +169,7 @@ const EditMonument = () => {
           </div> */}
 
           <div className="inp">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description" className="required">Description</label>
             <textarea
               name="description"
               id="description"
@@ -179,7 +179,7 @@ const EditMonument = () => {
           </div>
 
           <div className="inp">
-            <label htmlFor="nation">Nation</label>
+            <label htmlFor="nation" className="required">Nation</label>
             <input
               name="nation"
               type="text"
@@ -190,7 +190,7 @@ const EditMonument = () => {
           </div>
 
           <div className="inp">
-            <label htmlFor="state">State</label>
+            <label htmlFor="state" className="required">State</label>
             <input
               name="state"
               type="text"
@@ -201,7 +201,7 @@ const EditMonument = () => {
           </div>
 
           <div className="inp">
-            <label htmlFor="place">Place</label>
+            <label htmlFor="place" className="required">Place</label>
             <input
               name="place"
               type="text"
@@ -279,7 +279,7 @@ const EditMonument = () => {
             />
           </div>
           <div className="inp">
-            <label htmlFor="cover_image">Cover Image</label>
+            <label htmlFor="cover_image"  className="required">Cover Image</label>
             <div className="fileSelect">
               <div className="filebtncon">
                 <label htmlFor="cover_image" className="fileopen btn">
@@ -293,6 +293,7 @@ const EditMonument = () => {
                 id="cover_image"
                 accept="image/*"
                 onChange={handleChange}
+                required
               />
 
               <img

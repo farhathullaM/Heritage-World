@@ -101,7 +101,7 @@ const EditGallery = () => {
         <div className="head">Edit Gallery </div>
         <form onSubmit={submit}>
           <div className="inp">
-            <label htmlFor="imgTitle">Title</label>
+            <label htmlFor="imgTitle" className="required">Title</label>
             <input
               name="imgTitle"
               type="text"
@@ -125,7 +125,7 @@ const EditGallery = () => {
             <input name="image" type="file" id="image" ref={imageRef} />
           </div> */}
           <div className="inp">
-            <label htmlFor="image">Image/Video</label>
+            <label htmlFor="image" className="required">Image/Video</label>
             <div className="fileSelect">
               <div className="filebtncon">
                 <label htmlFor="image" className="fileopen btn">
@@ -140,6 +140,7 @@ const EditGallery = () => {
                 accept="image/*, video/*"
                 onChange={handleChange}
                 ref={imageRef}
+                required
               />
 
               {imageRef.current?.files[0] &&
