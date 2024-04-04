@@ -38,8 +38,11 @@ const Placedetails = () => {
   const [monument, setMonument] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
   const [clickedImg, setClickedImg] = useState(null);
-
   const [isAdmin, setIsAdmin] = useState(false);
+
+  const handleMapClick = (loc) => {
+    window.location.href = `https://maps.google.com/?q=${loc}`;
+  };
 
   useEffect(() => {
     checkAdmin(setIsAdmin);
@@ -221,6 +224,15 @@ const Placedetails = () => {
                 </div>
               ) : undefined}
             </div>
+          </div>
+
+          <div className="map-btn">
+            <button
+              className="w3-button w3-green"
+              onClick={() => handleMapClick(monument.location)}
+            >
+              <i className="fa fa-map-marker" aria-hidden="true"></i>GOOGLE MAPS
+            </button>
           </div>
 
           {isAdmin ? (

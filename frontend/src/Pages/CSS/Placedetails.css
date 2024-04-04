@@ -341,6 +341,19 @@
 .mapview {
   width: 90%;
   height: 300px;
-  margin-bottom: 30px;
   padding-top: 20px;
+}
+.map-btn{
+  height: 50px;
+  width: 150px;
+  display: flex;
+  margin: 20px;
+}
+.map-btn button{
+  height: 100%;
+  width: 100%;
+  border: none;
+  background: rgb(59, 133, 177);
+  color: white;
+  border-radius: 5px;
 }
