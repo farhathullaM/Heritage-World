@@ -87,6 +87,22 @@
 .login-sub .load {
   background-color: #6e717f;
 }
+.ps {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+.ps input {
+  margin: 0;
+}
+
+.ps img {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
 
 @media (max-width: 460px) {
   .login-form-sub {

@@ -132,6 +132,7 @@ const Placedetails = () => {
                   </p>
                 </div>
               </div>
+              <div className="user">{monument.user}</div>
             </div>
           </div>
 
