@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import visible from "../Assets/visible.svg";
+import visible_off from "../Assets/visible_off.svg";
 import "./LoginForm.css";
 
 const Login = () => {
   const navigate = useNavigate();
   const [isSubmit, setIsSubmit] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   function submit(e) {
     e.preventDefault();
@@ -55,7 +58,27 @@ const Login = () => {
           <input name="email" type="email" id="email" />
 
           <label htmlFor="paswd">Password</label>
-          <input name="paswd" type="password" id="paswd" required />
+          <div className="ps">
+            <input
+              name="paswd"
+              type={showPassword ? "text" : "password"}
+              id="paswd"
+              required
+            />
+            {showPassword ? (
+              <img
+                src={visible}
+                alt="visble"
+                onClick={() => setShowPassword(false)}
+              />
+            ) : (
+              <img
+                src={visible_off}
+                alt="visble"
+                onClick={() => setShowPassword(true)}
+              />
+            )}
+          </div>
 
           <div className="login-sub">
             {isSubmit ? (
