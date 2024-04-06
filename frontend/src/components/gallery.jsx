@@ -35,13 +35,22 @@ const Gallery = () => {
     }
   }
 
+  function handleItemClick(placeId) {
+    navigate(`/places/${placeId}`);
+  }
+
   return (
     <div className="container">
       <div className="topbar">
         <div className="main-head">Gallery</div>
-        <Link to={`/manage/gallery/create/${id}`}>
-          <button className="btn">Create</button>
-        </Link>
+        <div className="double-btn">
+          <button className="btn" onClick={() => handleItemClick(id)}>
+            Monument
+          </button>
+          <Link to={`/manage/gallery/create/${id}`}>
+            <button className="btn">Create</button>
+          </Link>
+        </div>
       </div>
       <div className="table">
         <table>

@@ -3,3 +3,7 @@
   height: 150px;
   object-fit: contain;
 }
+.double-btn{
+  display: flex;
+  gap: 10px;
+}
