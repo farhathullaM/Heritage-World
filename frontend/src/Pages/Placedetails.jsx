@@ -8,6 +8,7 @@ import checkAdmin from "../util/Token";
 import ImagePopup from "../components/ImagePopup/ImagePopup";
 import Map from "../components/Map/Map";
 import user_icon from "../components/Assets/user.png";
+// import gmap from "../components/Assets/google-maps.png";
 
 // Read more component
 const ReadMore = ({ children }) => {
@@ -233,7 +234,8 @@ const Placedetails = () => {
           </div>
 
           <div className="map-btn">
-            <button
+            {/* <img src={gmap} alt="" /> */}
+            <button 
               className="w3-button w3-green"
               onClick={() => handleMapClick(combinedData.monument.location)}
             >
