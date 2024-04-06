@@ -8,7 +8,7 @@ import checkAdmin from "../util/Token";
 import ImagePopup from "../components/ImagePopup/ImagePopup";
 import Map from "../components/Map/Map";
 
-//Read more component
+// Read more component
 const ReadMore = ({ children }) => {
   const text = children || "";
   const [isReadMore, setIsReadMore] = useState(true);
@@ -35,7 +35,7 @@ const Placedetails = () => {
   const navigate = useNavigate();
   const { placeId } = useParams();
   const [loading, setLoading] = useState(true);
-  const [monument, setMonument] = useState(null);
+  const [combinedData, setCombinedData] = useState(null); // Store combined data here
   const [galleryImages, setGalleryImages] = useState([]);
   const [clickedImg, setClickedImg] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -96,10 +96,10 @@ const Placedetails = () => {
     axios
       .get(`public/${placeId}`)
       .then((response) => {
-        setMonument(response.data);
+        setCombinedData(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching monument details:", error);
+        console.error("Error fetching combined data:", error);
       });
   }, [placeId]);
 
@@ -118,53 +118,55 @@ const Placedetails = () => {
 
   return (
     <div className="place-details">
-      {monument && (
+      {combinedData && (
         <>
           <div className="place-img">
-            <img src={axios.defaults.baseURL + monument.cover_image} alt="" />
+            <img
+              src={axios.defaults.baseURL + combinedData.monument.cover_image}
+              alt=""
+            />
             <div className="name-loc">
-              <h2>{monument.title}</h2>
+              <h2>{combinedData.monument.title}</h2>
               <div className="locatn">
                 <span className="material-symbols-outlined">explore</span>
                 <div>
                   <p>
-                    {monument.place}, {monument.state}
+                    {combinedData.monument.place}, {combinedData.monument.state}
                   </p>
                 </div>
               </div>
-              <div className="user">{monument.user}</div>
+              <p>Contributed by:{combinedData.userName}</p>
             </div>
           </div>
-
           <div className="importance">
             <div className="top">
               <img src={star} alt="" />
               <h4>Importance</h4>
             </div>
-            <p>{monument.ipms_place}</p>
+            <p>{combinedData.monument.ipms_place}</p>
           </div>
 
           <div className="about-monument">
             <h4>About Monument</h4>
             <div className="line"></div>
-            <ReadMore>{monument.description}</ReadMore>
+            <ReadMore>{combinedData.monument.description}</ReadMore>
           </div>
 
           <div className="about-monument">
             <h4>PAST CONDITION</h4>
             <div className="line"></div>
-            <ReadMore>{monument.past_condition}</ReadMore>
+            <ReadMore>{combinedData.monument.past_condition}</ReadMore>
           </div>
 
           <div className="about-monument">
             <h4>PRESENT CONDITION</h4>
             <div className="line"></div>
-            <ReadMore>{monument.present_condition}</ReadMore>
+            <ReadMore>{combinedData.monument.present_condition}</ReadMore>
           </div>
 
           <div className="arch-imp">
             <h4>Architectural Importance</h4>
-            <p>{monument.archi_imps}</p>
+            <p>{combinedData.monument.archi_imps}</p>
           </div>
 
           <div className="gallery">
@@ -216,11 +218,11 @@ const Placedetails = () => {
             <h4>MAP</h4>
             <div className="line map-line"></div>
             <div className="map">
-              {isValidLatLong(monument.location) ? (
+              {isValidLatLong(combinedData.monument.location) ? (
                 <div className="mapview">
                   <Map
-                    latitude={monument.location.split(",")[0]}
-                    longitude={monument.location.split(",")[1]}
+                    latitude={combinedData.monument.location.split(",")[0]}
+                    longitude={combinedData.monument.location.split(",")[1]}
                   />
                 </div>
               ) : undefined}
@@ -230,7 +232,7 @@ const Placedetails = () => {
           <div className="map-btn">
             <button
               className="w3-button w3-green"
-              onClick={() => handleMapClick(monument.location)}
+              onClick={() => handleMapClick(combinedData.monument.location)}
             >
               <i className="fa fa-map-marker" aria-hidden="true"></i>GOOGLE MAPS
             </button>
@@ -238,17 +240,17 @@ const Placedetails = () => {
 
           {isAdmin ? (
             <div className="verify">
-              {monument.status == 1 ? (
+              {combinedData.monument.status == 1 ? (
                 <button
                   className="btn"
-                  onClick={() => clickToUnverify(monument._id)}
+                  onClick={() => clickToUnverify(combinedData.monument._id)}
                 >
                   Unverify
                 </button>
               ) : (
                 <button
                   className="btn"
-                  onClick={() => clickToVerify(monument._id)}
+                  onClick={() => clickToVerify(combinedData.monument._id)}
                 >
                   Verify
                 </button>
