@@ -7,6 +7,7 @@ import ReactPlayer from "react-player";
 import checkAdmin from "../util/Token";
 import ImagePopup from "../components/ImagePopup/ImagePopup";
 import Map from "../components/Map/Map";
+import user_icon from "../components/Assets/user.png";
 
 // Read more component
 const ReadMore = ({ children }) => {
@@ -132,7 +133,12 @@ const Placedetails = () => {
                   </p>
                 </div>
               </div>
-              <p>Contributed by:{combinedData.userName}</p>
+
+              <div className="user-icon">
+                <img src={user_icon} alt="" />
+                <p>{combinedData.userName}</p>
+              </div>
+
             </div>
           </div>
           <div className="importance">
@@ -215,7 +221,7 @@ const Placedetails = () => {
             <h4>MAP</h4>
             <div className="line map-line"></div>
             <div className="map">
-              {isValidLatLong(combinedData.monument.location) ? (
+              {combinedData.monument.location && isValidLatLong(combinedData.monument.location) ? (
                 <div className="mapview">
                   <Map
                     latitude={combinedData.monument.location.split(",")[0]}

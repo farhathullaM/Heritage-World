@@ -47,6 +47,16 @@
 .name-loc span {
   color: white;
 }
+.user-icon{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.user-icon img{
+  width: 20px;
+  height: 20px;
+}
 .place-img::before {
   content: "";
   height: 80vh;
@@ -356,4 +366,5 @@
   background: rgb(59, 133, 177);
   color: white;
   border-radius: 5px;
+  cursor: pointer;
 }
