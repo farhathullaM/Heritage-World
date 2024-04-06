@@ -47,17 +47,17 @@
 .name-loc span {
   color: white;
 }
-.user-icon{
+.user-icon {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 14px;
 }
-.user-icon img{
+.user-icon img {
   width: 18px;
   height: 18px;
 }
-.user-icon p{
+.user-icon p {
   font-size: 15px;
 }
 .place-img::before {
@@ -216,19 +216,18 @@
   right: 50px;
 }
 
-
 @media (max-width: 760px) {
   .place-img {
     height: 60vh;
   }
-  .place-img img{
+  .place-img img {
     height: 60vh;
   }
   .place-img::before {
     height: 60vh;
   }
   .name-loc {
-    top: 45vh;
+    top: 47vh;
     left: 5%;
     z-index: 11;
   }
@@ -240,6 +239,16 @@
   }
   .name-loc span {
     font-size: 20px;
+  }
+  .user-icon {
+    gap: 14px;
+  }
+  .user-icon img {
+    width: 15px;
+    height: 15px;
+  }
+  .user-icon p {
+    font-size: 12px;
   }
   .importance {
     margin-top: 20px;
@@ -336,19 +345,19 @@
     bottom: 20px;
     right: 30px;
   }
-  .map-line{
+  .map-line {
     width: 40px;
   }
 }
 
-.map{
+.map {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: left;
 }
-.map-line{
+.map-line {
   width: 100px;
 }
 .mapview {
@@ -356,7 +365,7 @@
   height: 300px;
   padding-top: 20px;
 }
-.map-btn{
+.map-btn {
   display: flex;
   flex-direction: row;
   height: 50px;
@@ -365,7 +374,7 @@
   margin: 20px;
   align-items: center;
 }
-.map-btn button{
+.map-btn button {
   height: 100%;
   width: 100%;
   border: none;
