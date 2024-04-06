@@ -18,6 +18,7 @@
   padding: 10px 35px;
 }
 .register-form-sub {
+  margin-top: 50px;
   height: auto;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.13);
@@ -26,7 +27,7 @@
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
   padding: 35px 35px;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 .login-form form * {
   font-family: "Poppins", sans-serif;
@@ -109,6 +110,7 @@
     width: 90vw;
   }
   .register-form-sub {
+    margin-top: 0;
     width: 90vw;
   }
   .login-form form h3 {

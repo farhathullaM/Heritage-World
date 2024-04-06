@@ -18,8 +18,6 @@ const register = () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   };
 
-  
-
   function submit(e) {
     e.preventDefault();
     setIsSubmit((current) => {
@@ -91,6 +89,24 @@ const register = () => {
                 e.target.setCustomValidity(
                   "Password must be at least 6 characters"
                 );
+              } else {
+                e.target.setCustomValidity("");
+              }
+            }}
+          />
+
+          <label htmlFor="confirmPaswd" style={{ marginTop: "10px" }}>
+            Confirm Password
+          </label>
+          <input
+            name="confirmPaswd"
+            type="password"
+            id="confirmPaswd"
+            minLength="6"
+            required
+            onChange={(e) => {
+              if (e.target.value !== document.getElementById("paswd").value) {
+                e.target.setCustomValidity("Passwords do not match");
               } else {
                 e.target.setCustomValidity("");
               }
