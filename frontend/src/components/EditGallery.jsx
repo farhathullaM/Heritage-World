@@ -14,7 +14,6 @@ const EditGallery = () => {
   const imageRef = useRef(null);
   const [galleryData, setGalleryData] = useState({
     imgTitle: "",
-    // description: "",
     image: "",
   });
   const [thumbnail, setThumbnail] = useState(imgIcon);
@@ -41,6 +40,12 @@ const EditGallery = () => {
 
     if (files[0].type.startsWith("video")) {
       setThumbnail(URL.createObjectURL(files[0]));
+    } else {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setThumbnail(reader.result);
+      };
+      reader.readAsDataURL(files[0]);
     }
   }
 
@@ -51,8 +56,9 @@ const EditGallery = () => {
         const { data } = res;
         setGalleryData(res.data);
         if (data.image) {
-          setThumbnail(axios.defaults.baseURL + data.image);
-          setFilename(data.image);
+          // Assuming data.image is the Base64 string
+          setThumbnail(data.image);
+          setFilename(data.imgTitle); // Assuming data.imgTitle contains the filename
         }
       })
       .catch((err) => {
@@ -65,16 +71,10 @@ const EditGallery = () => {
 
   function submit(e) {
     e.preventDefault();
-
-    // Disable the submit button
-    // setIsSubmitting(true);
-    setIsSubmit((current) => {
-      return !current;
-    });
+    setIsSubmit((current) => !current);
 
     const formData = new FormData();
     formData.append("imgTitle", e.target.imgTitle.value);
-    // formData.append("description", e.target.description.value);
     formData.append("image", imageRef.current.files[0]);
 
     axios
@@ -89,9 +89,7 @@ const EditGallery = () => {
       })
       .catch((err) => {
         alert(err);
-        setIsSubmit((current) => {
-          return !current;
-        });
+        setIsSubmit((current) => !current);
       });
   }
 
@@ -101,7 +99,9 @@ const EditGallery = () => {
         <div className="head">Edit Gallery </div>
         <form onSubmit={submit}>
           <div className="inp">
-            <label htmlFor="imgTitle" className="required">Title</label>
+            <label htmlFor="imgTitle" className="required">
+              Title
+            </label>
             <input
               name="imgTitle"
               type="text"
@@ -111,21 +111,10 @@ const EditGallery = () => {
             />
           </div>
 
-          {/* <div className="inp">
-            <label htmlFor="des">Description</label>
-            <textarea
-              name="description"
-              id="des"
-              defaultValue={galleryData.description}
-            />
-          </div> */}
-
-          {/* <div className="inp">
-            <label htmlFor="image">Image/Video</label>
-            <input name="image" type="file" id="image" ref={imageRef} />
-          </div> */}
           <div className="inp">
-            <label htmlFor="image" className="required">Image/Video</label>
+            <label htmlFor="image" className="required">
+              Image/Video
+            </label>
             <div className="fileSelect">
               <div className="filebtncon">
                 <label htmlFor="image" className="fileopen btn">
@@ -164,7 +153,6 @@ const EditGallery = () => {
               <div className="inp load">
                 <ClipLoader
                   color="blue"
-                  // loading={isLoginClicked}
                   cssOverride={true}
                   size={20}
                   aria-label="Loading Spinner"

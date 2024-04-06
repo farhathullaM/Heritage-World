@@ -51,7 +51,7 @@ const ListMonuments = () => {
       monument.title.toLowerCase().includes(searchQuery) ||
       monument.state.toLowerCase().includes(searchQuery) ||
       monument.place.toLowerCase().includes(searchQuery) ||
-      monument.nation.toLowerCase().includes(searchQuery) 
+      monument.nation.toLowerCase().includes(searchQuery)
   );
 
   return (
@@ -116,7 +116,7 @@ const ListMonuments = () => {
                     </video>
                   ) : (
                     <img
-                      src={axios.defaults.baseURL + monument.cover_image}
+                      src={monument.cover_image}
                       alt="Cover Media"
                       className="image-display"
                     />

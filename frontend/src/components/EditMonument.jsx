@@ -28,41 +28,40 @@ const EditMonument = () => {
   const [coverImage, setCoverImage] = useState(imgIcon); // State variable for old cover image URL
   const [isSubmit, setIsSubmit] = useState(false);
 
-    //fetching current location from user
-    const [location, setLocation] = useState(""); // State to manage the location
+  //fetching current location from user
+  const [location, setLocation] = useState(""); // State to manage the location
 
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-      } else {
-        setLocation("Geolocation is not supported by this browser.");
-      }
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+      setLocation("Geolocation is not supported by this browser.");
     }
+  }
 
-    function showPosition(position) {
-      setLocation(position.coords.latitude + "," + position.coords.longitude);
+  function showPosition(position) {
+    setLocation(position.coords.latitude + "," + position.coords.longitude);
+  }
+
+  function showError(error) {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        setLocation("User denied the request for Geolocation.");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        setLocation("Location information is unavailable.");
+        break;
+      case error.TIMEOUT:
+        setLocation("The request to get user location timed out.");
+        break;
+      case error.UNKNOWN_ERROR:
+        setLocation("An unknown error occurred.");
+        break;
+      default:
+        setLocation("An error occurred while fetching location.");
+        break;
     }
-  
-    function showError(error) {
-      switch (error.code) {
-        case error.PERMISSION_DENIED:
-          setLocation("User denied the request for Geolocation.");
-          break;
-        case error.POSITION_UNAVAILABLE:
-          setLocation("Location information is unavailable.");
-          break;
-        case error.TIMEOUT:
-          setLocation("The request to get user location timed out.");
-          break;
-        case error.UNKNOWN_ERROR:
-          setLocation("An unknown error occurred.");
-          break;
-        default:
-          setLocation("An error occurred while fetching location.");
-          break;
-      }
-    }
-  
+  }
 
   if (!localStorage.getItem("token")) navigate("/login");
 
@@ -73,7 +72,7 @@ const EditMonument = () => {
         const { data } = res;
         setMonument(data);
         if (data.cover_image) {
-          setCoverImage(axios.defaults.baseURL + data.cover_image);
+          setCoverImage(data.cover_image);
           setFilename(data.cover_image.split("\\")[1]);
         }
       })
@@ -149,7 +148,9 @@ const EditMonument = () => {
         <div className="head">Edit Monument </div>
         <form onSubmit={handleSubmit}>
           <div className="inp">
-            <label htmlFor="title" className="required">Title</label>
+            <label htmlFor="title" className="required">
+              Title
+            </label>
             <input
               name="title"
               type="text"
@@ -169,7 +170,9 @@ const EditMonument = () => {
           </div> */}
 
           <div className="inp">
-            <label htmlFor="description" className="required">Description</label>
+            <label htmlFor="description" className="required">
+              Description
+            </label>
             <textarea
               name="description"
               id="description"
@@ -179,7 +182,9 @@ const EditMonument = () => {
           </div>
 
           <div className="inp">
-            <label htmlFor="nation" className="required">Nation</label>
+            <label htmlFor="nation" className="required">
+              Nation
+            </label>
             <input
               name="nation"
               type="text"
@@ -190,7 +195,9 @@ const EditMonument = () => {
           </div>
 
           <div className="inp">
-            <label htmlFor="state" className="required">State</label>
+            <label htmlFor="state" className="required">
+              State
+            </label>
             <input
               name="state"
               type="text"
@@ -201,7 +208,9 @@ const EditMonument = () => {
           </div>
 
           <div className="inp">
-            <label htmlFor="place" className="required">Place</label>
+            <label htmlFor="place" className="required">
+              Place
+            </label>
             <input
               name="place"
               type="text"
@@ -279,7 +288,9 @@ const EditMonument = () => {
             />
           </div>
           <div className="inp">
-            <label htmlFor="cover_image"  className="required">Cover Image</label>
+            <label htmlFor="cover_image" className="required">
+              Cover Image
+            </label>
             <div className="fileSelect">
               <div className="filebtncon">
                 <label htmlFor="cover_image" className="fileopen btn">

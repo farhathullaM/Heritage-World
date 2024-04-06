@@ -63,15 +63,12 @@ const Gallery = () => {
                 <td>
                   {gallery.image && gallery.image.endsWith(".mp4") ? (
                     <video className="image-display" controls>
-                      <source
-                        src={axios.defaults.baseURL + gallery.image}
-                        type="video/mp4"
-                      />
+                      <source src={gallery.image} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   ) : (
                     <img
-                      src={axios.defaults.baseURL + gallery.image}
+                      src={gallery.image}
                       alt="Gallery Media"
                       className="image-display"
                     />

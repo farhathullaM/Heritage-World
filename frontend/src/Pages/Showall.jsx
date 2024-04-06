@@ -18,7 +18,7 @@ const Showall = () => {
       .then((res) => {
         setMonumentList(res.data);
         // Initialize filtered list with all monuments
-        setFilteredMonumentList(res.data); 
+        setFilteredMonumentList(res.data);
       })
       .catch((err) => {
         console.error(err.response.data.message);
@@ -32,13 +32,13 @@ const Showall = () => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
 
-    
     // Filter the monument list based on the search query
-    const filteredList = monumentList.filter((monument) =>
-      monument.title.toLowerCase().includes(query) ||
-      monument.place.toLowerCase().includes(query) ||
-      monument.state.toLowerCase().includes(query) ||
-      monument.nation.toLowerCase().includes(query) 
+    const filteredList = monumentList.filter(
+      (monument) =>
+        monument.title.toLowerCase().includes(query) ||
+        monument.place.toLowerCase().includes(query) ||
+        monument.state.toLowerCase().includes(query) ||
+        monument.nation.toLowerCase().includes(query)
     );
     setFilteredMonumentList(query === "" ? monumentList : filteredList);
   };
@@ -73,21 +73,21 @@ const Showall = () => {
         ) : (
           <div className="each-places">
             {filteredMonumentList.map((item) => (
-                <div
-                  className="item"
-                  key={item._id}
-                  onClick={() => handleItemClick(item._id)}
-                >
-                  <img src={axios.defaults.baseURL + item.cover_image} alt="" />
-                  <p className="title">{item.title}</p>
-                  <div className="place">
-                    <span className="material-symbols-outlined">explore</span>
-                    <p>
-                      {item.place}, {item.state}
-                    </p>
-                  </div>
+              <div
+                className="item"
+                key={item._id}
+                onClick={() => handleItemClick(item._id)}
+              >
+                <img src={item.cover_image} alt="" />
+                <p className="title">{item.title}</p>
+                <div className="place">
+                  <span className="material-symbols-outlined">explore</span>
+                  <p>
+                    {item.place}, {item.state}
+                  </p>
                 </div>
-              ))}
+              </div>
+            ))}
           </div>
         )}
       </div>

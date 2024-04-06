@@ -49,7 +49,7 @@ const Placedetails = () => {
   });
 
   const handleClick = (item) => {
-    setClickedImg(axios.defaults.baseURL + item.image);
+    setClickedImg(item.image);
   };
 
   const clickToVerify = (Id) => {
@@ -121,10 +121,7 @@ const Placedetails = () => {
       {combinedData && (
         <>
           <div className="place-img">
-            <img
-              src={axios.defaults.baseURL + combinedData.monument.cover_image}
-              alt=""
-            />
+            <img src={combinedData.monument.cover_image} alt="" />
             <div className="name-loc">
               <h2>{combinedData.monument.title}</h2>
               <div className="locatn">
@@ -184,7 +181,7 @@ const Placedetails = () => {
                       <div className="gallery-images" key={item._id}>
                         {item.image.endsWith(".mp4") ? (
                           <ReactPlayer
-                            url={axios.defaults.baseURL + item.image}
+                            url={item.image}
                             controls
                             width="100%"
                             height={371}
@@ -193,7 +190,7 @@ const Placedetails = () => {
                           />
                         ) : (
                           <img
-                            src={axios.defaults.baseURL + item.image}
+                            src={item.image}
                             onClick={() => handleClick(item)}
                           />
                         )}
