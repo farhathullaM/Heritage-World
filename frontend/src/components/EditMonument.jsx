@@ -227,9 +227,9 @@ const EditMonument = () => {
                 name="location"
                 type="text"
                 id="latlong"
-                value={location} // Use state value here
-                onChange={(e) => setLocation(e.target.value)} // Update state on change
+                // value={location} // Use state value here
                 defaultValue={monument.location}
+                onChange={(e) => setLocation(e.target.defaultValue)} // Update state on change
               />
               <button
                 className="btn fetch-loc"
@@ -303,7 +303,7 @@ const EditMonument = () => {
                 type="file"
                 id="cover_image"
                 accept="image/*"
-                onChange={handleChange}
+                onChange={() => handleChange()}
                 required
               />
 
