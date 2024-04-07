@@ -121,19 +121,19 @@ router.put("/:id", upload.single("image"), async (request, response) => {
     if (!galleryItem) {
       return response.status(404).json({ message: "Gallery item not found" });
     }
-    const { fileName, buffer } = await compressAndSaveImage(request.file);
-    const base64Image = convertImageToBase64(buffer);
+    const { fileName, buffer } = await compressAndSaveFile(request.file);
+    const base64Image = convertToBase64(buffer, request.file.mimetype);
     if (request.file) {
-      if (galleryItem.image) {
-        const imagePath = path.join("uploads", galleryItem.image);
-        fs.unlink(imagePath, (err) => {
-          if (err) {
-            console.error("Error deleting image:", err);
-          } else {
-            console.log("Image deleted successfully");
-          }
-        });
-      }
+      // if (galleryItem.image) {
+      //   const imagePath = path.join("uploads", galleryItem.image);
+      //   fs.unlink(imagePath, (err) => {
+      //     if (err) {
+      //       console.error("Error deleting image:");
+      //     } else {
+      //       console.log("Image deleted successfully");
+      //     }
+      //   });
+      // }
       galleryItem.image = base64Image;
     }
 
@@ -163,14 +163,14 @@ router.delete("/:id", async (request, response) => {
       return response.status(404).send({ message: "Gallery item not found" });
     }
 
-    const imagePath = path.join("uploads", galleryItem.image);
-    fs.unlink(imagePath, (err) => {
-      if (err) {
-        console.error("Error deleting image:", err);
-      } else {
-        console.log("Image deleted successfully");
-      }
-    });
+    // const imagePath = path.join("uploads", galleryItem.image);
+    // fs.unlink(imagePath, (err) => {
+    //   if (err) {
+    //     console.error("Error deleting image:", err);
+    //   } else {
+    //     console.log("Image deleted successfully");
+    //   }
+    // });
 
     return response
       .status(200)
