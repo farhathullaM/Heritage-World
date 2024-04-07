@@ -32,7 +32,7 @@ const compressAndSaveFile = async (file) => {
         file.originalname.split(".")[0]
       }${randomNumber}.jpg`;
       compressedFile = await sharp(file.buffer)
-        .jpeg({ quality: 30 }) // Adjust quality as per your requirement
+        .jpeg({ quality: 30 })
         .toBuffer();
     }
 
@@ -61,9 +61,7 @@ router.post(
         });
       }
       const { fileName, buffer } = await compressAndSaveFile(request.file);
-      // console.log(buffer);
-      const base64Image = convertToBase64(buffer);
-      console.log(base64Image);
+      const base64Image = convertToBase64(buffer, request.file.mimetype);
       // Construct the new gallery item object
       const newGalleryItem = {
         monumentId: request.params.monumentId,

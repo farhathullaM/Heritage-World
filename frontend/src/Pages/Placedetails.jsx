@@ -139,7 +139,6 @@ const Placedetails = () => {
                 <img src={user_icon} alt="" />
                 <p>{combinedData.userName}</p>
               </div>
-
             </div>
           </div>
           <div className="importance">
@@ -186,7 +185,7 @@ const Placedetails = () => {
                     .filter((item) => item.monumentId === placeId)
                     .map((item, index) => (
                       <div className="gallery-images" key={item._id}>
-                        {item.image.endsWith(".mp4") ? (
+                        {item.image.startsWith("data:video") ? (
                           <ReactPlayer
                             url={item.image}
                             controls
@@ -222,7 +221,8 @@ const Placedetails = () => {
             <h4>MAP</h4>
             <div className="line map-line"></div>
             <div className="map">
-              {combinedData.monument.location && isValidLatLong(combinedData.monument.location) ? (
+              {combinedData.monument.location &&
+              isValidLatLong(combinedData.monument.location) ? (
                 <div className="mapview">
                   <Map
                     latitude={combinedData.monument.location.split(",")[0]}
@@ -235,7 +235,7 @@ const Placedetails = () => {
 
           <div className="map-btn">
             {/* <img src={gmap} alt="" /> */}
-            <button 
+            <button
               className="w3-button w3-green"
               onClick={() => handleMapClick(combinedData.monument.location)}
             >

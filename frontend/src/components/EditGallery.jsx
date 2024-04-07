@@ -138,6 +138,11 @@ const EditGallery = () => {
                   <source src={thumbnail} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
+              ) : thumbnail && thumbnail.startsWith("data:video") ? (
+                <video controls className="file-image-display">
+                  <source src={thumbnail} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               ) : (
                 <img
                   src={thumbnail}

@@ -70,7 +70,7 @@ const Gallery = () => {
                 <td>{gallery.imgTitle}</td>
                 {/* <td>{gallery.description}</td> */}
                 <td>
-                  {gallery.image && gallery.image.endsWith(".mp4") ? (
+                  {gallery.image && gallery.image.startsWith("data:video") ? (
                     <video className="image-display" controls>
                       <source src={gallery.image} type="video/mp4" />
                       Your browser does not support the video tag.
