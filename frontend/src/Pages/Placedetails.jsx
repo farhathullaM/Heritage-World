@@ -123,7 +123,7 @@ const Placedetails = () => {
       {combinedData && (
         <>
           <div className="place-img">
-            <img src={combinedData.monument.cover_image} alt="" />
+            <img src={combinedData.monument.imageUrl} alt="" />
             <div className="name-loc">
               <h2>{combinedData.monument.title}</h2>
               <div className="locatn">
@@ -185,9 +185,9 @@ const Placedetails = () => {
                     .filter((item) => item.monumentId === placeId)
                     .map((item, index) => (
                       <div className="gallery-images" key={item._id}>
-                        {item.image.startsWith("data:video") ? (
+                        {item.image.endsWith(".mp4") ? (
                           <ReactPlayer
-                            url={item.image}
+                            url={item.imageUrl}
                             controls
                             width="100%"
                             height={371}
@@ -196,7 +196,7 @@ const Placedetails = () => {
                           />
                         ) : (
                           <img
-                            src={item.image}
+                            src={item.imageUrl}
                             onClick={() => handleClick(item)}
                           />
                         )}

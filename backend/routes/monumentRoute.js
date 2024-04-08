@@ -2,12 +2,34 @@ import express from "express";
 import Monument from "../models/monumentModel.js";
 import User from "../models/userModel.js";
 import multer from "multer";
-import fs, { copyFileSync } from "fs";
+import fs from "fs";
 import path from "path";
-import mongoose from "mongoose";
+import sharp from "sharp";
+import dotenv from "dotenv";
+import {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+  DeleteObjectCommand,
+} from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
+dotenv.config();
 
 const router = express.Router();
-import sharp from "sharp";
+
+const awsAccessKey = process.env.AWS_ACCESS_KEY;
+const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+const awsBucketName = process.env.AWS_BUCKET_NAME;
+const awsBucketRegion = process.env.AWS_BUCKET_REGION;
+
+const s3 = new S3Client({
+  credentials: {
+    accessKeyId: awsAccessKey,
+    secretAccessKey: awsSecretAccessKey,
+  },
+  region: awsBucketRegion,
+});
 
 const storage = multer.memoryStorage(); // Use memory storage to process image with Sharp
 const upload = multer({ storage: storage });
@@ -52,7 +74,16 @@ router.post("/", upload.single("cover_image"), async (request, response) => {
     }
 
     const { fileName, buffer } = await compressAndSaveImage(request.file);
-    const base64Image = convertImageToBase64(buffer);
+
+    const params = {
+      Bucket: awsBucketName,
+      Key: fileName,
+      Body: buffer,
+      ContentType: request.file.mimetype,
+    };
+    const command = new PutObjectCommand(params);
+
+    await s3.send(command);
 
     const newmonument = {
       title: request.body.title,
@@ -65,7 +96,7 @@ router.post("/", upload.single("cover_image"), async (request, response) => {
       nation: request.body.nation,
       state: request.body.state,
       place: request.body.place,
-      cover_image: base64Image, // Use Base64 encoded image string
+      cover_image: fileName,
       user: request.user.id,
       status: 0,
     };
@@ -78,7 +109,7 @@ router.post("/", upload.single("cover_image"), async (request, response) => {
     response.status(500).send({ message: error.message });
   }
 });
-// route get all
+
 router.get("/", async (request, response) => {
   try {
     let monument = undefined;
@@ -89,13 +120,26 @@ router.get("/", async (request, response) => {
     else if (users.type == "admin") monument = await Monument.find();
     else throw `Account Type Error. Got type : ${users.type}`;
 
-    const data = {
-      monument: monument,
+    const getObjectParams = {
+      Bucket: awsBucketName,
+      Key: monument.cover_image,
+    };
+
+    const command = new GetObjectCommand(getObjectParams);
+    const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+
+    const updatedMonument = {
+      ...monument.toObject(),
+      imageUrl: url,
       userType: users.type,
     };
-    return response.status(200).json(data);
+
+    // const data = {
+    //   monument: updatedMonument,
+    //   userType: users.type,
+    // };
+    return response.status(200).json(updatedMonument);
   } catch (error) {
-    console.log(error.message);
     response.status(500).send({ message: error.message });
   }
 });

@@ -16,8 +16,8 @@ const ListMonuments = () => {
     axios
       .get("monuments/")
       .then((res) => {
-        setData(res.data["monument"]);
-        setIsAdmin(res.data["userType"] == "admin" ? true : false);
+        setData(res.data);
+        setIsAdmin(res.data.userType == "admin" ? true : false);
       })
       .catch((err) => console.error(err.response.data.message));
   }, []);

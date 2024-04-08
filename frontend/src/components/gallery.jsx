@@ -14,6 +14,7 @@ const Gallery = () => {
     axios
       .get(`/gallery/monument/${id}`)
       .then((res) => {
+        console.log(res.data[0]);
         setData(res.data);
       })
       .catch((err) => console.log(err));
@@ -70,14 +71,14 @@ const Gallery = () => {
                 <td>{gallery.imgTitle}</td>
                 {/* <td>{gallery.description}</td> */}
                 <td>
-                  {gallery.image && gallery.image.startsWith("data:video") ? (
+                  {gallery.imageUrl && gallery.image?.endsWith(".mp4") ? (
                     <video className="image-display" controls>
-                      <source src={gallery.image} type="video/mp4" />
+                      <source src={gallery.imageUrl} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   ) : (
                     <img
-                      src={gallery.image}
+                      src={gallery.imageUrl}
                       alt="Gallery Media"
                       className="image-display"
                     />

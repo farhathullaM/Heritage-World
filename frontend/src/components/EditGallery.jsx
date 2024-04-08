@@ -18,6 +18,7 @@ const EditGallery = () => {
   });
   const [thumbnail, setThumbnail] = useState(imgIcon);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isVideo, setIsVideo] = useState(false);
 
   function setImgSrc(files) {
     if (FileReader && files && files.length) {
@@ -57,7 +58,8 @@ const EditGallery = () => {
         setGalleryData(res.data);
         if (data.image) {
           // Assuming data.image is the Base64 string
-          setThumbnail(data.image);
+          if (data.image.endsWith(".mp4")) setIsVideo(true);
+          setThumbnail(data.imageUrl);
           setFilename(data.imgTitle); // Assuming data.imgTitle contains the filename
         }
       })
@@ -138,7 +140,7 @@ const EditGallery = () => {
                   <source src={thumbnail} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-              ) : thumbnail && thumbnail.startsWith("data:video") ? (
+              ) : thumbnail && isVideo ? (
                 <video controls className="file-image-display">
                   <source src={thumbnail} type="video/mp4" />
                   Your browser does not support the video tag.

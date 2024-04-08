@@ -2,10 +2,24 @@ import express from "express";
 import Monument from "../models/monumentModel.js";
 import Gallery from "../models/galleryModel.js";
 import User from "../models/userModel.js";
-import multer from "multer";
-import fs, { copyFileSync } from "fs";
-import path from "path";
-import mongoose from "mongoose";
+import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const awsAccessKey = process.env.AWS_ACCESS_KEY;
+const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+const awsBucketName = process.env.AWS_BUCKET_NAME;
+const awsBucketRegion = process.env.AWS_BUCKET_REGION;
+
+const s3 = new S3Client({
+  credentials: {
+    accessKeyId: awsAccessKey,
+    secretAccessKey: awsSecretAccessKey,
+  },
+  region: awsBucketRegion,
+});
 
 const router = express.Router();
 
@@ -61,17 +75,26 @@ router.get("/:id", async (request, response) => {
 
 router.get("/monument/:monumentId", async (request, response) => {
   try {
-    // const id = "65cf253a709063993bd5362b";
-    // const galleryItems = await Gallery.find({
-    //   monumentId: id,
-    // });
     const galleryItems = await Gallery.find({
       monumentId: request.params.monumentId,
     });
-    // setTimeout(() => {
-    //   console.log(galleryItems);
-    // }, 500);
-    return response.status(200).json(galleryItems);
+
+    const updatedGalleryItems = [];
+    for (const galleryItem of galleryItems) {
+      const getObjectParams = {
+        Bucket: awsBucketName,
+        Key: galleryItem.image,
+      };
+
+      const command = new GetObjectCommand(getObjectParams);
+      const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+      const updatedGalleryItem = {
+        ...galleryItem.toObject(),
+        imageUrl: url,
+      };
+      updatedGalleryItems.push(updatedGalleryItem);
+    }
+    return response.status(200).json(updatedGalleryItems);
   } catch (error) {
     console.error(error.message);
     return response.status(500).send({ message: "Internal Server Error" });
