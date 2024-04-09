@@ -16,7 +16,7 @@ const ListMonuments = () => {
     axios
       .get("monuments/")
       .then((res) => {
-        setData(res.data);
+        setData(res.data.monument);
         setIsAdmin(res.data.userType == "admin" ? true : false);
       })
       .catch((err) => console.error(err.response.data.message));
@@ -116,7 +116,7 @@ const ListMonuments = () => {
                     </video>
                   ) : (
                     <img
-                      src={monument.cover_image}
+                      src={monument.imageUrl}
                       alt="Cover Media"
                       className="image-display"
                     />

@@ -72,7 +72,7 @@ const EditMonument = () => {
         const { data } = res;
         setMonument(data);
         if (data.cover_image) {
-          setCoverImage(data.cover_image);
+          setCoverImage(data.imageUrl);
           setFilename(data.cover_image.split("\\")[1]);
         }
       })
@@ -303,7 +303,7 @@ const EditMonument = () => {
                 type="file"
                 id="cover_image"
                 accept="image/*"
-                onChange={() => handleChange()}
+                onChange={handleChange}
                 required
               />
 
