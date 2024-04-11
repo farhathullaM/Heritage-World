@@ -40,6 +40,7 @@ const EditMonument = () => {
   }
 
   function showPosition(position) {
+    console.log(position.coords.latitude + "," + position.coords.longitude)
     setLocation(position.coords.latitude + "," + position.coords.longitude);
   }
 
@@ -74,6 +75,10 @@ const EditMonument = () => {
         if (data.cover_image) {
           setCoverImage(data.imageUrl);
           setFilename(data.cover_image.split("\\")[1]);
+        }
+        if (data.location) {
+          // Set the initial value of location after fetching monument data
+          setLocation(data.location);
         }
       })
       .catch((err) => {
@@ -227,14 +232,13 @@ const EditMonument = () => {
                 name="location"
                 type="text"
                 id="latlong"
-                // value={location} // Use state value here
-                defaultValue={monument.location}
-                onChange={(e) => setLocation(e.target.defaultValue)} // Update state on change
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
               />
               <button
                 className="btn fetch-loc"
                 type="button"
-                onClick={() => getLocation()}
+                onClick={getLocation}
               >
                 Get Current Location
               </button>
