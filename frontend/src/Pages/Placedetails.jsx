@@ -54,6 +54,10 @@ const Placedetails = () => {
     setClickedImg(item.image);
   };
 
+  const handleTheClick = (item) => {
+    setClickedImg(item.monument.imageUrl);
+  };
+
   const clickToVerify = (Id) => {
     let cfm = confirm("Confirm verification");
     if (!cfm) return;
@@ -123,7 +127,17 @@ const Placedetails = () => {
       {combinedData && (
         <>
           <div className="place-img">
-            <img src={combinedData.monument.imageUrl} alt="" />
+            <img
+              src={combinedData.monument.imageUrl}
+              onClick={() => handleTheClick(combinedData)}
+              alt=""
+            />
+            {clickedImg && (
+              <ImagePopup
+                clickedImg={clickedImg}
+                setClickedImg={setClickedImg}
+              />
+            )}
             <div className="name-loc">
               <h2>{combinedData.monument.title}</h2>
               <div className="locatn">
