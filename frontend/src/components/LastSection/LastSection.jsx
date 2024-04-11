@@ -26,7 +26,7 @@ const LastSection = () => {
       <div className="image-container">
         {latest.map((item) => (
           <Link to={`/places/${item._id}`} className="image-con" key={item._id}>
-            <img className="img-one" src={item.cover_image} alt="" />
+            <img className="img-one" src={item.imageUrl} alt="" />
             <div className="details">
               <div className="line"></div>
               <h2>{item.title}</h2>

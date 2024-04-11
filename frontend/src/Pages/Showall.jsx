@@ -78,7 +78,7 @@ const Showall = () => {
                 key={item._id}
                 onClick={() => handleItemClick(item._id)}
               >
-                <img src={item.cover_image} alt="" />
+                <img src={item.imageUrl} alt="" />
                 <p className="title">{item.title}</p>
                 <div className="place">
                   <span className="material-symbols-outlined">explore</span>

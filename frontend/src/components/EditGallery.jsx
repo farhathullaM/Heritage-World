@@ -32,6 +32,12 @@ const EditGallery = () => {
 
   function handleChange(e) {
     const { name, value, files } = e.target;
+    const sizeLimit = 100;
+    if (files[0].size > 1048576 * sizeLimit) {
+      alert(`File is too big!, Maximum file size should be ${sizeLimit}MB`);
+      this.value = "";
+      return;
+    }
     setFilename(files[0].name);
     setImgSrc(files);
     setGalleryData((prevData) => ({
@@ -123,6 +129,8 @@ const EditGallery = () => {
                   <span>Open file</span>
                 </label>
                 <p className="filename">{filename}</p>
+                <br />
+                <span>Maximum size: 100 MB</span>
               </div>
               <input
                 name="image"
@@ -131,7 +139,6 @@ const EditGallery = () => {
                 accept="image/*, video/*"
                 onChange={handleChange}
                 ref={imageRef}
-                required
               />
 
               {imageRef.current?.files[0] &&

@@ -27,7 +27,13 @@ const AddGallery = () => {
   }
 
   function handleChange(e) {
+    const sizeLimit = 100;
     const files = e.target.files;
+    if (files[0].size > 1048576 * sizeLimit) {
+      alert(`File is too big!, Maximum file size should be ${sizeLimit}MB`);
+      this.value = "";
+      return;
+    }
     setFilename(files[0].name);
     setImgSrc(files);
   }
@@ -93,7 +99,11 @@ const AddGallery = () => {
                 <label htmlFor="image" className="fileopen btn">
                   <span>Open file</span>
                 </label>
-                <p className="filename">{filename}</p>
+                <p className="filename">
+                  {filename}
+                  <br />
+                  <span>Maximum size: 100 MB</span>
+                </p>
               </div>
               <input
                 name="image"

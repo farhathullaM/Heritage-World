@@ -304,7 +304,6 @@ const EditMonument = () => {
                 id="cover_image"
                 accept="image/*"
                 onChange={handleChange}
-                required
               />
 
               <img

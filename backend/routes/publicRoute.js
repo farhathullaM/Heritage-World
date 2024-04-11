@@ -26,9 +26,25 @@ const router = express.Router();
 // route get all
 router.get("/", async (request, response) => {
   try {
-    const monument = await Monument.find({ status: 1 });
+    const monuments = await Monument.find({ status: 1 });
+    const updatedMonuments = [];
+    for (const monument of monuments) {
+      const getObjectParams = {
+        Bucket: awsBucketName,
+        Key: monument.cover_image,
+      };
 
-    return response.status(200).json(monument);
+      const command = new GetObjectCommand(getObjectParams);
+      const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+
+      const updatedMonument = {
+        ...monument.toObject(),
+        imageUrl: url,
+      };
+      updatedMonuments.push(updatedMonument);
+    }
+
+    return response.status(200).json(updatedMonuments);
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
@@ -39,10 +55,27 @@ router.get("/", async (request, response) => {
 router.get("/latest3/", async (request, response) => {
   try {
     const monuments = await Monument.find({ status: 1 })
-      .sort({ createdAt: -1 }) // Sort by creation date in descending order
-      .limit(3); // Limit the result to 3 documents
+      .sort({ createdAt: -1 })
+      .limit(3);
 
-    return response.status(200).json(monuments);
+    const updatedMonuments = [];
+    for (const monument of monuments) {
+      const getObjectParams = {
+        Bucket: awsBucketName,
+        Key: monument.cover_image,
+      };
+
+      const command = new GetObjectCommand(getObjectParams);
+      const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+
+      const updatedMonument = {
+        ...monument.toObject(),
+        imageUrl: url,
+      };
+      updatedMonuments.push(updatedMonument);
+    }
+
+    return response.status(200).json(updatedMonuments);
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message });
@@ -54,15 +87,25 @@ router.get("/:id", async (request, response) => {
     const { id } = request.params;
 
     // Fetch monument data
-    const monumentPromise = Monument.findById(id);
+    const monument = await Monument.findById(id);
 
-    // Fetch user data
-    const monument = await monumentPromise;
+    const getObjectParams = {
+      Bucket: awsBucketName,
+      Key: monument.cover_image,
+    };
+    const command = new GetObjectCommand(getObjectParams);
+    const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+
+    const updatedMonumentItem = {
+      ...monument.toObject(),
+      imageUrl: url,
+    };
+
     const user = await User.findById(monument.user); // Assuming userId is the field linking to the User table
 
     // Combine monument and user data into one dictionary
     const combinedData = {
-      monument: monument,
+      monument: updatedMonumentItem,
       userName: user.name, // Assuming 'name' is the field you want from the User table
     };
 
