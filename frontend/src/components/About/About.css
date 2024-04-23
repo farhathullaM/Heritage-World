@@ -64,14 +64,14 @@
     }
     .about_details h6{
         color: grey;
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 500;
-        padding: 50px 50px 0px;
+        padding: 20px 20px 0px;
     }
     .about_details p{
         color: #dee4ea;
-        padding: 10px 30px 50px 50px;
-        font-size: 20px;
+        padding: 10px 20px 20px 20px;
+        font-size: 16px;
         font-weight: 300;
     }
 }
