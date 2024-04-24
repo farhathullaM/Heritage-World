@@ -124,161 +124,200 @@ const Placedetails = () => {
 
   return (
     <div className="place-details">
-      {combinedData && (
-        <>
-          <div className="place-img">
-            <img
-              src={combinedData.monument.imageUrl}
-              onClick={() => handleTheClick(combinedData)}
-              alt=""
-            />
-            {clickedImg && (
-              <ImagePopup
-                clickedImg={clickedImg}
-                setClickedImg={setClickedImg}
-              />
-            )}
-            <div className="name-loc">
-              <h2>{combinedData.monument.title}</h2>
-              <div className="locatn">
-                <span className="material-symbols-outlined">explore</span>
-                <div>
-                  <p>
-                    {combinedData.monument.place}, {combinedData.monument.state}
-                  </p>
-                </div>
-              </div>
+      {loading ? (
+        <div className="loader">
+          <div className="img-loader"></div>
 
-              <div className="user-icon">
-                <img src={user_icon} alt="" />
-                <p>{combinedData.userName}</p>
-              </div>
-            </div>
-          </div>
           <div className="importance">
             <div className="top">
               <img src={star} alt="" />
               <h4>Importance</h4>
             </div>
-            <p>{combinedData.monument.ipms_place}</p>
           </div>
 
           <div className="about-monument">
-            <h4>About Monument</h4>
+            <h4>ABOUT MONUMENT</h4>
             <div className="line"></div>
-            <ReadMore>{combinedData.monument.description}</ReadMore>
-          </div>
-
-          <div className="about-monument">
-            <h4>PAST CONDITION</h4>
-            <div className="line"></div>
-            <ReadMore>{combinedData.monument.past_condition}</ReadMore>
           </div>
 
           <div className="about-monument">
             <h4>PRESENT CONDITION</h4>
             <div className="line"></div>
-            <ReadMore>{combinedData.monument.present_condition}</ReadMore>
+          </div>
+
+          <div className="about-monument">
+            <h4>PRESENT CONDITION</h4>
+            <div className="line"></div>
           </div>
 
           <div className="arch-imp">
             <h4>Architectural Importance</h4>
-            <p>{combinedData.monument.archi_imps}</p>
           </div>
+        </div>
+      ) : (
+        combinedData && (
+          <>
+            <div className="place-img">
+              <img
+                src={combinedData.monument.imageUrl}
+                onClick={() => handleTheClick(combinedData)}
+                alt=""
+              />
+              {clickedImg && (
+                <ImagePopup
+                  clickedImg={clickedImg}
+                  setClickedImg={setClickedImg}
+                />
+              )}
+              <div className="name-loc">
+                <h2>{combinedData.monument.title}</h2>
+                <div className="locatn">
+                  <span className="material-symbols-outlined">explore</span>
+                  <div>
+                    <p>
+                      {combinedData.monument.place},{" "}
+                      {combinedData.monument.state}
+                    </p>
+                  </div>
+                </div>
 
-          <div className="gallery">
-            <h4>GALLERY</h4>
-            <div className="line"></div>
+                <div className="user-icon">
+                  <img src={user_icon} alt="" />
+                  <p>{combinedData.userName}</p>
+                </div>
+              </div>
+            </div>
+            <div className="importance">
+              <div className="top">
+                <img src={star} alt="" />
+                <h4>Importance</h4>
+              </div>
+              <p>{combinedData.monument.ipms_place}</p>
+            </div>
 
-            {loading ? (
-              "Loading..."
-            ) : (
-              <div className="all-items">
-                {galleryImages &&
-                  galleryImages
-                    .filter((item) => item.monumentId === placeId)
-                    .map((item, index) => (
-                      <div className="gallery-images" key={item._id}>
-                        {item.image.endsWith(".mp4") ? (
-                          <ReactPlayer
-                            url={item.imageUrl}
-                            controls
-                            width="100%"
-                            height={371}
-                            volume={null}
-                            muted
-                          />
-                        ) : (
-                          <img
-                            src={item.imageUrl}
-                            onClick={() => handleClick(item)}
-                          />
-                        )}
-                        <div>
-                          {clickedImg && (
-                            <ImagePopup
-                              clickedImg={clickedImg}
-                              setClickedImg={setClickedImg}
+            <div className="about-monument">
+              <h4>ABOUT MONUMENT</h4>
+              <div className="line"></div>
+              <ReadMore>{combinedData.monument.description}</ReadMore>
+            </div>
+
+            <div className="about-monument">
+              <h4>PAST CONDITION</h4>
+              <div className="line"></div>
+              <ReadMore>{combinedData.monument.past_condition}</ReadMore>
+            </div>
+
+            <div className="about-monument">
+              <h4>PRESENT CONDITION</h4>
+              <div className="line"></div>
+              <ReadMore>{combinedData.monument.present_condition}</ReadMore>
+            </div>
+
+            <div className="arch-imp">
+              <h4>Architectural Importance</h4>
+              <p>{combinedData.monument.archi_imps}</p>
+            </div>
+
+            <div className="gallery">
+              <h4>GALLERY</h4>
+              <div className="line"></div>
+
+              {loading ? (
+                <div className="all-items">
+                  <div className="gallery-images"></div>
+                  <div className="gallery-images"></div>
+                  <div className="gallery-images"></div>
+                  <div className="gallery-images"></div>
+                </div>
+              ) : (
+                <div className="all-items">
+                  {galleryImages &&
+                    galleryImages
+                      .filter((item) => item.monumentId === placeId)
+                      .map((item, index) => (
+                        <div className="gallery-images" key={item._id}>
+                          {item.image.endsWith(".mp4") ? (
+                            <ReactPlayer
+                              url={item.imageUrl}
+                              controls
+                              width="100%"
+                              height={371}
+                              volume={null}
+                              muted
+                            />
+                          ) : (
+                            <img
+                              src={item.imageUrl}
+                              onClick={() => handleClick(item)}
                             />
                           )}
+                          <div>
+                            {clickedImg && (
+                              <ImagePopup
+                                clickedImg={clickedImg}
+                                setClickedImg={setClickedImg}
+                              />
+                            )}
+                          </div>
+                          <div className="gallery-title">
+                            <p className="titles">{item.imgTitle}</p>
+                          </div>
                         </div>
-                        <div className="gallery-title">
-                          <p className="titles">{item.imgTitle}</p>
-                        </div>
-                      </div>
-                    ))}
-              </div>
-            )}
-          </div>
-
-          <div className="gallery">
-            <h4>MAP</h4>
-            <div className="line map-line"></div>
-            <div className="map">
-              {combinedData.monument.location &&
-              isValidLatLong(combinedData.monument.location) ? (
-                <div className="mapview">
-                  <Map
-                    latitude={combinedData.monument.location.split(",")[0]}
-                    longitude={combinedData.monument.location.split(",")[1]}
-                  />
+                      ))}
                 </div>
-              ) : undefined}
-            </div>
-          </div>
-
-          <div className="map-btn">
-            {/* <img src={gmap} alt="" /> */}
-            <button
-              className="w3-button w3-green"
-              onClick={() => handleMapClick(combinedData.monument.location)}
-            >
-              <i className="fa fa-map-marker" aria-hidden="true"></i>GOOGLE MAPS
-            </button>
-          </div>
-
-          {isAdmin ? (
-            <div className="verify">
-              {combinedData.monument.status == 1 ? (
-                <button
-                  className="btn"
-                  onClick={() => clickToUnverify(combinedData.monument._id)}
-                >
-                  Unverify
-                </button>
-              ) : (
-                <button
-                  className="btn"
-                  onClick={() => clickToVerify(combinedData.monument._id)}
-                >
-                  Verify
-                </button>
               )}
             </div>
-          ) : (
-            false
-          )}
-        </>
+
+            <div className="gallery">
+              <h4>MAP</h4>
+              <div className="line map-line"></div>
+              <div className="map">
+                {combinedData.monument.location &&
+                isValidLatLong(combinedData.monument.location) ? (
+                  <div className="mapview">
+                    <Map
+                      latitude={combinedData.monument.location.split(",")[0]}
+                      longitude={combinedData.monument.location.split(",")[1]}
+                    />
+                  </div>
+                ) : undefined}
+              </div>
+            </div>
+
+            <div className="map-btn">
+              {/* <img src={gmap} alt="" /> */}
+              <button
+                className="w3-button w3-green"
+                onClick={() => handleMapClick(combinedData.monument.location)}
+              >
+                <i className="fa fa-map-marker" aria-hidden="true"></i>GOOGLE
+                MAPS
+              </button>
+            </div>
+
+            {isAdmin ? (
+              <div className="verify">
+                {combinedData.monument.status == 1 ? (
+                  <button
+                    className="btn"
+                    onClick={() => clickToUnverify(combinedData.monument._id)}
+                  >
+                    Unverify
+                  </button>
+                ) : (
+                  <button
+                    className="btn"
+                    onClick={() => clickToVerify(combinedData.monument._id)}
+                  >
+                    Verify
+                  </button>
+                )}
+              </div>
+            ) : (
+              false
+            )}
+          </>
+        )
       )}
     </div>
   );
