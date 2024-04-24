@@ -69,7 +69,12 @@ const Showall = () => {
 
       <div className="every-places">
         {loading ? (
-          "Loading..."
+          <div className="loading-indicator">
+            <div className="loading-box"></div>
+            <div className="loading-box"></div>
+            <div className="loading-box"></div>
+            <div className="loading-box"></div>
+          </div>
         ) : (
           <div className="each-places">
             {filteredMonumentList.map((item) => (
