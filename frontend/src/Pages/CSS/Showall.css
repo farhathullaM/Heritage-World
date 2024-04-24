@@ -172,7 +172,17 @@
     top: 60%;
     padding-bottom: 30px;
   }
+  .loading-indicator {
+    padding-top: 30px;
+    gap: 35px;
+    top: 60%;
+    padding-bottom: 30px;
+  }
   .item {
+    width: 150px;
+    height: 250px;
+  }
+  .loading-box {
     width: 150px;
     height: 250px;
   }
