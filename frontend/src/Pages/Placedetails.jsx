@@ -8,30 +8,7 @@ import checkAdmin from "../util/Token";
 import ImagePopup from "../components/ImagePopup/ImagePopup";
 import Map from "../components/Map/Map";
 import user_icon from "../components/Assets/user.png";
-// import gmap from "../components/Assets/google-maps.png";
-
-// Read more component
-const ReadMore = ({ children }) => {
-  const text = children || "";
-  const [isReadMore, setIsReadMore] = useState(true);
-  const toggleReadMore = () => {
-    setIsReadMore(!isReadMore);
-  };
-  return (
-    <p className="text">
-      {isReadMore ? text.slice(0, 600) : text}
-      {text.length > 600 ? (
-        <span
-          onClick={toggleReadMore}
-          className="read-or-hide"
-          style={{ color: "rgba(153, 153, 153, 1)" }}
-        >
-          {isReadMore ? " Read more..." : " Show less"}
-        </span>
-      ) : undefined}
-    </p>
-  );
-};
+import ReadMore from "../components/ReadMore/ReadMore";
 
 const Placedetails = () => {
   const navigate = useNavigate();
@@ -192,30 +169,40 @@ const Placedetails = () => {
                 <img src={star} alt="" />
                 <h4>Importance</h4>
               </div>
-              <p>{combinedData.monument.ipms_place}</p>
+              <ReadMore sliceLength={350}>
+                {combinedData.monument.ipms_place}
+              </ReadMore>
             </div>
 
             <div className="about-monument">
               <h4>ABOUT MONUMENT</h4>
               <div className="line"></div>
-              <ReadMore>{combinedData.monument.description}</ReadMore>
+              <ReadMore sliceLength={600}>
+                {combinedData.monument.description}
+              </ReadMore>
             </div>
 
             <div className="about-monument">
               <h4>PAST CONDITION</h4>
               <div className="line"></div>
-              <ReadMore>{combinedData.monument.past_condition}</ReadMore>
+              <ReadMore sliceLength={600}>
+                {combinedData.monument.past_condition}
+              </ReadMore>
             </div>
 
             <div className="about-monument">
               <h4>PRESENT CONDITION</h4>
               <div className="line"></div>
-              <ReadMore>{combinedData.monument.present_condition}</ReadMore>
+              <ReadMore sliceLength={600}>
+                {combinedData.monument.present_condition}
+              </ReadMore>
             </div>
 
             <div className="arch-imp">
               <h4>Architectural Importance</h4>
-              <p>{combinedData.monument.archi_imps}</p>
+              <ReadMore sliceLength={350}>
+                {combinedData.monument.archi_imps}
+              </ReadMore>
             </div>
 
             <div className="gallery">
