@@ -26,7 +26,8 @@ const Footer = () => {
           <h4>CONTACT US</h4>
           <p>Department of History</p>
           <p>Kannur University</p>
-          <p>+91 912345667807</p>
+          <p>9495899176</p>
+          <p>manjulap@kannuruniv.ac.in</p>
         </div>
 
         <div className="contact">
