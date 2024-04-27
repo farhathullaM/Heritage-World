@@ -51,7 +51,7 @@ const Placedetails = () => {
   });
 
   const handleClick = (item) => {
-    setClickedImg(item.image);
+    setClickedImg(item.imageUrl);
   };
 
   const handleTheClick = (item) => {
@@ -223,12 +223,7 @@ const Placedetails = () => {
               <div className="line"></div>
 
               {loading ? (
-                <div className="all-items">
-                  <div className="gallery-images"></div>
-                  <div className="gallery-images"></div>
-                  <div className="gallery-images"></div>
-                  <div className="gallery-images"></div>
-                </div>
+                "Loading..."
               ) : (
                 <div className="all-items">
                   {galleryImages &&
