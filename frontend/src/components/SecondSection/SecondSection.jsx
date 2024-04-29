@@ -32,7 +32,7 @@ const SecondSection = () => {
             by the Archaeological Survey of India.
           </p>
           <Link
-            to="/places/65f5c8c8de4a16e914e2f889"
+            to="/places/662f49bda496a1f1db7e3baf"
             style={{ textDecoration: "none" }}
           >
             <button onClick={() => handleClick()} className="more-btn">
@@ -55,7 +55,7 @@ const SecondSection = () => {
             seminary.
           </p>
           <Link
-            to="/places/65f5ca98de4a16e914e2f89e"
+            to="/places/62f4b3ba496a1f1db7e3bb3"
             style={{ textDecoration: "none" }}
           >
             <button onClick={() => handleClick()} className="more-btn">
