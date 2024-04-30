@@ -60,8 +60,9 @@
   font-size: 24px;
   color: rgba(255, 255, 255, 0.77);
 }
-.name-loc span {
-  color: white;
+.name-loc img {
+  height: 25px;
+  width: 25px;
 }
 .user-icon {
   display: flex;
@@ -256,8 +257,9 @@
   .name-loc p {
     font-size: 15px;
   }
-  .name-loc span {
-    font-size: 20px;
+  .name-loc img {
+    height: 20px;
+    width: 20px;
   }
   .user-icon {
     gap: 14px;

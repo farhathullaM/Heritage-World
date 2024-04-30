@@ -152,6 +152,7 @@ const AddMonument = () => {
               <input
                 name="location"
                 type="text"
+                placeholder="latitude, longitude"
                 value={location} // Use state value here
                 onChange={(e) => setLocation(e.target.value)} // Update state on change
                 id="loc"

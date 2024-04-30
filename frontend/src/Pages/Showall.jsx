@@ -3,6 +3,8 @@ import "./CSS/Showall.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import backcover from "../components/Assets/taj_mahal_cover.jpg";
+import search_icon from "../components/Assets/search.png";
+import explore_icon from "../components/Assets/explore.png";
 
 const Showall = () => {
   const [loading, setLoading] = useState(true);
@@ -62,7 +64,7 @@ const Showall = () => {
             onChange={handleSearch}
           />
           <div className="search-icon-box">
-            <span className="material-symbols-outlined">search</span>
+            <img src={search_icon} alt="" />
           </div>
         </div>
       </div>
@@ -86,7 +88,7 @@ const Showall = () => {
                 <img src={item.imageUrl} alt="" />
                 <p className="title">{item.title}</p>
                 <div className="place">
-                  <span className="material-symbols-outlined">explore</span>
+                  <img src={explore_icon} alt="" />
                   <p>
                     {item.place}, {item.state}
                   </p>

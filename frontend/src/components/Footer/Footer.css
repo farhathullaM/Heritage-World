@@ -95,11 +95,19 @@
 .develop a:hover {
   color: rgb(112, 112, 191);
 }
+/* .goog-te-gadget-simple{
+  background-color: transparent;
+} */
+.goog-te-gadget-icon {
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 1px;
+  height: 1px;
+}
 
 @media (max-width: 600px) {
   .footer-top {
     justify-content: space-between;
-
   }
   .footer h4 {
     font-size: 15px;
@@ -110,7 +118,7 @@
   .footer-icons {
     gap: 3px;
   }
-  .footer-icons img{
+  .footer-icons img {
     width: 30px;
     height: 30px;
   }
@@ -130,4 +138,7 @@
   .develop {
     font-size: 10px;
   }
+.goog-te-gadget-simple{
+  font-size: 10px;
+}
 }

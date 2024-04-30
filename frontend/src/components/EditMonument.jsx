@@ -232,6 +232,7 @@ const EditMonument = () => {
                 name="location"
                 type="text"
                 id="latlong"
+                placeholder="Latitude, Longitude"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />

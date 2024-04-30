@@ -5,6 +5,7 @@ import twitter from "../Assets/twitter.png";
 import instagram from "../Assets/instagram.png";
 import { Link } from "react-router-dom";
 import "./Footer.css";
+import TranslateComponent from "../TranslateComponent/TranslateComponent";
 
 const Footer = () => {
   return (
@@ -26,7 +27,8 @@ const Footer = () => {
           <h4>CONTACT US</h4>
           <p>Department of History</p>
           <p>Kannur University</p>
-          <p>+91 912345667807</p>
+          <p>9495899176</p>
+          <p>manjulap@kannuruniv.ac.in</p>
         </div>
 
         <div className="contact">
@@ -36,6 +38,8 @@ const Footer = () => {
           <Link to="/explore" style={{ textDecoration: "none" }}>
             <h4>MONUMENTS</h4>
           </Link>
+          <h4>TRANSLATE : </h4>
+            <TranslateComponent/>
         </div>
       </div>
 
