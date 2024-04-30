@@ -257,8 +257,9 @@
   .name-loc p {
     font-size: 15px;
   }
-  .name-loc span {
-    font-size: 20px;
+  .name-loc img {
+    height: 20px;
+    width: 20px;
   }
   .user-icon {
     gap: 14px;
