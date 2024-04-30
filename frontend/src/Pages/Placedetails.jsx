@@ -9,6 +9,7 @@ import ImagePopup from "../components/ImagePopup/ImagePopup";
 import Map from "../components/Map/Map";
 import user_icon from "../components/Assets/user.png";
 import ReadMore from "../components/ReadMore/ReadMore";
+import explore_icons from "../components/Assets/explore_white.png";
 
 const Placedetails = () => {
   const navigate = useNavigate();
@@ -149,7 +150,7 @@ const Placedetails = () => {
               <div className="name-loc">
                 <h2>{combinedData.monument.title}</h2>
                 <div className="locatn">
-                  <span className="material-symbols-outlined">explore</span>
+                  <img src={explore_icons} alt="" />
                   <div>
                     <p>
                       {combinedData.monument.place},{" "}

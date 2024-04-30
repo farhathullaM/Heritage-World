@@ -55,9 +55,9 @@
   border-radius: 50px;
   background: rgba(0, 0, 0, 1);
 }
-.search-icon-box span {
-  color: rgba(255, 255, 255, 1);
-  font-size: 25px;
+.search-icon-box img {
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 }
 .each-places {
@@ -115,9 +115,9 @@
   font-weight: 500;
   color: rgba(0, 0, 0, 0.63);
 }
-.place span {
-  color: rgba(31, 20, 16, 1);
-  font-size: 20px;
+.place img {
+  height: 18px;
+  width: 18px;
 }
 .loading-indicator {
   display: flex;
