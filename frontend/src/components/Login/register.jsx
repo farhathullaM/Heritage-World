@@ -9,8 +9,8 @@ const register = () => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const validateName = (value) => {
-    return /^[A-Za-z]+$/.test(value);
-    // Only alphabets allowed
+    return /^[A-Za-z\s.]+$/.test(value);
+    // Alphabets, blank spaces, and "." allowed
   };
 
   const validateEmail = (value) => {
