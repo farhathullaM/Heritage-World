@@ -1,5 +1,6 @@
 import React from "react";
 import "./ImagePopup.css";
+import cross from "../Assets/cross.png";
 
 const ImagePopup = ({ clickedImg, setClickedImg }) => {
   const handleClick = (e) => {
@@ -12,9 +13,12 @@ const ImagePopup = ({ clickedImg, setClickedImg }) => {
     <>
       <div className="overlay dismiss" onClick={handleClick}>
         <img src={clickedImg} alt="bigger pic" />
-        <span className="dismiss" onClick={handleClick}>
+        {/* <span className="dismiss" onClick={handleClick}>
           X
-        </span>
+        </span> */}
+        <div className="crossimg">
+        <img src={cross} className="dismiss" onClick={handleClick} alt="" />
+        </div>
       </div>
     </>
   );

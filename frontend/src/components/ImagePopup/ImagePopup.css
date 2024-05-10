@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: 2000;
 }
 .overlay img {
   display: block;
@@ -28,6 +28,7 @@
   z-index: 999;
   cursor: pointer;
 }
+
 .overlay-arrows_right {
   display: flex;
   background-color: #6d6d6d;
@@ -39,7 +40,19 @@
   top: 50%;
   z-index: 999;
 }
-
+.overlay .crossimg{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  color: #ffffff;
+  z-index: 999;
+  cursor: pointer;
+}
+.overlay .crossimg img{
+  width: 20px;
+  height: 20px;
+}
 @media (max-width: 830px) {
   .overlay {
     width: 95%;
