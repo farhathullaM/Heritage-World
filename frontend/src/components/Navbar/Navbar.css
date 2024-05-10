@@ -67,8 +67,14 @@
   margin-right: 20px;
   cursor: pointer;
 }
+.menu-icons img{
+  width: 25px;
+  height: 25px;
+}
 .menu-icons .fa-times {
   display: none;
+  width: 15px;
+  height: 15px;
 }
 /* .menu-icons span {
   -webkit-tap-highlight-color: transparent;

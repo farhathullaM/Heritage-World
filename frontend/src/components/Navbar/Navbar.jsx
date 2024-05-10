@@ -2,6 +2,8 @@ import React from "react";
 import "./Navbar.css";
 import logo_new from "../Assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
+import menu from "../Assets/menu.png";
+import cross from "../Assets/cross.png";
 
 const Navbar = () => {
   const location = useLocation();
@@ -30,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar" >
+    <nav className="navbar">
       <Link to="/" style={{ textDecoration: "none" }}>
         <div className="nav-logo">
           <img src={logo_new} alt="" />
@@ -38,7 +40,7 @@ const Navbar = () => {
         </div>
       </Link>
 
-      <div className="menu-icons" onClick={toggleNav}>
+      {/* <div className="menu-icons" onClick={toggleNav}>
         <span
           className="material-symbols-outlined fa-bars"
           style={{ color: "white" }}
@@ -51,11 +53,15 @@ const Navbar = () => {
         >
           close
         </span>
+      </div> */}
+      <div className="menu-icons" onClick={toggleNav}>
+        <img src={menu} className="material-symbols-outlined fa-bars" alt="" />
+        <img src={cross} className="material-symbols-outlined fa-times" alt="" />
       </div>
 
       <ul className="nav-menu">
         <li>
-          <Link to="/" className="navlink" onClick={ () => closeBlock()}>
+          <Link to="/" className="navlink" onClick={() => closeBlock()}>
             HOME
           </Link>
         </li>
@@ -72,12 +78,16 @@ const Navbar = () => {
         </li>
         {location.pathname.includes("/login") ? (
           <li>
-            <Link to="/register" className="navlink" onClick={() => closeBlock()}>
+            <Link
+              to="/register"
+              className="navlink"
+              onClick={() => closeBlock()}
+            >
               REGISTER
             </Link>
           </li>
         ) : null}
-                {location.pathname.includes("/register") ? (
+        {location.pathname.includes("/register") ? (
           <li>
             <Link to="/login" className="navlink" onClick={() => closeBlock()}>
               LOGIN
@@ -85,21 +95,29 @@ const Navbar = () => {
           </li>
         ) : null}
 
-          {location.pathname !== "/register" &&
-            location.pathname !== "/login" && (
-              <>
-                <li>
-                  <Link to="/register" className="navlink" onClick={() => closeBlock()}>
-                    REGISTER
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/login" className="navlink" onClick={() => closeBlock()}>
-                    LOGIN
-                  </Link>
-                </li>
-              </>
-            )}
+        {location.pathname !== "/register" &&
+          location.pathname !== "/login" && (
+            <>
+              <li>
+                <Link
+                  to="/register"
+                  className="navlink"
+                  onClick={() => closeBlock()}
+                >
+                  REGISTER
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/login"
+                  className="navlink"
+                  onClick={() => closeBlock()}
+                >
+                  LOGIN
+                </Link>
+              </li>
+            </>
+          )}
       </ul>
     </nav>
   );
