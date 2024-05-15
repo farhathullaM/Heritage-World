@@ -168,7 +168,7 @@ const AddMonument = () => {
           </div>
 
           <div className="inp">
-            <label htmlFor="ipms_place">Importance of a Place</label>
+            <label htmlFor="ipms_place">Importance of Place</label>
             <textarea name="ipms_place" id="ipms_place" />
           </div>
 
@@ -194,7 +194,7 @@ const AddMonument = () => {
           </div>
 
           <div className="inp">
-            <label htmlFor="cover_image" className="required">cover Image/Video</label>
+            <label htmlFor="cover_image" className="required">Cover Image</label>
             <div className="fileSelect">
               <div className="filebtncon">
                 <label htmlFor="cover_image" className="fileopen btn">
