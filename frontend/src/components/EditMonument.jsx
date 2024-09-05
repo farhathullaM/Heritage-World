@@ -40,7 +40,7 @@ const EditMonument = () => {
   }
 
   function showPosition(position) {
-    console.log(position.coords.latitude + "," + position.coords.longitude)
+    console.log(position.coords.latitude + "," + position.coords.longitude);
     setLocation(position.coords.latitude + "," + position.coords.longitude);
   }
 
