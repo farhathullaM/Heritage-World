@@ -10,6 +10,8 @@ import Map from "../components/Map/Map";
 import user_icon from "../components/Assets/user.png";
 import ReadMore from "../components/ReadMore/ReadMore";
 import explore_icons from "../components/Assets/explore_white.png";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const Placedetails = () => {
   const navigate = useNavigate();
@@ -86,6 +88,29 @@ const Placedetails = () => {
         console.error("Error fetching combined data:", error);
       });
   }, [placeId]);
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.setFontSize(12);
+
+    if (combinedData) {
+      doc.text(`Title: ${combinedData.monument.title}`, 10, 10);
+      doc.text(`Location: ${combinedData.monument.place}, ${combinedData.monument.state}`, 10, 20);
+      doc.text(`Submitted by: ${combinedData.userName}`, 10, 30);
+      doc.text(`Importance:`, 10, 40);
+      doc.text(doc.splitTextToSize(combinedData.monument.ipms_place, 180), 10, 50);
+      doc.text(`About Monument:`, 10, 70);
+      doc.text(doc.splitTextToSize(combinedData.monument.description, 180), 10, 80);
+      doc.text(`Past Condition:`, 10, 100);
+      doc.text(doc.splitTextToSize(combinedData.monument.past_condition, 180), 10, 110);
+      doc.text(`Present Condition:`, 10, 130);
+      doc.text(doc.splitTextToSize(combinedData.monument.present_condition, 180), 10, 140);
+      doc.text(`Architectural Importance:`, 10, 160);
+      doc.text(doc.splitTextToSize(combinedData.monument.archi_imps, 180), 10, 170);
+    }
+
+    doc.save(`${combinedData.monument.title}_details.pdf`);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -299,6 +324,7 @@ const Placedetails = () => {
             ) : (
               false
             )}
+            <button onClick={generatePDF}>Download PDF</button>
           </>
         )
       )}

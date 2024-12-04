@@ -13,7 +13,7 @@ const About = () => {
       </div>
 
       <div className="about_details">
-        <h6>About</h6>
+        {/* <h6>About</h6> */}
         <p>
           The website entitled <span>Heritage World</span> is designed to
           identify and understand the rich architectural heritage of the World,

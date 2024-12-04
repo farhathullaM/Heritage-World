@@ -6,7 +6,8 @@ import axios from "axios";
 
 // axios.defaults.baseURL = "http://localhost:3001/";
 // axios.defaults.baseURL = "https://heritage-world.onrender.com/";
-axios.defaults.baseURL = "https://hwbackend-production.up.railway.app/";
+// axios.defaults.baseURL = "https://hwbackend-production.up.railway.app/";
+axios.defaults.baseURL = "https://hw-backend-p4eu.onrender.com/";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
